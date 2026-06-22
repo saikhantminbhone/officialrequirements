@@ -1,0 +1,53 @@
+{
+  "_comment": "Program archetypes to expand admission templates across. focus + prereq make each program's page genuinely distinct (anti-thin). Add a row + rebuild to publish a new program page per destination.",
+  "rows": [
+    {
+      "slug": "bachelor-business",
+      "name": "Bachelor in Business",
+      "level": "bachelor",
+      "needsGre": false, "needsGmat": false, "needsWorkExp": false,
+      "focus": "An undergraduate degree covering management, economics, accounting and marketing fundamentals — the most common entry point for international undergraduates.",
+      "prereq": { "label": "School-leaving qualification with maths", "detail": "A completed secondary-school qualification (e.g. high-school diploma, A-levels or equivalent) including a solid mathematics grade; some schools require a foundation year for systems with 11–12 years of schooling." }
+    },
+    {
+      "slug": "msc-computer-science",
+      "name": "MSc Computer Science",
+      "level": "msc",
+      "needsGre": true, "needsGmat": false, "needsWorkExp": false,
+      "focus": "A taught Master's in algorithms, systems, software engineering and AI/ML, usually expecting a computing or strongly quantitative first degree.",
+      "prereq": { "label": "Computing background (programming & algorithms)", "detail": "A Bachelor's in computer science or a related field, with demonstrable programming, data structures and algorithms coursework. Some programs accept a strong conversion/bridging record." }
+    },
+    {
+      "slug": "msc-data-science",
+      "name": "MSc Data Science",
+      "level": "msc",
+      "needsGre": true, "needsGmat": false, "needsWorkExp": false,
+      "focus": "A taught Master's blending statistics, machine learning and data engineering — admissions weigh mathematics and programming evidence heavily.",
+      "prereq": { "label": "Statistics & programming background", "detail": "Prior coursework in statistics/linear algebra/probability and at least one programming language (often Python or R). Applicants from non-CS degrees are admitted if the quantitative record is strong." }
+    },
+    {
+      "slug": "msc-mechanical-engineering",
+      "name": "MSc Mechanical Engineering",
+      "level": "msc",
+      "needsGre": true, "needsGmat": false, "needsWorkExp": false,
+      "focus": "A taught Master's in mechanics, thermodynamics, materials and design — admissions expect an accredited engineering first degree.",
+      "prereq": { "label": "Accredited engineering Bachelor's", "detail": "A Bachelor's in mechanical (or closely related) engineering covering engineering mathematics, mechanics and thermodynamics; ECTS/credit equivalence is checked for non-EU degrees." }
+    },
+    {
+      "slug": "mba",
+      "name": "MBA",
+      "level": "mba",
+      "needsGre": false, "needsGmat": true, "needsWorkExp": true,
+      "focus": "A general-management Master's built around case learning, leadership and a cohort of experienced professionals — admissions weigh work record and GMAT/GRE.",
+      "prereq": { "label": "Bachelor's + management aptitude", "detail": "A recognised Bachelor's in any field plus evidence of leadership/management potential; many top programs interview shortlisted candidates." }
+    },
+    {
+      "slug": "phd-engineering",
+      "name": "PhD in Engineering",
+      "level": "phd",
+      "needsGre": false, "needsGmat": false, "needsWorkExp": false,
+      "focus": "A research degree where a supervisor match and a fundable proposal matter more than a fixed checklist — often paired with a funded position or scholarship.",
+      "prereq": { "label": "Relevant Master's + research proposal & supervisor", "detail": "A relevant Master's (or strong research-oriented Bachelor's in some systems), a research proposal, and usually a prospective supervisor who agrees to take you on." }
+    }
+  ]
+}

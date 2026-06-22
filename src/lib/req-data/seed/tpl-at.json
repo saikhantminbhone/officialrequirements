@@ -1,0 +1,33 @@
+{
+  "destination": "at",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Study in Austria — Visa & residence permit",
+    "url": "https://studyinaustria.at/en/useful-tips/questions-and-answers/visa",
+    "type": "official-body"
+  },
+  "extraSources": [
+    { "name": "OeAD — Residence permit (student, no mobility programme)", "url": "https://oead.at/en/to-austria/entry-and-residence/residence-permit-student-no-mobility-programme", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 15701,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 1308,
+    "visaFee": 160,
+    "insurancePerMonth": 65,
+    "processingWeeks": 10,
+    "intakeMonths": [3, 10]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "University admission", "detail": "Admission (or confirmation of a place) at an Austrian higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds", "detail": "Prove monthly means for 12 months: about €1,308.39/month if you are 24 or older, or €722.58/month if under 24 (2026 levels).", "required": true, "amount": { "value": 15701, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Health insurance valid in Austria covering all risks.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "German for German-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the residence-permit period.", "required": true },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of accommodation in Austria (e.g. tenancy agreement) is required.", "required": true, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you an Austrian number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

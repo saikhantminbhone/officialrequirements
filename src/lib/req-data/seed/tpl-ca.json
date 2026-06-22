@@ -1,0 +1,36 @@
+{
+  "destination": "ca",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Canada.ca — Study permit: Proof of financial support",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Canada.ca — Study permit: How to apply", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 22895,
+    "blockedAccountCurrency": "CAD",
+    "livingCostPerMonth": 1908,
+    "visaFee": 150,
+    "insurancePerMonth": 75,
+    "processingWeeks": 8,
+    "intakeMonths": [1, 5, 9]
+  },
+  "requirements": [
+    { "key": "loa", "label": "Letter of acceptance (LOA)", "detail": "An acceptance letter from a Designated Learning Institution (DLI).", "required": true },
+    { "key": "pal", "label": "Provincial/Territorial Attestation Letter (PAL/TAL)", "detail": "Most study permit applicants now need a PAL/TAL from the province or territory.", "required": true, "appliesIf": { "palRequired": true } },
+    { "key": "proof-of-funds", "label": "Proof of financial support", "detail": "Show at least CAD 22,895 for living expenses (outside Quebec), separate from first-year tuition and travel. A GIC is one accepted way to prove this.", "required": true, "amount": { "value": 22895, "currency": "CAD", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Provincial coverage varies; arrange private/student health insurance where you aren't covered.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English/French language proof", "detail": "IELTS/TOEFL/PTE (or French tests) as your institution requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "biometrics", "label": "Biometrics", "detail": "Most applicants must give fingerprints and a photo at a Visa Application Centre.", "required": true },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for your intended period of study.", "required": true },
+    { "key": "medical-exam", "label": "Medical exam", "detail": "Required depending on your country of residence and length of stay.", "required": false, "appliesIf": { "medicalRequired": true } },
+    { "key": "tuition-transfer", "label": "GIC / tuition transfer", "detail": "Fund a GIC or transfer tuition with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Canadian number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early, especially in major cities.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

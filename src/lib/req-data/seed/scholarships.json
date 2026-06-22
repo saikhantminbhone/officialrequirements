@@ -1,0 +1,108 @@
+[
+  {
+    "id": "daad-epos",
+    "slug": "daad-epos",
+    "name": "DAAD EPOS (Development-Related Postgraduate Courses)",
+    "provider": "DAAD",
+    "destination": "de",
+    "summary": "Full scholarships for a Master's (or in some cases PhD) at a German university on a development-related programme, aimed at professionals from developing and emerging countries.",
+    "benefits": [
+      "Monthly stipend (approx. €934/month for graduates)",
+      "Health, accident and personal liability insurance",
+      "Travel allowance and study/research subsidy",
+      "Possible rent subsidy and family allowances"
+    ],
+    "deadlines": [
+      { "intake": "Varies by course", "date": "2026-08-31" }
+    ],
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold a Bachelor's degree (or equivalent)?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "EPOS requires a completed first academic degree, normally a Bachelor's."
+      },
+      {
+        "key": "experience",
+        "question": "How many years of relevant professional experience do you have?",
+        "field": "workYears",
+        "op": "gte",
+        "value": 2,
+        "failMessage": "Most EPOS courses require at least 2 years of relevant professional experience after your first degree."
+      },
+      {
+        "key": "graduation-recency",
+        "question": "Did you graduate within the last 6 years?",
+        "field": "gradWithin6Years",
+        "op": "truthy",
+        "soft": true,
+        "failMessage": "EPOS normally expects your last degree to have been obtained within the past 6 years."
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the course language requirement (English or German)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "You must meet the language requirement of the specific course (e.g. IELTS/TOEFL for English-taught)."
+      }
+    ],
+    "source": {
+      "name": "DAAD — EPOS scholarship database",
+      "url": "https://www.daad.de/en/study-and-research-in-germany/scholarships/epos/",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-12",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-12", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "erasmus-mundus-emjm",
+    "slug": "erasmus-mundus-joint-masters",
+    "name": "Erasmus Mundus Joint Masters (EMJM)",
+    "provider": "European Commission",
+    "destination": "multiple",
+    "summary": "Prestigious, fully-funded joint Master's programmes delivered by a consortium of European (and sometimes non-European) universities, with study in at least two countries.",
+    "benefits": [
+      "Full tuition coverage",
+      "Monthly living allowance (around €1,400/month)",
+      "Travel and installation allowance",
+      "Insurance coverage"
+    ],
+    "deadlines": [{ "intake": "Autumn", "date": "2026-01-15" }],
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you hold) a Bachelor's degree before enrolment?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "An EMJM requires a first higher-education degree before enrolment."
+      },
+      {
+        "key": "prior-emjm",
+        "question": "Have you previously received an Erasmus Mundus scholarship?",
+        "field": "priorEmjm",
+        "op": "eq",
+        "value": false,
+        "failMessage": "You cannot hold more than one Erasmus Mundus scholarship."
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the programme's English requirement?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "Most EMJM programmes require proof of English (e.g. IELTS 6.5)."
+      }
+    ],
+    "source": {
+      "name": "Erasmus+ — Erasmus Mundus Joint Masters catalogue",
+      "url": "https://www.eacea.ec.europa.eu/scholarships/emjmd-catalogue_en",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-12",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-12", "note": "Initial record seeded." }]
+  }
+]

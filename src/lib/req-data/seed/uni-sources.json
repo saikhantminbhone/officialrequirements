@@ -1,0 +1,127 @@
+{
+  "de": {
+    "englishNote": "German universities commonly ask for IELTS 6.5+ (or TOEFL/PTE equivalents) for English-taught Master's; German-taught programs require TestDaF/DSH.",
+    "source": { "name": "DAAD — Study in Germany: Admission requirements", "url": "https://www.study-in-germany.de/en/plan-your-studies/requirements/", "type": "official-body" },
+    "extraSources": [{ "name": "uni-assist — Application & document checks", "url": "https://www.uni-assist.de/en/", "type": "official-body" }]
+  },
+  "gb": {
+    "englishNote": "UK universities typically require IELTS 6.0–6.5 (undergraduate) or 6.5–7.0 (postgraduate) for a CAS; check each course page.",
+    "source": { "name": "UCAS — Undergraduate application & entry requirements", "url": "https://www.ucas.com/undergraduate/applying-university", "type": "official-body" },
+    "extraSources": [{ "name": "British Council — Study in the UK", "url": "https://study-uk.britishcouncil.org/", "type": "official-body" }]
+  },
+  "ca": {
+    "englishNote": "Canadian universities usually require IELTS 6.5 (PG) or 6.0–6.5 (UG), or equivalent TOEFL/PTE.",
+    "source": { "name": "EduCanada — Choosing a school & admission", "url": "https://www.educanada.ca/study-plan-etudes/before-avant/admission.aspx", "type": "government" },
+    "extraSources": []
+  },
+  "au": {
+    "englishNote": "Australian universities commonly require IELTS 6.5 with no band below 6.0 for many programs.",
+    "source": { "name": "Study Australia — Applying to study", "url": "https://www.studyaustralia.gov.au/en/plan-your-studies/how-to-apply", "type": "government" },
+    "extraSources": []
+  },
+  "nl": {
+    "englishNote": "Dutch English-taught programs typically require IELTS 6.0–6.5 (Bachelor's) or 6.5 (Master's).",
+    "source": { "name": "Study in NL — Application & admission", "url": "https://www.studyinnl.org/finances/application", "type": "official-body" },
+    "extraSources": [{ "name": "Studielink — Central application portal", "url": "https://www.studielink.nl/", "type": "official-body" }]
+  },
+  "ie": {
+    "englishNote": "Irish universities typically require IELTS 6.5 for most degree programs.",
+    "source": { "name": "Education in Ireland — How to apply", "url": "https://www.educationinireland.com/en/how-do-i-apply-/", "type": "official-body" },
+    "extraSources": [{ "name": "CAO — Undergraduate central applications", "url": "https://www.cao.ie/", "type": "official-body" }]
+  },
+  "us": {
+    "englishNote": "U.S. universities commonly require TOEFL iBT 80–100 or IELTS 6.5–7.0; many graduate programs also weigh GRE/GMAT.",
+    "source": { "name": "EducationUSA (U.S. Dept of State) — Applying to U.S. universities", "url": "https://educationusa.state.gov/your-5-steps-us-study", "type": "government" },
+    "extraSources": []
+  },
+  "se": {
+    "englishNote": "Swedish English-taught programmes typically require IELTS 6.5 (with no band below 5.5) or equivalent TOEFL.",
+    "source": { "name": "University Admissions in Sweden — Entry requirements", "url": "https://www.universityadmissions.se/en/entry-requirements/", "type": "official-body" },
+    "extraSources": [{ "name": "Study in Sweden", "url": "https://studyinsweden.se/", "type": "official-body" }]
+  },
+  "fr": {
+    "englishNote": "French English-taught programmes usually require IELTS 6.0–6.5; French-taught programmes require DELF/DALF/TCF.",
+    "source": { "name": "Campus France — How to apply", "url": "https://www.campusfrance.org/en", "type": "official-body" },
+    "extraSources": []
+  },
+  "nz": {
+    "englishNote": "New Zealand universities commonly require IELTS 6.0 (UG) or 6.5 (PG), or equivalent TOEFL/PTE.",
+    "source": { "name": "Study with New Zealand — How to apply", "url": "https://www.studywithnewzealand.govt.nz/en/plan-your-studies/how-to-apply", "type": "government" },
+    "extraSources": []
+  },
+  "it": {
+    "englishNote": "Italian English-taught programmes typically require IELTS 6.0–6.5; Italian-taught programmes require CILS/CELI.",
+    "source": { "name": "Universitaly — Pre-enrolment & admission", "url": "https://www.universitaly.it/", "type": "official-body" },
+    "extraSources": []
+  },
+  "es": {
+    "englishNote": "Spanish English-taught programmes usually require IELTS 6.0–6.5; Spanish-taught programmes require DELE/SIELE.",
+    "source": { "name": "Study in Spain (Ministry of Universities)", "url": "https://www.universidades.gob.es/", "type": "government" },
+    "extraSources": []
+  },
+  "fi": {
+    "englishNote": "Finnish English-taught programmes typically require IELTS 6.0–6.5 or equivalent TOEFL.",
+    "source": { "name": "Study in Finland — Admissions", "url": "https://www.studyinfinland.fi/admissions", "type": "official-body" },
+    "extraSources": [{ "name": "Studyinfo (Opintopolku)", "url": "https://opintopolku.fi/konfo/en/", "type": "official-body" }]
+  },
+  "no": {
+    "englishNote": "Norwegian English-taught programmes typically require IELTS 6.0–6.5 or equivalent.",
+    "source": { "name": "Study in Norway — Cost and requirements", "url": "https://studyinnorway.no/cost-and-requirements", "type": "official-body" },
+    "extraSources": []
+  },
+  "ch": {
+    "englishNote": "Swiss English-taught Master's typically require IELTS 6.5–7.0; bachelor programmes are often in the local language.",
+    "source": { "name": "swissuniversities — Admission to Swiss universities", "url": "https://www.swissuniversities.ch/en/topics/studying/admission-to-universities", "type": "official-body" },
+    "extraSources": []
+  },
+  "dk": {
+    "englishNote": "Danish English-taught programmes typically require IELTS 6.5 (with no band below 5.5).",
+    "source": { "name": "Study in Denmark — Admission", "url": "https://studyindenmark.dk/study-options/admission", "type": "official-body" },
+    "extraSources": []
+  },
+  "at": {
+    "englishNote": "Austrian English-taught programmes typically require IELTS 6.0–6.5; German-taught require a German certificate.",
+    "source": { "name": "Study in Austria — Admission", "url": "https://studyinaustria.at/en/study-in-austria/admission-and-application", "type": "official-body" },
+    "extraSources": []
+  },
+  "jp": {
+    "englishNote": "Japanese English-taught programmes typically require TOEFL iBT 80+ or IELTS 6.0–6.5; Japanese-taught require JLPT N2/N1.",
+    "source": { "name": "Study in Japan (MEXT) — How to apply", "url": "https://www.studyinjapan.go.jp/en/planning/", "type": "government" },
+    "extraSources": []
+  },
+  "kr": {
+    "englishNote": "Korean English-taught programmes typically require TOEFL iBT 80+ or IELTS 5.5–6.5; Korean-taught require TOPIK level 3–4.",
+    "source": { "name": "Study in Korea — Admissions", "url": "https://www.studyinkorea.go.kr/en/main.do", "type": "government" },
+    "extraSources": []
+  },
+  "be": {
+    "englishNote": "Belgian English-taught Master's typically require IELTS 6.5; bachelor programmes are often in Dutch or French.",
+    "source": { "name": "Study in Flanders — Admission", "url": "https://www.studyinflanders.be/study/admission-requirements", "type": "official-body" },
+    "extraSources": []
+  },
+  "pl": {
+    "englishNote": "Polish English-taught programmes typically require IELTS 6.0–6.5 or equivalent.",
+    "source": { "name": "study.gov.pl — How to apply", "url": "https://study.gov.pl/how-apply", "type": "official-body" },
+    "extraSources": []
+  },
+  "cz": {
+    "englishNote": "Czech English-taught programmes typically require IELTS 6.0–6.5 or equivalent.",
+    "source": { "name": "Study in Czechia — Admissions", "url": "https://www.studyin.cz/plan-studies/admission/", "type": "official-body" },
+    "extraSources": []
+  },
+  "pt": {
+    "englishNote": "Portuguese English-taught programmes typically require IELTS 6.0–6.5; Portuguese-taught require a Portuguese certificate.",
+    "source": { "name": "Study in Portugal (DGES)", "url": "https://www.dges.gov.pt/en", "type": "government" },
+    "extraSources": []
+  },
+  "my": {
+    "englishNote": "Malaysian English-taught programmes typically require IELTS 5.5–6.5 depending on level.",
+    "source": { "name": "Education Malaysia Global Services (EMGS)", "url": "https://educationmalaysia.gov.my/", "type": "government" },
+    "extraSources": []
+  },
+  "ae": {
+    "englishNote": "UAE universities commonly require IELTS 5.5–6.5 (or equivalent TOEFL) depending on level.",
+    "source": { "name": "The UAE Government Portal — Higher education", "url": "https://u.ae/en/information-and-services/education/higher-education", "type": "government" },
+    "extraSources": []
+  }
+}

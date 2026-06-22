@@ -1,0 +1,34 @@
+{
+  "destination": "dk",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "New to Denmark (SIRI) — Study at a higher-education institution",
+    "url": "https://www.nyidanmark.dk/en-GB/You-want-to-apply/Study/Higher-Education",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Denmark — Residence permits (non-EU/EEA)", "url": "https://studyindenmark.dk/live-in-denmark/permits-visas-red-tape/residence-permits-non-eu-eea-citizens", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 89112,
+    "blockedAccountCurrency": "DKK",
+    "livingCostPerMonth": 7426,
+    "visaFee": 2000,
+    "insurancePerMonth": 0,
+    "processingWeeks": 8,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to a higher-education institution", "detail": "Admission to an approved Danish higher-education programme.", "required": true },
+    { "key": "proof-of-funds", "label": "Funds requirement", "detail": "If you pay tuition or don't have a scholarship, show DKK 7,426/month (2026 level) — up to DKK 89,112 for a year.", "required": true, "amount": { "value": 89112, "currency": "DKK", "per": "year" } },
+    { "key": "tuition-paid", "label": "Tuition fees (non-EU/EEA)", "detail": "Non-EU/EEA students usually pay tuition; payment is often required before the permit.", "required": true },
+    { "key": "health-insurance", "label": "Health insurance on arrival", "detail": "Cover for the period before you receive your Danish CPR/yellow card.", "required": false, "appliesIf": { "shortCourse": true }, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the residence-permit period.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Danish number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early, especially in Copenhagen.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

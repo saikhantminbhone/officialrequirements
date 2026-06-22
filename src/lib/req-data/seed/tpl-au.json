@@ -1,0 +1,35 @@
+{
+  "destination": "au",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Department of Home Affairs — Student visa (subclass 500)",
+    "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Home Affairs — Financial capacity (Student visa)", "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500/financial-capacity", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 29710,
+    "blockedAccountCurrency": "AUD",
+    "livingCostPerMonth": 2476,
+    "visaFee": 2000,
+    "insurancePerMonth": 60,
+    "processingWeeks": 6,
+    "intakeMonths": [2, 7]
+  },
+  "requirements": [
+    { "key": "coe", "label": "Confirmation of Enrolment (CoE)", "detail": "A CoE from your registered (CRICOS) Australian course provider.", "required": true },
+    { "key": "gs", "label": "Genuine Student (GS) requirement", "detail": "Address the Genuine Student criteria, explaining your study intentions in your statement.", "required": true },
+    { "key": "proof-of-funds", "label": "Financial capacity", "detail": "Show living costs of at least AUD 29,710 for 12 months, plus tuition and travel.", "required": true, "amount": { "value": 29710, "currency": "AUD", "per": "year" } },
+    { "key": "oshc", "label": "Overseas Student Health Cover (OSHC)", "detail": "OSHC is mandatory for the full duration of your student visa.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL/PTE at the level your provider and the visa require.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A current passport valid for your stay.", "required": true },
+    { "key": "health-exam", "label": "Health examination", "detail": "Required depending on your country and circumstances.", "required": false, "appliesIf": { "medicalRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you an Australian number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early in major cities.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

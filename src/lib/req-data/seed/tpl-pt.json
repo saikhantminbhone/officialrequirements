@@ -1,0 +1,35 @@
+{
+  "destination": "pt",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Portugal Visas (MNE) — Means of subsistence",
+    "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/means-of-subsistence",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "DGES — Directorate-General for Higher Education", "url": "https://www.dges.gov.pt/en", "type": "government" },
+    { "name": "AIMA — Agency for Integration, Migration & Asylum", "url": "https://aima.gov.pt/en", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 9120,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 760,
+    "visaFee": 90,
+    "insurancePerMonth": 35,
+    "processingWeeks": 8,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to a Portuguese institution", "detail": "Acceptance/enrolment at a recognised Portuguese higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Means of subsistence", "detail": "Show means tied to the Portuguese minimum wage (about €760/month, ≈ €9,120/year); the exact figure tracks the current minimum wage.", "required": true, "amount": { "value": 9120, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Travel/health insurance valid in Portugal for the D4 visa period.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "Portuguese for Portuguese-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the D4 visa period.", "required": true },
+    { "key": "criminal-record", "label": "Criminal record certificate", "detail": "Usually required, with apostille/legalisation.", "required": false, "appliesIf": { "criminalRecordRequired": true } },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of accommodation in Portugal is usually requested.", "required": false, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Portuguese number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

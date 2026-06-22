@@ -1,0 +1,34 @@
+{
+  "destination": "fr",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Campus France — Proof of financial means for a student visa",
+    "url": "https://www.campusfrance.org/en",
+    "type": "official-body"
+  },
+  "extraSources": [
+    { "name": "France-Visas — Official visa portal", "url": "https://france-visas.gouv.fr/en/web/france-visas/student", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 7380,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 615,
+    "visaFee": 50,
+    "insurancePerMonth": 30,
+    "processingWeeks": 3,
+    "intakeMonths": [1, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Acceptance from a French institution", "detail": "An admission/enrolment letter from a recognised French higher-education institution.", "required": true },
+    { "key": "etudes-en-france", "label": "Études en France procedure (nationality-dependent)", "detail": "Applicants from countries connected to the 'Études en France' platform must complete it via Campus France before the visa.", "required": false, "appliesIf": { "etudesEnFranceRequired": true } },
+    { "key": "proof-of-funds", "label": "Proof of financial means", "detail": "Show at least €615 per month for your stay (about €7,380 for a 10-month year); Paris consulates often advise more.", "required": true, "amount": { "value": 7380, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Arrange cover for arrival; most students then register with France's student health system.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "French (DELF/DALF/TCF) for French-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the duration of the long-stay visa (VLS-TS).", "required": true },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of where you'll live in France is usually requested.", "required": false, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a French number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "Generic admission requirement set, expanded across destinations × programs. Destination-specific source + English note are injected from uni-sources.json; GRE/GMAT/work-experience items are added per program archetype.",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "requirements": [
+    { "key": "prior-qualification", "label": "Recognized prior qualification", "detail": "A completed qualification at the level below your target program (school-leaving certificate for a Bachelor's; a recognized Bachelor's for a Master's; a relevant Master's for most PhDs), recognized as equivalent in the destination country.", "required": true },
+    { "key": "minimum-grade", "label": "Minimum grade / GPA", "detail": "Each program sets its own academic threshold (e.g. a UK 2:1, a German grade conversion, or a GPA cut-off). Confirm the exact requirement on the university's program page.", "required": true },
+    { "key": "english-proficiency", "label": "English language proficiency", "detail": "Proof of English, typically IELTS, TOEFL, PTE or Duolingo. Common thresholds are around IELTS 6.0–6.5 for Bachelor's and 6.5–7.0 for Master's, but the university sets the exact score.", "required": true, "affiliateTag": "english-test" },
+    { "key": "transcripts", "label": "Academic transcripts & certificates", "detail": "Official transcripts and degree/graduation certificates, often with certified translations and sometimes credential evaluation.", "required": true },
+    { "key": "motivation-letter", "label": "Statement of purpose / motivation letter", "detail": "A focused statement explaining your background, fit, and goals for this specific program.", "required": true },
+    { "key": "recommendation-letters", "label": "Letters of recommendation", "detail": "Usually one to three academic or professional references, depending on the level.", "required": true },
+    { "key": "cv", "label": "CV / résumé", "detail": "An up-to-date academic/professional CV.", "required": true },
+    { "key": "passport", "label": "Valid passport / ID", "detail": "A valid passport for international applicants (used on the application and later for the visa).", "required": true },
+    { "key": "application-fee", "label": "Application fee", "detail": "Many universities charge a non-refundable application fee; pay it with a low-FX provider if applying from abroad.", "required": false, "affiliateTag": "money-transfer" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "destination": "be",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Belgian Immigration Office (IBZ) — Sufficient means of subsistence",
+    "url": "https://dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/etudes/favoris/sufficient-means-subsistence",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Flanders — Visa requirements", "url": "https://www.studyinflanders.be/practical-information/visa-requirements", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 12744,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 1062,
+    "visaFee": 215,
+    "insurancePerMonth": 30,
+    "processingWeeks": 8,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Enrolment at a recognised institution", "detail": "Admission/enrolment at a recognised Belgian higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Means of subsistence", "detail": "Show about €1,062/month (2026-27 level), normally for a full year (≈ €12,744) — via own funds or an Annex 32 sponsor.", "required": true, "amount": { "value": 12744, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Insurance covering your stay in Belgium.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "Dutch/French for local-language programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the long-stay (type D) visa period.", "required": true },
+    { "key": "medical-certificate", "label": "Medical certificate", "detail": "A medical certificate is usually required for the long-stay visa.", "required": false, "appliesIf": { "medicalRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Belgian number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early in Brussels, Leuven, Ghent or Antwerp.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

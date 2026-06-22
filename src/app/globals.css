@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --max-w: 72rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-white text-slate-700 antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Break an element out of its centered container to span the full viewport
+   width (full-bleed hero/CTA bands). */
+.full-bleed {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+::selection {
+  background: #c7d2fe;
+  color: #1e1b4b;
+}
+
+/* ---- Typography: tighter, more confident (premium) ----------------------- */
+h1,
+h2,
+h3,
+h4 {
+  @apply text-slate-900;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+.prose-content {
+  @apply text-[15px] leading-7 text-slate-700;
+}
+.prose-content p {
+  @apply my-3;
+}
+.prose-content h2 {
+  @apply mt-10 mb-3 text-xl font-semibold tracking-tight;
+}
+.prose-content h3 {
+  @apply mt-6 mb-2 text-base font-semibold text-slate-800;
+}
+.prose-content ul {
+  @apply my-3 list-disc space-y-1.5 pl-5;
+}
+.prose-content ol {
+  @apply my-3 list-decimal space-y-1.5 pl-5;
+}
+.prose-content a {
+  @apply font-medium text-brand-600 underline-offset-2 hover:underline;
+}
+
+.prose-tight p {
+  @apply leading-relaxed;
+}
+
+/* ---- Reusable component classes ------------------------------------------ */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card transition duration-200;
+  }
+  .card-link {
+    @apply card block p-5 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card-hover;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tighter2 text-slate-900 sm:text-[28px];
+  }
+  .section-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-brand-600;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-premium hover:bg-brand-700;
+  }
+  .btn-secondary {
+    @apply btn border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50;
+  }
+  /* On dark (ink) surfaces */
+  .btn-onink {
+    @apply btn bg-white text-ink-950 hover:bg-slate-100;
+  }
+  .btn-ghost-onink {
+    @apply btn border border-white/20 bg-white/5 text-white hover:bg-white/10;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600;
+  }
+
+  /* Dark premium surface (hero, footer, CTA bands). */
+  .surface-ink {
+    @apply bg-ink-950 text-slate-300;
+  }
+  .eyebrow-onink {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-brand-300;
+  }
+}
+
+/* Hide AdSense units that returned no inventory — never leave an empty gap. */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+/* Print-friendly checklist output */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

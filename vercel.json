@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "functions": {
+    "src/app/api/admin/save/route.ts": { "maxDuration": 30 },
+    "src/app/api/admin/rebuild/route.ts": { "maxDuration": 15 },
+    "src/app/api/cron/maintain/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/watch-sources/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/gsc/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/cwv/route.ts": { "maxDuration": 30 },
+    "src/app/api/cron/fx/route.ts": { "maxDuration": 15 },
+    "src/app/api/cron/crawl/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/indexnow/route.ts": { "maxDuration": 30 },
+    "src/app/api/cron/factcheck/route.ts": { "maxDuration": 60 }
+  },
+  "crons": [
+    { "path": "/api/cron/maintain", "schedule": "0 6 * * *" },
+    { "path": "/api/cron/watch-sources", "schedule": "0 3 * * 1" },
+    { "path": "/api/cron/gsc", "schedule": "0 5 * * *" },
+    { "path": "/api/cron/cwv", "schedule": "0 4 * * *" },
+    { "path": "/api/cron/fx", "schedule": "0 2 * * *" },
+    { "path": "/api/cron/crawl", "schedule": "0 1 * * 1" },
+    { "path": "/api/cron/indexnow", "schedule": "30 6 * * *" },
+    { "path": "/api/cron/factcheck", "schedule": "0 0 * * 2" }
+  ]
+}

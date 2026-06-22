@@ -1,0 +1,36 @@
+{
+  "destination": "gb",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "GOV.UK — Student visa: Money you need",
+    "url": "https://www.gov.uk/student-visa/money",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "GOV.UK — Financial evidence for Student route applicants", "url": "https://www.gov.uk/guidance/financial-evidence-for-student-and-child-student-route-applicants", "type": "government" },
+    { "name": "GOV.UK — Student visa overview", "url": "https://www.gov.uk/student-visa", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 10539,
+    "blockedAccountCurrency": "GBP",
+    "livingCostPerMonth": 1171,
+    "visaFee": 524,
+    "insurancePerMonth": 0,
+    "processingWeeks": 3,
+    "intakeMonths": [1, 9]
+  },
+  "requirements": [
+    { "key": "cas", "label": "CAS from a licensed student sponsor", "detail": "A Confirmation of Acceptance for Studies (CAS) reference from your UK university (a licensed Student sponsor).", "required": true },
+    { "key": "proof-of-funds", "label": "Maintenance funds (held 28 days)", "detail": "Show living costs of £1,171/month outside London or £1,529/month inside London, for up to 9 months, held in your account for 28 consecutive days.", "required": true, "amount": { "value": 10539, "currency": "GBP", "per": "year" } },
+    { "key": "ihs", "label": "Immigration Health Surcharge (IHS)", "detail": "Pay the IHS as part of your application to access the NHS for the duration of your visa.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Approved English language proof (SELT)", "detail": "A Secure English Language Test (e.g. IELTS for UKVI) at the level your CAS specifies, unless exempt.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A current passport or valid travel document.", "required": true },
+    { "key": "tb-test", "label": "Tuberculosis (TB) test certificate", "detail": "Required if you are resident in a country on the UK TB-testing list.", "required": false, "appliesIf": { "tbRequired": true } },
+    { "key": "atas", "label": "ATAS certificate", "detail": "An Academic Technology Approval Scheme certificate is required for certain sensitive science/technology subjects.", "required": false, "appliesIf": { "atasRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition deposits or maintenance funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a UK number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange student housing early; book before arrival.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

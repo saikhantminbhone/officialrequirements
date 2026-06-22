@@ -1,0 +1,35 @@
+{
+  "destination": "se",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Swedish Migration Agency — Residence permit for studies (higher education)",
+    "url": "https://www.migrationsverket.se/en/you-want-to-apply/study/higher-education.html",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Swedish Migration Agency — Maintenance requirement", "url": "https://www.migrationsverket.se/en/word-explanations/maintenance-requirement-for-the-person-in-sweden.html", "type": "government" },
+    { "name": "University Admissions in Sweden", "url": "https://www.universityadmissions.se/", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 127872,
+    "blockedAccountCurrency": "SEK",
+    "livingCostPerMonth": 10656,
+    "visaFee": 1500,
+    "insurancePerMonth": 0,
+    "processingWeeks": 12,
+    "intakeMonths": [1, 8]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Notification of admission (Antagning.se)", "detail": "Confirmed admission to a full-time programme at a Swedish higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Maintenance requirement (proof of funds)", "detail": "Show at least SEK 10,656 per month for the period of study (about SEK 127,872 per year), via your own funds, scholarships or grants.", "required": true, "amount": { "value": 127872, "currency": "SEK", "per": "year" } },
+    { "key": "tuition-paid", "label": "Tuition fees paid (non-EU/EEA)", "detail": "Non-EU/EEA students pay tuition; the first instalment is usually required before the permit is granted.", "required": true },
+    { "key": "health-insurance", "label": "Comprehensive health insurance", "detail": "Required for studies shorter than one year; longer stays are covered once you receive a Swedish personal number.", "required": false, "appliesIf": { "shortCourse": true }, "affiliateTag": "insurance" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the full period of study.", "required": true },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires for English-taught study.", "required": true, "affiliateTag": "english-test" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition or maintenance funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Swedish number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Swedish student housing is scarce — arrange it early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

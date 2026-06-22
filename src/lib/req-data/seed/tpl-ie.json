@@ -1,0 +1,34 @@
+{
+  "destination": "ie",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Irish Immigration Service — Student finances",
+    "url": "https://www.irishimmigration.ie/coming-to-study-in-ireland/what-are-my-study-options/a-fee-paying-private-primary-or-secondary-school/information-on-student-finances/",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Irish Immigration Service — Coming to study in Ireland", "url": "https://www.irishimmigration.ie/coming-to-study-in-ireland/", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 10000,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 833,
+    "visaFee": 60,
+    "insurancePerMonth": 50,
+    "processingWeeks": 8,
+    "intakeMonths": [1, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Letter of acceptance", "detail": "An acceptance letter from a recognised Irish institution on the Interim List of Eligible Programmes (ILEP).", "required": true },
+    { "key": "proof-of-funds", "label": "Evidence of finances (€10,000)", "detail": "Show immediate access to at least €10,000 for living expenses for a course of one year (and the same for each subsequent year), excluding tuition.", "required": true, "amount": { "value": 10000, "currency": "EUR", "per": "year" } },
+    { "key": "tuition-paid", "label": "Tuition fees paid", "detail": "Evidence that course fees have been paid (often required before the visa decision).", "required": true },
+    { "key": "health-insurance", "label": "Private medical insurance", "detail": "Private medical insurance covering your stay in Ireland.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for at least 12 months after arrival.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you an Irish number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Dublin housing is scarce — arrange early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

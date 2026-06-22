@@ -1,0 +1,34 @@
+{
+  "destination": "fi",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Finnish Immigration Service (Migri) — Income requirement for students",
+    "url": "https://migri.fi/en/income-requirement-for-students",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Finland — Student residence permit", "url": "https://www.studyinfinland.fi/admissions/student-residence-permit", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 9600,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 800,
+    "visaFee": 350,
+    "insurancePerMonth": 40,
+    "processingWeeks": 4,
+    "intakeMonths": [1, 8]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to a Finnish institution", "detail": "Acceptance to a degree programme at a Finnish higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Income requirement", "detail": "Show at least €800 per month (€9,600 for a year-long study period) available in your account when you apply.", "required": true, "amount": { "value": 9600, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Insurance valid in Finland; the required coverage level depends on your study length.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires for English-taught study.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the residence-permit period.", "required": true },
+    { "key": "tuition-paid", "label": "Tuition fees (non-EU/EEA)", "detail": "Non-EU/EEA students usually pay tuition; many also receive a scholarship that offsets it.", "required": false, "appliesIf": { "tuitionApplies": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Finnish number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange student housing early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "destination": "nl",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "IND — Income requirements for study",
+    "url": "https://ind.nl/en/income-requirements-study",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "IND — Required amounts (income requirements)", "url": "https://ind.nl/en/required-amounts-income-requirements", "type": "government" },
+    { "name": "Study in NL — Visa & residence permit", "url": "https://www.studyinnl.org/finances/visa-and-residence-permit", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 13600,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 1133,
+    "visaFee": 228,
+    "insurancePerMonth": 110,
+    "processingWeeks": 4,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission from a recognised sponsor", "detail": "Acceptance from a Dutch institution that is a recognised sponsor with the IND (it applies for your permit).", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of sufficient financial means", "detail": "Show the IND minimum (about €13,600 for the year, ~€1,133/month) to cover living costs, excluding tuition.", "required": true, "amount": { "value": 13600, "currency": "EUR", "per": "year" } },
+    { "key": "mvv", "label": "MVV entry visa (nationality-dependent)", "detail": "Non-EU nationals usually need an MVV (entry visa) arranged together with the residence permit (TEV procedure).", "required": false, "appliesIf": { "mvvRequired": true } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Arrange insurance valid in the Netherlands for your stay.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires for English-taught study.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for your intended stay.", "required": true },
+    { "key": "tb-test", "label": "Tuberculosis (TB) test", "detail": "Some nationalities must take a TB test after arrival.", "required": false, "appliesIf": { "tbRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition or proof-of-funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Dutch number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Dutch student housing is very scarce — arrange it as early as possible.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

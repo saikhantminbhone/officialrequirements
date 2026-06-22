@@ -1,0 +1,36 @@
+{
+  "destination": "nz",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Immigration New Zealand — Student fund requirements",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/student-fund-requirements/",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Immigration New Zealand — Fee Paying Student Visa", "url": "https://www.immigration.govt.nz/visas/fee-paying-student-visa/", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 20000,
+    "blockedAccountCurrency": "NZD",
+    "livingCostPerMonth": 1667,
+    "visaFee": 430,
+    "insurancePerMonth": 55,
+    "processingWeeks": 8,
+    "intakeMonths": [2, 7]
+  },
+  "requirements": [
+    { "key": "offer-of-place", "label": "Offer of place", "detail": "An offer of place from an NZQA-approved education provider for an approved course.", "required": true },
+    { "key": "proof-of-funds", "label": "Funds requirement", "detail": "Show NZD 20,000 per year (or NZD 1,667/month for courses under a year) for living costs, plus tuition and onward-travel funds.", "required": true, "amount": { "value": 20000, "currency": "NZD", "per": "year" } },
+    { "key": "onward-travel", "label": "Onward travel funds", "detail": "Evidence you can leave New Zealand (e.g. a ticket or sufficient funds for one).", "required": true },
+    { "key": "health-insurance", "label": "Medical & travel insurance", "detail": "Acceptable insurance covering your stay is required for international students.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL/PTE as your provider and visa require.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for your intended stay.", "required": true },
+    { "key": "medical-xray", "label": "Medical / chest X-ray", "detail": "Required depending on your country and length of stay.", "required": false, "appliesIf": { "medicalRequired": true } },
+    { "key": "police-certificate", "label": "Police certificate", "detail": "Often required for stays over 24 months.", "required": false, "appliesIf": { "policeCertRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a New Zealand number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early, especially in Auckland and Wellington.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

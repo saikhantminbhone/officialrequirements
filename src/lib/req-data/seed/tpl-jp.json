@@ -1,0 +1,35 @@
+{
+  "destination": "jp",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Study in Japan (MEXT) — Immigration & student visas",
+    "url": "https://www.studyinjapan.go.jp/en/planning/immigration-procedures/",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "JASSO — Japan Student Services Organization", "url": "https://www.jasso.go.jp/en/", "type": "official-body" },
+    { "name": "Immigration Services Agency of Japan", "url": "https://www.isa.go.jp/en/index.html", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 2000000,
+    "blockedAccountCurrency": "JPY",
+    "livingCostPerMonth": 120000,
+    "visaFee": 3000,
+    "insurancePerMonth": 2000,
+    "processingWeeks": 10,
+    "intakeMonths": [4, 10]
+  },
+  "requirements": [
+    { "key": "coe", "label": "Certificate of Eligibility (COE)", "detail": "Your school applies for a COE from Japanese immigration on your behalf; you then convert it to a visa at the embassy.", "required": true },
+    { "key": "admission-letter", "label": "Admission to a Japanese institution", "detail": "Acceptance to a university, college or language school approved to host international students.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds", "detail": "Show access to roughly ¥2,000,000 for a one-year programme (bank balance plus a sponsor's income evidence).", "required": true, "amount": { "value": 2000000, "currency": "JPY", "per": "year" } },
+    { "key": "health-insurance", "label": "National Health Insurance", "detail": "You enrol in Japan's National Health Insurance after arrival (low monthly premium).", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "Japanese (JLPT) for Japanese-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for your intended stay.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Japanese number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing or a dorm early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "destination": "no",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "UDI — Study permit (studietillatelse)",
+    "url": "https://www.udi.no/en/want-to-apply/studies/studietillatelse/",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Norway — Cost and requirements", "url": "https://studyinnorway.no/cost-and-requirements", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 151690,
+    "blockedAccountCurrency": "NOK",
+    "livingCostPerMonth": 12641,
+    "visaFee": 6300,
+    "insurancePerMonth": 0,
+    "processingWeeks": 12,
+    "intakeMonths": [8, 1]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to an approved institution", "detail": "Full-time admission to an accredited Norwegian higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Funds requirement", "detail": "Show about NOK 151,690 for the year (set annually by UDI), often deposited into a Norwegian student account or the institution's deposit account.", "required": true, "amount": { "value": 151690, "currency": "NOK", "per": "year" } },
+    { "key": "accommodation-proof", "label": "Housing", "detail": "Evidence of where you'll live in Norway is part of the application.", "required": true, "affiliateTag": "accommodation" },
+    { "key": "health-insurance", "label": "Health insurance / membership", "detail": "Coverage arrangements depend on study length; longer stays join the national scheme.", "required": false, "appliesIf": { "shortCourse": true }, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires for English-taught study.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the study-permit period.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer the funds requirement or tuition with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Norwegian number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "destination": "pl",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "gov.pl — Financial resources required to enter Poland (national visa)",
+    "url": "https://www.gov.pl/web/armenia-en/financial-resources-required-from-the-foreigner-to-enter-poland-on-the-basis-of-d-type-national-visa",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "study.gov.pl — Visa & application", "url": "https://study.gov.pl/visa-application", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 9312,
+    "blockedAccountCurrency": "PLN",
+    "livingCostPerMonth": 776,
+    "visaFee": 340,
+    "insurancePerMonth": 80,
+    "processingWeeks": 6,
+    "intakeMonths": [2, 10]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to a Polish institution", "detail": "Acceptance/enrolment at a Polish higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Financial resources", "detail": "Show at least PLN 776/month (the regulatory minimum) for the year — about PLN 9,312; consulates often expect more.", "required": true, "amount": { "value": 9312, "currency": "PLN", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Travel/health insurance valid in the Schengen area, then NFZ or private cover.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English/Polish language proof", "detail": "IELTS/TOEFL for English-taught, or a Polish certificate for Polish-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the national (type D) visa period.", "required": true },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of accommodation in Poland is usually requested.", "required": false, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Polish number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

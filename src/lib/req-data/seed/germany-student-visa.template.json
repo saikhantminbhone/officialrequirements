@@ -1,0 +1,96 @@
+{
+  "destination": "de",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-12",
+  "source": {
+    "name": "German Federal Foreign Office — Visa for study purposes",
+    "url": "https://www.auswaertiges-amt.de/en/visa-service/-/231148",
+    "type": "government"
+  },
+  "extraSources": [
+    {
+      "name": "Make it in Germany — Student visa",
+      "url": "https://www.make-it-in-germany.com/en/studying-training/studying/visa",
+      "type": "government"
+    },
+    {
+      "name": "Study in Germany (DAAD) — Visa & residence",
+      "url": "https://www.study-in-germany.de/en/plan-your-studies/requirements/visa/",
+      "type": "official-body"
+    }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 11904,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 992,
+    "visaFee": 75,
+    "insurancePerMonth": 120,
+    "processingWeeks": 8,
+    "intakeMonths": [4, 10]
+  },
+  "requirements": [
+    {
+      "key": "admission-letter",
+      "label": "University admission or conditional admission letter",
+      "detail": "A confirmed (or conditional) admission letter from a recognised German higher-education institution, or proof of a Studienkolleg place.",
+      "required": true
+    },
+    {
+      "key": "proof-of-funds",
+      "label": "Proof of financial resources (blocked account)",
+      "detail": "Evidence you can cover living costs — most applicants open a blocked account holding the annual minimum and releasing a fixed sum each month.",
+      "required": true,
+      "amount": { "value": 11904, "currency": "EUR", "per": "year" },
+      "affiliateTag": "blocked-account"
+    },
+    {
+      "key": "health-insurance",
+      "label": "Health insurance valid in Germany",
+      "detail": "Travel/incoming health insurance covering the period until enrolment, then statutory or recognised private student health insurance.",
+      "required": true,
+      "affiliateTag": "insurance"
+    },
+    {
+      "key": "language-proof",
+      "label": "Proof of language proficiency",
+      "detail": "English-taught programmes: IELTS/TOEFL/Duolingo/PTE as the university specifies. German-taught: TestDaF/DSH/Goethe.",
+      "required": true,
+      "affiliateTag": "english-test"
+    },
+    {
+      "key": "passport",
+      "label": "Valid passport",
+      "detail": "Passport valid for the intended stay, plus biometric photos meeting embassy specification.",
+      "required": true
+    },
+    {
+      "key": "aps-certificate",
+      "label": "APS certificate (nationality-dependent)",
+      "detail": "Applicants from certain countries (e.g. India, Vietnam, China, Pakistan) must obtain an APS certificate before applying.",
+      "required": false,
+      "appliesIf": { "apsRequired": true }
+    },
+    {
+      "key": "tuition-transfer",
+      "label": "Tuition / proof-of-funds transfer",
+      "detail": "If transferring tuition or topping up a blocked account from abroad, use a low-fee provider to avoid losing money on FX.",
+      "required": false,
+      "affiliateTag": "money-transfer"
+    },
+    {
+      "key": "arrival-connectivity",
+      "label": "Connectivity on arrival",
+      "detail": "An eSIM gives you a working number and data the moment you land — useful for city registration (Anmeldung) and bank setup.",
+      "required": false,
+      "affiliateTag": "esim"
+    },
+    {
+      "key": "accommodation-proof",
+      "label": "Proof of accommodation (often requested)",
+      "detail": "Many consulates ask for a tenancy agreement or dorm confirmation; book early as student housing is scarce.",
+      "required": false,
+      "affiliateTag": "accommodation"
+    }
+  ]
+}

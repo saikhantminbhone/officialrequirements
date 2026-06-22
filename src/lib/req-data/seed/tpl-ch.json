@@ -1,0 +1,33 @@
+{
+  "destination": "ch",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "State Secretariat for Migration (SEM) — Entry & residence for study",
+    "url": "https://www.sem.admin.ch/sem/en/home/themen/aufenthalt/nicht_eu_efta.html",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "University of Zurich — Visa & residence guidelines", "url": "https://www.uzh.ch/en/studies/application/entry/guidelines.html", "type": "university" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 21000,
+    "blockedAccountCurrency": "CHF",
+    "livingCostPerMonth": 1750,
+    "visaFee": 88,
+    "insurancePerMonth": 150,
+    "processingWeeks": 10,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "University admission", "detail": "Admission to a recognised Swiss higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds", "detail": "Show about CHF 21,000 for the academic year; some cantons (e.g. Geneva, Zurich) request up to CHF 24,000.", "required": true, "amount": { "value": 21000, "currency": "CHF", "per": "year" } },
+    { "key": "health-insurance", "label": "Swiss health insurance", "detail": "Health insurance is mandatory; you must take out a recognised Swiss plan (or an approved exemption) after arrival.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "German/French/Italian for local-language programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the residence-permit period.", "required": true },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of accommodation in Switzerland is usually requested.", "required": false, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Swiss number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "destination": "us",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "U.S. Department of State — Student Visa (F/M)",
+    "url": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in the States (DHS) — Financial ability", "url": "https://studyinthestates.dhs.gov/students/prepare/financial-ability", "type": "government" },
+    { "name": "ICE SEVP — I-901 SEVIS fee", "url": "https://www.fmjfee.com/i901fee/index.html", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountCurrency": "USD",
+    "livingCostPerMonth": 1800,
+    "visaFee": 185,
+    "insurancePerMonth": 150,
+    "processingWeeks": 8,
+    "intakeMonths": [1, 8]
+  },
+  "requirements": [
+    { "key": "i20", "label": "Form I-20 from a SEVP-certified school", "detail": "An I-20 issued by a SEVP-certified school after admission; it states your program's cost of attendance.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds (per your I-20)", "detail": "Show you can cover the cost of attendance listed on your I-20 (tuition + living). There is no single fixed national figure — it is set by your school's I-20.", "required": true },
+    { "key": "sevis-fee", "label": "I-901 SEVIS fee", "detail": "Pay the I-901 SEVIS fee (USD 350 for F-1) before your visa interview.", "required": true },
+    { "key": "ds160", "label": "DS-160 + visa interview", "detail": "Complete the DS-160, pay the visa application fee, and attend an interview at a U.S. embassy/consulate.", "required": true },
+    { "key": "language-proof", "label": "English language proof", "detail": "TOEFL/IELTS/Duolingo as your school requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "U.S. healthcare is expensive — arrange student health insurance (some schools require their own plan).", "required": true, "affiliateTag": "insurance" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid at least 6 months beyond your stay.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a U.S. number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange on- or off-campus housing early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

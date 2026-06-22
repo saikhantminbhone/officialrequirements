@@ -1,0 +1,33 @@
+{
+  "destination": "kr",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "HiKorea (Korea Immigration Service) — Study (D-2) visa",
+    "url": "https://www.hikorea.go.kr/info/InfoDatail.pt",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Korea (Government scholarship & admissions portal)", "url": "https://www.studyinkorea.go.kr/en/main.do", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 20000000,
+    "blockedAccountCurrency": "KRW",
+    "livingCostPerMonth": 1200000,
+    "visaFee": 80000,
+    "insurancePerMonth": 50000,
+    "processingWeeks": 4,
+    "intakeMonths": [3, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Certificate of Admission", "detail": "A certificate of admission from a Korean university authorised to enrol international (D-2) students.", "required": true },
+    { "key": "proof-of-funds", "label": "Financial requirement", "detail": "Show about ₩20,000,000 (roughly USD 15,000) held in a bank account for at least 28 days before applying.", "required": true, "amount": { "value": 20000000, "currency": "KRW", "per": "year" } },
+    { "key": "health-insurance", "label": "National Health Insurance (NHIS)", "detail": "International students enrol in Korea's National Health Insurance after arrival.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "TOPIK for Korean-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for your intended stay.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Korean number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange a dorm or housing early, especially in Seoul.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

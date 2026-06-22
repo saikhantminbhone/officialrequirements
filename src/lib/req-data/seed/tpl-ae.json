@@ -1,0 +1,35 @@
+{
+  "destination": "ae",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "The UAE Government Portal — Student visa",
+    "url": "https://u.ae/en/information-and-services/education/higher-education/student-visas",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "ICP — Federal Authority for Identity, Citizenship, Customs & Port Security", "url": "https://icp.gov.ae/en/", "type": "government" },
+    { "name": "GDRFA Dubai — Residency & Foreigners Affairs", "url": "https://gdrfad.gov.ae/en", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountCurrency": "AED",
+    "livingCostPerMonth": 4000,
+    "visaFee": 3500,
+    "insurancePerMonth": 120,
+    "processingWeeks": 4,
+    "intakeMonths": [1, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission / sponsorship by the university", "detail": "An offer from a UAE university, which usually sponsors your student residence visa.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds", "detail": "No single fixed figure — show evidence (often several months of bank statements) that you can cover tuition and living costs.", "required": true },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Health insurance valid in the UAE (often arranged with the visa).", "required": true, "affiliateTag": "insurance" },
+    { "key": "medical-test", "label": "Medical fitness test", "detail": "A medical fitness test is required as part of the residence visa process.", "required": true },
+    { "key": "emirates-id", "label": "Emirates ID registration", "detail": "Register for an Emirates ID after arrival as part of residency.", "required": true },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your university requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for at least 6 months.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer tuition with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a UAE number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing early in Dubai, Abu Dhabi or Sharjah.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

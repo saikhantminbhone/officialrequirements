@@ -1,0 +1,34 @@
+{
+  "destination": "my",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Education Malaysia Global Services (EMGS) — Guidelines",
+    "url": "https://visa.educationmalaysia.gov.my/guidelines",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Malaysian Immigration Department — Student Pass", "url": "https://www.imi.gov.my/index.php/en/main-services/pass/student-pass/", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountCurrency": "MYR",
+    "livingCostPerMonth": 2000,
+    "visaFee": 1060,
+    "insurancePerMonth": 50,
+    "processingWeeks": 6,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "emgs-approval", "label": "EMGS Visa Approval Letter (VAL)", "detail": "Your institution applies for a Visa Approval Letter through EMGS before you enter Malaysia.", "required": true },
+    { "key": "offer-of-place", "label": "Offer letter from an approved institution", "detail": "An offer of a place from an institution approved to enrol international students.", "required": true },
+    { "key": "proof-of-funds", "label": "Proof of funds", "detail": "No single fixed figure — show enough to cover tuition plus living costs (commonly RM 1,500–2,500/month). Provide consistent, genuine bank statements.", "required": true },
+    { "key": "health-insurance", "label": "Medical insurance / EMGS coverage", "detail": "Medical insurance arranged via EMGS for international students.", "required": true, "affiliateTag": "insurance" },
+    { "key": "medical-exam", "label": "Medical examination", "detail": "A pre-arrival and post-arrival medical screening is required.", "required": true },
+    { "key": "language-proof", "label": "English language proof", "detail": "IELTS/TOEFL as your programme requires.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for at least 12 months.", "required": true },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Malaysian number and data on landing.", "required": false, "affiliateTag": "esim" },
+    { "key": "accommodation-proof", "label": "Accommodation", "detail": "Arrange housing or a hostel early.", "required": false, "affiliateTag": "accommodation" }
+  ]
+}

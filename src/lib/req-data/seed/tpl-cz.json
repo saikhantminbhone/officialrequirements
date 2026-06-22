@@ -1,0 +1,34 @@
+{
+  "destination": "cz",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Immigration Portal CZ — Long-term visa for the purpose of studies",
+    "url": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-visa/long-term-visa-for-the-purpose-of-studies/",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Study in Czechia — Entry formalities & visa", "url": "https://www.studyin.cz/live-work/entry-formalities/", "type": "official-body" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 120000,
+    "blockedAccountCurrency": "CZK",
+    "livingCostPerMonth": 10000,
+    "visaFee": 2500,
+    "insurancePerMonth": 800,
+    "processingWeeks": 8,
+    "intakeMonths": [2, 9]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Confirmation of study", "detail": "A confirmation of admission/enrolment from a Czech higher-education institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Funds requirement", "detail": "Show funds for the stay — commonly around CZK 110,000–130,000 for a year (the formula adds a base amount plus a monthly figure).", "required": true, "amount": { "value": 120000, "currency": "CZK", "per": "year" } },
+    { "key": "health-insurance", "label": "Health insurance", "detail": "Comprehensive travel/health insurance valid in Czechia for the visa period.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "English/Czech language proof", "detail": "IELTS/TOEFL for English-taught, or a Czech certificate for Czech-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the long-term visa period.", "required": true },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Proof of accommodation in Czechia is required.", "required": true, "affiliateTag": "accommodation" },
+    { "key": "criminal-record", "label": "Criminal record extract", "detail": "An extract from your criminal record is usually required.", "required": false, "appliesIf": { "criminalRecordRequired": true } },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Czech number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}

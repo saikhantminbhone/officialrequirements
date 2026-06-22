@@ -1,0 +1,36 @@
+{
+  "destination": "es",
+  "category": "student-visa",
+  "verifiedBy": "OfficialRequirements System",
+  "lastVerified": "2026-06-20",
+  "source": {
+    "name": "Ministerio de Asuntos Exteriores — Student visa",
+    "url": "https://www.exteriores.gob.es/Consulados/losangeles/en/ServiciosConsulares/Paginas/Consular/Visado-de-estudios.aspx",
+    "type": "government"
+  },
+  "extraSources": [
+    { "name": "Ministerio de Universidades — Studying in Spain", "url": "https://www.universidades.gob.es/", "type": "government" },
+    { "name": "SEPIE — Spanish Service for the Internationalisation of Education", "url": "http://www.sepie.es/", "type": "government" }
+  ],
+  "toolDefaults": {
+    "blockedAccountAmount": 7200,
+    "blockedAccountCurrency": "EUR",
+    "livingCostPerMonth": 600,
+    "visaFee": 80,
+    "insurancePerMonth": 40,
+    "processingWeeks": 4,
+    "intakeMonths": [9, 1]
+  },
+  "requirements": [
+    { "key": "admission-letter", "label": "Admission to an approved course", "detail": "Acceptance to a full-time course at an authorised Spanish institution.", "required": true },
+    { "key": "proof-of-funds", "label": "Financial means (IPREM)", "detail": "Show at least 100% of the IPREM — about €600/month (≈ €7,200/year). More is required if family members accompany you.", "required": true, "amount": { "value": 7200, "currency": "EUR", "per": "year" } },
+    { "key": "health-insurance", "label": "Private health insurance", "detail": "Full-coverage private health insurance with no co-payments, from an insurer authorised in Spain.", "required": true, "affiliateTag": "insurance" },
+    { "key": "language-proof", "label": "Language proof", "detail": "Spanish (DELE/SIELE) for Spanish-taught programmes, or IELTS/TOEFL for English-taught.", "required": true, "affiliateTag": "english-test" },
+    { "key": "passport", "label": "Valid passport", "detail": "A passport valid for the intended stay.", "required": true },
+    { "key": "criminal-record", "label": "Criminal record certificate", "detail": "Required for stays longer than six months (legalised/apostilled).", "required": false, "appliesIf": { "longStay": true } },
+    { "key": "medical-certificate", "label": "Medical certificate", "detail": "Often required for stays longer than six months.", "required": false, "appliesIf": { "longStay": true } },
+    { "key": "accommodation-proof", "label": "Proof of accommodation", "detail": "Evidence of accommodation in Spain may be requested (and can reduce the funds figure if prepaid).", "required": false, "affiliateTag": "accommodation" },
+    { "key": "tuition-transfer", "label": "Tuition / funds transfer", "detail": "Transfer fees or living funds with a low-FX provider.", "required": false, "affiliateTag": "money-transfer" },
+    { "key": "arrival-connectivity", "label": "Connectivity on arrival", "detail": "An eSIM gives you a Spanish number and data on landing.", "required": false, "affiliateTag": "esim" }
+  ]
+}
