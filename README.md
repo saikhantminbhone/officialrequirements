@@ -62,11 +62,11 @@ Without R2 credentials the site runs on bundled seed data (8 Germany visa pages 
 
 Data layout in R2:
 
-| Key | Purpose |
-|-----|---------|
-| `config/runtime.json` | Ad/affiliate/lead-gen config (admin-editable, live without rebuild) |
-| `data/visa/<id>.json` | Visa requirement records (override/extend the seed template) |
-| `data/scholarship/<id>.json` | Scholarship records |
+| Key                          | Purpose                                                             |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `config/runtime.json`        | Ad/affiliate/lead-gen config (admin-editable, live without rebuild) |
+| `data/visa/<id>.json`        | Visa requirement records (override/extend the seed template)        |
+| `data/scholarship/<id>.json` | Scholarship records                                                 |
 
 ## Deploy (Vercel)
 
@@ -161,6 +161,7 @@ The extractor is proven by `node scripts/extract-selftest.mjs` (5/5 passing acro
 The same search + AI-visibility system OfficialSalary runs, adapted to this niche:
 
 **Classic SEO**
+
 - **Programmatic SSG** — one page per `nationality × destination`, statically generated.
 - **Structured data** — global `Organization` + `WebSite` + `DataCatalog` (with `publishingPrinciples` + `correctionsPolicy`); per-page `Article`, `Dataset` (with source citations), `FAQPage`, `HowTo`, `BreadcrumbList`, and `Speakable`.
 - **Sitemap + robots** — conventional `/sitemap.xml`; `robots.ts` with per-engine rules.
@@ -174,6 +175,7 @@ The same search + AI-visibility system OfficialSalary runs, adapted to this nich
 - **Anti-bloat index policy** (`src/lib/page-policy.ts`) — a page only earns `index` if it has real substance (enough requirement items) and is fresh (verified within 180 days). Thin/stale pages get `noindex,follow` and are excluded from the sitemap. A safety floor prevents over-pruning a young site.
 
 **GEO (Generative Engine Optimization — being citable in AI search)**
+
 - **`/llms.txt`** — concise, citable index with extractable numbers (blocked-account minimum, visa fee, verified date, official source URL per record).
 - **`/llms-full.txt`** — the complete extractable dataset: every requirement item, sourced and dated.
 - **AI-crawler allowlist** in `robots.ts` — GPTBot, OAI-SearchBot, PerplexityBot, Google-Extended, anthropic-ai/ClaudeBot, Applebot, and more are explicitly allowed; CCBot (bulk scraper) is blocked; admin/write APIs are disallowed for everyone.
@@ -195,19 +197,19 @@ Affiliate is the engine; display is the passenger. On non-tier-1 traffic, **affi
 
 ## Scripts
 
-| Command | Does |
-|---------|------|
-| `npm run dev` | Local dev server |
-| `npm run build` | Production build (SSG) |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run seed:r2` | Push default config + scholarship records to R2 |
+| Command             | Does                                            |
+| ------------------- | ----------------------------------------------- |
+| `npm run dev`       | Local dev server                                |
+| `npm run build`     | Production build (SSG)                          |
+| `npm run typecheck` | `tsc --noEmit`                                  |
+| `npm run seed:r2`   | Push default config + scholarship records to R2 |
 
 ## Trust & compliance
 
 Every page carries the non-affiliation banner, a primary-source link, and an **honest, three-tier provenance line**:
 
 - **Compiled, pending verification** (amber) — seeded/crawled from one source, not yet checked.
-- **Cross-checked across multiple official sources** (blue) — the **fact-check engine** (`lib/factcheck.ts`) crawled the primary *and* extra official sources, extracted the figure from each, and **2+ independent official sources agree**. This is the safe form of auto-verification: deterministic multi-source corroboration, no AI, no blind trust. Conflicts are flagged for review and never auto-applied; a human-verified record is never downgraded. Runs weekly (`/api/cron/factcheck`) or from Admin → Data.
+- **Cross-checked across multiple official sources** (blue) — the **fact-check engine** (`lib/factcheck.ts`) crawled the primary _and_ extra official sources, extracted the figure from each, and **2+ independent official sources agree**. This is the safe form of auto-verification: deterministic multi-source corroboration, no AI, no blind trust. Conflicts are flagged for review and never auto-applied; a human-verified record is never downgraded. Runs weekly (`/api/cron/factcheck`) or from Admin → Data.
 - **Verified by a person** (green) — an operator confirmed it against the official source via Admin → Data.
 
 We never imply a check that didn't happen — critical for YMYL integrity. Corroborated and verified records also earn indexing beyond the launch batch.
