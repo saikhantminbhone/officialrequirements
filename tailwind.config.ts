@@ -52,9 +52,10 @@ const config: Config = {
         prose: "70ch",
       },
       boxShadow: {
-        card: "0 1px 2px 0 rgb(15 19 38 / 0.04), 0 1px 3px 0 rgb(15 19 38 / 0.06)",
-        "card-hover": "0 10px 30px -12px rgb(15 19 38 / 0.18)",
-        premium: "0 24px 60px -28px rgb(67 56 202 / 0.45)",
+        // Soft, diffuse Apple-style elevation.
+        card: "0 1px 2px 0 rgb(15 19 38 / 0.03), 0 6px 16px -6px rgb(15 19 38 / 0.06)",
+        "card-hover": "0 14px 38px -14px rgb(15 19 38 / 0.16)",
+        premium: "0 24px 60px -28px rgb(67 56 202 / 0.40)",
       },
       borderRadius: {
         xl: "0.875rem",

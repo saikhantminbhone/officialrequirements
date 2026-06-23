@@ -76,11 +76,14 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={[faqPageLd(HOME_FAQS)]} />
-      <div className="space-y-16">
+      <div className="space-y-20 sm:space-y-24">
 
       {/* ── Hero (dark premium, full-bleed, two-column) ──────────────────── */}
       <section className="full-bleed surface-ink relative -mt-10 overflow-hidden bg-ink-radial">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+        {/* Subtle top highlight + hairline base for depth. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/10" aria-hidden />
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div>
             <span className="eyebrow-onink">Visa · Scholarship · Admission</span>

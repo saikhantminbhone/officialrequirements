@@ -19,7 +19,7 @@ export default function Logo({ className = "" }: { className?: string }) {
         <circle cx="44" cy="44" r="12" fill="#16a34a" />
         <path d="M38.7 44.6l3.4 3.4 6.4-7" stroke="#ffffff" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="text-lg font-bold tracking-tight">
+      <span className="text-lg font-bold leading-none tracking-tight">
         <span className="text-slate-900">Official</span>
         <span className="text-brand-600">Requirements</span>
       </span>

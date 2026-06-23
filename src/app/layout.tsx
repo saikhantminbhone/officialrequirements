@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -39,6 +40,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const isProd = process.env.NODE_ENV === "production";
   return (
     <html lang="en">
+      <head>
+        {ga4 && (
+          <>
+            <link rel="preconnect" href="https://www.googletagmanager.com" />
+            <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          </>
+        )}
+      </head>
       <body>
         <JsonLd data={globalLd()} />
         <RuntimeConfigProvider>
@@ -54,15 +63,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <script defer src="/_vercel/speed-insights/script.js" />
           </>
         )}
+        {/* GA4 loaded after hydration so it never blocks first paint. */}
         {ga4 && (
           <>
-            {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4}');`,
-              }}
-            />
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4}');`}
+            </Script>
           </>
         )}
       </body>

@@ -4,19 +4,32 @@
 
 :root {
   --max-w: 72rem;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  /* Lead with the platform's native UI typeface — SF Pro on Apple,
+     Segoe on Windows, Roboto on Android. This is what gives the site Apple's
+     own typography on Apple devices, with zero webfont fetch. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Anchor targets clear the sticky header. */
+  scroll-padding-top: 5rem;
 }
 
 body {
   @apply bg-white text-slate-700 antialiased;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* Apple-style typesetting: avoid orphans/awkward wraps in body copy. */
+p {
+  text-wrap: pretty;
 }
 
 /* Break an element out of its centered container to span the full viewport
@@ -70,10 +83,10 @@ h4 {
 /* ---- Reusable component classes ------------------------------------------ */
 @layer components {
   .card {
-    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card transition duration-200;
+    @apply rounded-2xl border border-slate-900/[0.06] bg-white shadow-card transition duration-200;
   }
   .card-link {
-    @apply card block p-5 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card-hover;
+    @apply card block p-5 hover:-translate-y-0.5 hover:border-slate-900/10 hover:shadow-card-hover;
   }
 
   .section-title {
@@ -83,9 +96,9 @@ h4 {
     @apply text-xs font-semibold uppercase tracking-[0.14em] text-brand-600;
   }
 
-  /* Buttons */
+  /* Buttons — Apple-style pill, medium weight. */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
   }
   .btn-primary {
     @apply btn bg-brand-600 text-white shadow-premium hover:bg-brand-700;
