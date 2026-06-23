@@ -12,7 +12,9 @@ import JsonLd from "@/components/JsonLd";
 import FaqSection from "@/components/FaqSection";
 import ArticleHeader from "@/components/ArticleHeader";
 import VisaOverview from "@/components/VisaOverview";
+import RelatedSearches from "@/components/RelatedSearches";
 import { buildUniversityOverview } from "@/lib/destination-overview";
+import { uniSeoTitle, uniSeoDescription, uniTargetKeywords } from "@/lib/keywords";
 import { universityPageLd, buildUniversityFaqs, breadcrumbLd } from "@/lib/seo";
 import { visaIndexDecision, robotsFor } from "@/lib/page-policy";
 
@@ -34,16 +36,21 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const r = await getUniversityRecord(destination, program);
   if (!r) return {};
   const path = `/university/${destination}/${program}`;
+  const destMeta = getDestinationMeta(r.destination);
+  const kwOpts = { destName: destMeta?.name ?? r.destination.toUpperCase(), adjective: destMeta?.adjective };
+  const seoTitle = uniSeoTitle(r, kwOpts);
+  const seoDescription = uniSeoDescription(r, kwOpts);
   const ogImage = `/api/og?title=${encodeURIComponent(r.title)}&tag=${encodeURIComponent("Admission requirements")}`;
   // Anti-thin: noindex if the page is a near-duplicate of a canonical, or fails the base policy.
   const noindexIds = await getUniversityNoindexIds();
   const decision = noindexIds.has(r.id) ? { index: false, follow: true } : robotsFor(visaIndexDecision(r));
   return {
-    title: r.title,
-    description: r.summary,
+    title: { absolute: seoTitle },
+    description: seoDescription,
+    keywords: uniTargetKeywords(r, kwOpts),
     alternates: { canonical: path },
     robots: decision,
-    openGraph: { title: r.title, description: r.summary, url: path, images: [ogImage] },
+    openGraph: { title: seoTitle, description: seoDescription, url: path, images: [ogImage] },
     twitter: { card: "summary_large_image", images: [ogImage] },
   };
 }
@@ -57,6 +64,7 @@ export default async function UniversityPage({ params }: { params: Promise<Param
   const path = `/university/${destination}/${program}`;
   const required = r.requirements.filter((x) => x.required);
   const conditional = r.requirements.filter((x) => !x.required);
+  const targetKeywords = uniTargetKeywords(r, { destName: dest?.name ?? r.destination.toUpperCase(), adjective: dest?.adjective });
 
   const all = await getUniversityRecords();
   const related = all
@@ -141,6 +149,8 @@ export default async function UniversityPage({ params }: { params: Promise<Param
       <FaqSection faqs={buildUniversityFaqs(r)} />
 
       <RelatedLinks title={`Other programs in ${dest?.name ?? "this country"}`} links={related} />
+
+      <RelatedSearches keywords={targetKeywords} />
 
       <p className="mt-8 text-xs text-slate-400">
         Last verified {formatDate(r.lastVerified)} by {r.verifiedBy}. Each university sets its own exact

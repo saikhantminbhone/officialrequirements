@@ -3,9 +3,11 @@ import { getAllRecordsForAdmin, getAllDestinations, getUniversityNoindexIds } fr
 import { visaIndexDecision } from "@/lib/page-policy";
 import { loadGscReport } from "@/lib/gsc";
 import { loadCwvReport, type CwvMetric } from "@/lib/cwv";
+import { loadTrendReport } from "@/lib/trends";
 import { formatDate } from "@/components/SourceCite";
 import GscRunButton from "@/components/admin/GscRunButton";
 import CwvRunButton from "@/components/admin/CwvRunButton";
+import TrendsRunButton from "@/components/admin/TrendsRunButton";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +15,11 @@ export const dynamic = "force-dynamic";
 // (CrUX field data). Vercel Speed Insights also collects RUM in the dashboard.
 export default async function AdminSeoPage() {
   await requireAdmin();
-  const [{ visa, university, scholarships }, gsc, cwv, uniNoindex] = await Promise.all([
+  const [{ visa, university, scholarships }, gsc, cwv, trends, uniNoindex] = await Promise.all([
     getAllRecordsForAdmin(),
     loadGscReport(),
     loadCwvReport(),
+    loadTrendReport(),
     getUniversityNoindexIds(),
   ]);
   const drafts = [...visa, ...university, ...scholarships].filter((r) => r.status !== "published").length;
@@ -105,6 +108,85 @@ export default async function AdminSeoPage() {
                 </tbody>
               </table>
             )}
+
+            {/* ── Keyword ranking opportunities (the smart-ranking algorithm) ── */}
+            {gsc.opportunities && gsc.opportunities.length > 0 && (
+              <div className="mt-8">
+                <h3 className="font-semibold text-slate-800">Keyword opportunities</h3>
+                <p className="mt-1 text-sm text-slate-500">
+                  Highest-ROI ranking moves, computed from your own Search Console data. Work these top-down.
+                </p>
+                <table className="mt-3 w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-left text-slate-500">
+                      <th className="py-2">Query</th>
+                      <th>Pos.</th>
+                      <th>Impr.</th>
+                      <th>+Clicks</th>
+                      <th>Move</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {gsc.opportunities.map((o) => (
+                      <tr key={o.query} className="border-b border-slate-100 align-top">
+                        <td className="py-2 max-w-xs text-slate-700">
+                          {o.query}
+                          <div className="text-xs text-slate-400">{o.action}</div>
+                        </td>
+                        <td>{o.position}</td>
+                        <td>{num(o.impressions)}</td>
+                        <td className="font-semibold text-trust-green">+{num(o.potentialClicks)}</td>
+                        <td>
+                          <span className={`rounded-full px-2 py-0.5 text-xs ${o.kind === "striking-distance" ? "bg-brand-50 text-brand-700" : "bg-amber-50 text-amber-700"}`}>
+                            {o.kind === "striking-distance" ? "push to page 1" : "fix title/CTR"}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {gsc.rising && gsc.rising.length > 0 && (
+              <div className="mt-8">
+                <h3 className="font-semibold text-slate-800">Rising on your site</h3>
+                <p className="mt-1 text-sm text-slate-500">Queries gaining impressions vs the prior 28 days — the trends your own audience is creating.</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {gsc.rising.map((r) => (
+                    <span key={r.query} className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+                      {r.query} <span className="font-semibold">+{num(r.delta)}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+
+      {/* ── Trending keywords (Google autocomplete harvest) ───────────────── */}
+      <section className="mt-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-lg font-semibold text-slate-800">Trending keywords</h2>
+          <TrendsRunButton />
+        </div>
+        <p className="mt-1 text-sm text-slate-500">
+          Live long-tail from Google autocomplete for your topics, filtered to on-topic and ranked by intent
+          and freshness. Pick the relevant ones and turn them into a page section, FAQ, or related-search link.
+        </p>
+        {!trends || trends.keywords.length === 0 ? (
+          <p className="mt-3 text-sm text-slate-400">No harvest yet — click &ldquo;Harvest trending keywords&rdquo; (needs network + R2).</p>
+        ) : (
+          <div className="mt-3">
+            <div className="text-xs text-slate-400">{trends.totals.relevant} on-topic from {trends.seeds} seeds · {formatDate(trends.ranAt)}</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {trends.keywords.slice(0, 40).map((k) => (
+                <span key={k.query} className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700">
+                  {k.query}
+                  <span className="rounded-full bg-slate-100 px-1.5 text-[10px] uppercase text-slate-500">{k.intent}</span>
+                </span>
+              ))}
+            </div>
           </div>
         )}
       </section>

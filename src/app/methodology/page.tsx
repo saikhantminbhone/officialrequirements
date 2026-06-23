@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function MethodologyPage() {
   return (
     <article className="prose-tight max-w-3xl">
-      <h1 className="text-3xl font-bold text-slate-900">How we source and verify requirements</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">How we source and verify requirements</h1>
       <p className="mt-3 text-slate-600">
         Immigration and admissions are high-stakes. Wrong information costs people money, time and
         opportunities — so we treat the dataset behind this site as the product, not an afterthought.

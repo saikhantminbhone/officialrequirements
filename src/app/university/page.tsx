@@ -28,7 +28,7 @@ export default async function UniversityHub() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">University admission requirements</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">University admission requirements</h1>
       <p className="mt-2 max-w-2xl text-slate-600" data-speakable>
         What each program actually asks for — prior qualification, grade/GPA threshold, English
         scores, GRE/GMAT, and the full document checklist — by country and degree. Sourced from

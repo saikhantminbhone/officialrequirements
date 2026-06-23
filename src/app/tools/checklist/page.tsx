@@ -13,7 +13,7 @@ export default async function ChecklistPage() {
   const records = await getVisaRecords();
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Document checklist generator</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Document checklist generator</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
         Pick your route and get a printable checklist with every document, what it&apos;s for, and a
         link to the official source.

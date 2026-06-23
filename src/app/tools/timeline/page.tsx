@@ -13,7 +13,7 @@ export default async function TimelinePage() {
   const records = await getVisaRecords();
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Application timeline planner</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Application timeline planner</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
         Enter when your programme starts and get a backward-planned schedule so nothing is left too
         late.

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ReviewerByline from "@/components/ReviewerByline";
 
 // Premium, consistent header for detail/article pages (visa, admission,
 // scholarship). Gives every page a confident title block with a kicker, a large
@@ -23,6 +24,9 @@ export default function ArticleHeader({
       <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-600" data-speakable>
         {summary}
       </p>
+      <div className="mt-4">
+        <ReviewerByline />
+      </div>
       {children && <div className="mt-5 space-y-2.5">{children}</div>}
     </header>
   );

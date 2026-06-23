@@ -3,6 +3,7 @@ import { getVisaRecords } from "@/lib/req-data";
 import { extractFromSource } from "@/lib/extract/source";
 import { getFxRates, convert } from "@/lib/fx";
 import { getJson, putJson, r2Configured } from "@/lib/r2";
+import { isTrustedSource } from "@/lib/source-trust";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Cross-source fact-check engine (deterministic, no AI). This is the safe form
@@ -64,6 +65,8 @@ export async function runFactCheck(limit = 20): Promise<FactCheckReport> {
 
     if (stored != null && storedCur) {
       for (const url of urls) {
+        // Only official sources may corroborate a YMYL figure (trust auto-check).
+        if (!isTrustedSource(url)) continue;
         const res = await extractFromSource(url);
         if (res.kind === "unreachable") {
           unreachable++;

@@ -7,6 +7,7 @@ import { runFx } from "@/lib/fx";
 import { runCrawl } from "@/lib/crawl";
 import { runIndexNow } from "@/lib/indexnow";
 import { runFactCheck } from "@/lib/factcheck";
+import { harvestTrends } from "@/lib/trends";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,6 +42,9 @@ export async function POST(req: NextRequest) {
   }
   if (job === "factcheck") {
     return NextResponse.json({ ok: true, ...(await runFactCheck(25)) });
+  }
+  if (job === "trends") {
+    return NextResponse.json({ ok: true, ...(await harvestTrends(60)) });
   }
   return NextResponse.json({ ok: true, ...(await runMaintain()) });
 }

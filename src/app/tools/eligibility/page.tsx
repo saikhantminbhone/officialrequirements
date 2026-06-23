@@ -13,7 +13,7 @@ export default async function EligibilityPage() {
   const scholarships = await getScholarships();
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Scholarship eligibility checker</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Scholarship eligibility checker</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
         Pick a scholarship and answer a few questions. You&apos;ll get a personalized read plus any
         red flags to fix. Informational only — always confirm on the official source.

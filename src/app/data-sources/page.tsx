@@ -19,7 +19,7 @@ export default async function DataSourcesPage() {
 
   return (
     <article className="max-w-3xl">
-      <h1 className="text-3xl font-bold text-slate-900">Data sources</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Data sources</h1>
       <p className="mt-3 text-slate-600" data-speakable>
         We cite only primary, official sources — embassies and consulates, government immigration
         portals, university admissions pages, and scholarship bodies such as DAAD and the European

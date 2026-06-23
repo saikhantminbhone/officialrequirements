@@ -7,7 +7,9 @@ import JsonLd from "@/components/JsonLd";
 import KeyFacts from "@/components/KeyFacts";
 import FaqSection from "@/components/FaqSection";
 import VisaOverview from "@/components/VisaOverview";
+import RelatedSearches from "@/components/RelatedSearches";
 import { buildVisaOverview } from "@/lib/destination-overview";
+import { hubSeoTitle, hubSeoDescription, hubTargetKeywords } from "@/lib/keywords";
 import { breadcrumbLd, buildVisaFaqs, faqPageLd } from "@/lib/seo";
 import { robotsFor } from "@/lib/page-policy";
 
@@ -27,8 +29,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const dest = getDestinationMeta(destination);
   if (!dest) return {};
   return {
-    title: `Study in ${capitalize(dest.name)} — student visa, funding & requirements`,
-    description: `Hub for studying in ${dest.name}: student-visa requirements by nationality, ${dest.fundsLabel}, scholarships, costs and timelines — sourced and verified.`,
+    title: { absolute: hubSeoTitle(dest.name) },
+    description: hubSeoDescription(dest.name, dest.fundsLabel),
+    keywords: hubTargetKeywords(dest.name),
     alternates: { canonical: `/study/${destination}` },
     robots: robotsFor({ index: true, reason: "ok" }),
   };
@@ -141,6 +144,8 @@ export default async function DestinationHub({ params }: { params: Promise<Param
       </section>
 
       <FaqSection faqs={faqs} />
+
+      <RelatedSearches keywords={hubTargetKeywords(dest.name)} />
     </div>
   );
 }

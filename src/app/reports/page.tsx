@@ -18,7 +18,7 @@ const REPORTS = [
 export default function ReportsHub() {
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Data reports &amp; rankings</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Data reports &amp; rankings</h1>
       <p className="mt-2 max-w-2xl text-slate-600" data-speakable>
         Rankings computed from our sourced student-visa dataset and live ECB exchange rates — updated
         as the underlying figures are re-verified.

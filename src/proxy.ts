@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
 
-// Gate the whole /ops console and the /api/admin write namespace. Unauthenticated
-// (or non-admin) requests to /ops are redirected to /ops/login; API requests get
-// a 401. Defence-in-depth: each /ops page also re-checks server-side, and the
-// /api/admin handlers re-check too.
+// Next 16 "proxy" convention (formerly middleware). Gates the whole /ops console
+// and the /api/admin write namespace. Unauthenticated (or non-admin) requests to
+// /ops are redirected to /ops/login; API requests get a 401. Defence-in-depth:
+// each /ops page also re-checks server-side, and the /api/admin handlers too.
 export default auth((req) => {
   const { pathname } = req.nextUrl;
   const isOps = pathname.startsWith("/ops") && !pathname.startsWith("/ops/login");

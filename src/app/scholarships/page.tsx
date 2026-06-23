@@ -16,7 +16,7 @@ export default async function ScholarshipsHub() {
   const scholarships = await getScholarships();
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Scholarship eligibility</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Scholarship eligibility</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
         Eligibility rules are confusing by design. Each guide below has an interactive checker that
         gives you a personalized read in under a minute — plus the official source and deadlines.

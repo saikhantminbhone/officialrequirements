@@ -17,7 +17,7 @@ export default function AboutPage() {
   return (
     <article className="prose-tight max-w-3xl">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <h1 className="text-3xl font-bold text-slate-900">{hasNamedAuthor ? `About ${AUTHOR_NAME}` : "About OfficialRequirements"}</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">{hasNamedAuthor ? `About ${AUTHOR_NAME}` : "About OfficialRequirements"}</h1>
 
       {hasNamedAuthor && (
         <p className="mt-3 text-slate-600" data-speakable>

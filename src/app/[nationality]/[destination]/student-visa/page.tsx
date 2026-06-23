@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getVisaRecords, getVisaRecord, getDestinationMeta, getAllDestinations } from "@/lib/req-data";
+import { getVisaRecords, getVisaRecord, getDestinationMeta, getAllDestinations, getNationalities } from "@/lib/req-data";
 import { SourceCite, formatDate } from "@/components/SourceCite";
 import AdSlot from "@/components/AdSlot";
 import ChecklistTool from "@/components/tools/ChecklistTool";
@@ -16,7 +16,10 @@ import KeyFacts from "@/components/KeyFacts";
 import HowToApply from "@/components/HowToApply";
 import ArticleHeader from "@/components/ArticleHeader";
 import VisaOverview from "@/components/VisaOverview";
+import RelatedSearches from "@/components/RelatedSearches";
 import { buildVisaOverview } from "@/lib/destination-overview";
+import { visaSeoTitle, visaSeoDescription, visaTargetKeywords } from "@/lib/keywords";
+import { rankInternalLinks } from "@/lib/seo-strategy";
 import { visaPageLd, buildVisaFaqs, breadcrumbLd } from "@/lib/seo";
 import { visaIndexDecision, robotsFor } from "@/lib/page-policy";
 import { getFxRates, convert, formatMoney, NATIONALITY_CURRENCY } from "@/lib/fx";
@@ -45,13 +48,20 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const record = await getVisaRecord(nationality, destination);
   if (!record) return {};
   const path = `/${nationality}/${destination}/student-visa`;
+  const destMeta = getDestinationMeta(record.destination);
+  const natName = getNationalities().find((n) => n.code === record.nationality)?.name;
+  const kwOpts = { destName: destMeta?.name ?? record.destination.toUpperCase(), nationalityName: natName, adjective: destMeta?.adjective };
+  const seoTitle = visaSeoTitle(record, kwOpts);
+  const seoDescription = visaSeoDescription(record, kwOpts);
   const ogImage = `/api/og?title=${encodeURIComponent(record.title)}&tag=${encodeURIComponent("Student visa requirements")}`;
   return {
-    title: record.title,
-    description: record.summary,
+    // Keyword-optimised title (absolute = bypass the brand template so length stays SERP-friendly).
+    title: { absolute: seoTitle },
+    description: seoDescription,
+    keywords: visaTargetKeywords(record, kwOpts),
     alternates: { canonical: path },
     robots: robotsFor(visaIndexDecision(record)),
-    openGraph: { title: record.title, description: record.summary, url: path, images: [ogImage] },
+    openGraph: { title: seoTitle, description: seoDescription, url: path, images: [ogImage] },
     twitter: { card: "summary_large_image", images: [ogImage] },
   };
 }
@@ -67,6 +77,14 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
   const required = record.requirements.filter((r) => r.required);
   const conditional = record.requirements.filter((r) => !r.required);
 
+  // Long-tail keyword cluster for the visible "related searches" block.
+  const natName = getNationalities().find((n) => n.code === record.nationality)?.name;
+  const targetKeywords = visaTargetKeywords(record, {
+    destName: dest?.name ?? record.destination.toUpperCase(),
+    nationalityName: natName,
+    adjective: dest?.adjective,
+  });
+
   // Home-currency conversion of the proof-of-funds — unique computed value per
   // nationality page (anti-thin), and genuinely useful to the applicant.
   const homeCurrency = NATIONALITY_CURRENCY[record.nationality ?? ""];
@@ -79,10 +97,13 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
     if (converted) homeFunds = { value: formatMoney(converted, homeCurrency), updatedAt: rates.updatedAt };
   }
 
-  // Hub-and-spoke: link other nationalities for the same destination.
+  // Hub-and-spoke + internal-link sculpting: link other nationalities for the
+  // same destination, ordered so the highest-opportunity pages get the links.
   const all = await getVisaRecords();
-  const related = all
-    .filter((r) => r.destination === record.destination && r.id !== record.id)
+  const related = rankInternalLinks(
+    record,
+    all.filter((r) => r.destination === record.destination)
+  )
     .slice(0, 8)
     .map((r) => ({ label: r.title, href: `/${r.nationality}/${r.destination}/student-visa` }));
 
@@ -240,6 +261,8 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
 
       <RelatedLinks title={`Other student-visa guides for ${dest?.name ?? "this destination"}`} links={related} />
       <RelatedLinks title="Explore more" links={crossLinks} />
+
+      <RelatedSearches keywords={targetKeywords} />
 
       <p className="mt-8 text-xs text-slate-400">
         Last verified {formatDate(record.lastVerified)} by {record.verifiedBy}. Requirements change —

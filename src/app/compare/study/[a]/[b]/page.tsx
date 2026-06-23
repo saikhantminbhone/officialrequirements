@@ -8,6 +8,7 @@ import AdSlot from "@/components/AdSlot";
 import LeadGenBlock from "@/components/LeadGenBlock";
 import JsonLd from "@/components/JsonLd";
 import FaqSection from "@/components/FaqSection";
+import RelatedSearches from "@/components/RelatedSearches";
 import { breadcrumbLd, faqPageLd } from "@/lib/seo";
 import { robotsFor } from "@/lib/page-policy";
 
@@ -34,12 +35,19 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const b = getDestinationMeta(cb);
   if (!a || !b) return {};
   const path = `/compare/study/${ca}/${cb}`;
-  const title = `Study in ${capitalize(a.name)} vs ${capitalize(b.name)} — student visa compared`;
-  const description = `Side-by-side student-visa comparison of ${a.name} and ${b.name}: proof of funds, living costs, visa fee, processing time, intakes and document requirements. Sourced and verified.`;
+  const year = new Date().getFullYear();
+  const title = `Study in ${capitalize(a.name)} vs ${capitalize(b.name)} (${year}) — Student Visa Compared`;
+  const description = `${capitalize(a.name)} vs ${capitalize(b.name)} for international students in ${year}: proof of funds, living costs, visa fee, processing time, intakes and document requirements compared side by side — each figure sourced and date-verified.`;
   const ogImage = `/api/og?title=${encodeURIComponent(`${capitalize(a.name)} vs ${capitalize(b.name)}`)}&tag=${encodeURIComponent("Student visa compared")}`;
   return {
-    title,
+    title: { absolute: title },
     description,
+    keywords: [
+      `${a.name.replace(/^the /, "")} vs ${b.name.replace(/^the /, "")} student visa`,
+      `study in ${a.name.replace(/^the /, "")} or ${b.name.replace(/^the /, "")}`,
+      `${a.name.replace(/^the /, "")} vs ${b.name.replace(/^the /, "")} cost of study`,
+      `${a.name.replace(/^the /, "")} vs ${b.name.replace(/^the /, "")} for international students`,
+    ],
     alternates: { canonical: path },
     robots: robotsFor({ index: true, reason: "ok" }),
     openGraph: { title, description, url: path, images: [ogImage] },
@@ -93,7 +101,7 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
         <Link href="/compare" className="hover:text-brand-700">Compare</Link>
       </nav>
 
-      <h1 className="mt-2 text-3xl font-bold text-slate-900">
+      <h1 className="mt-2 text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">
         Study in {aName} vs {bName}: student visa compared
       </h1>
       <p className="mt-2 text-slate-600" data-speakable>
@@ -186,6 +194,15 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
           <SourceCite source={bRec.source} lastVerified={bRec.lastVerified} />
         </div>
       </section>
+
+      <RelatedSearches
+        keywords={[
+          `${aName} vs ${bName} student visa`,
+          `study in ${aName} or ${bName}`,
+          `${aName} vs ${bName} cost of study`,
+          `${aName} vs ${bName} for international students`,
+        ]}
+      />
     </article>
   );
 }

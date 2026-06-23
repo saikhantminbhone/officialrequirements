@@ -10,7 +10,9 @@ import DataTrustLine from "@/components/DataTrustLine";
 import FaqSection from "@/components/FaqSection";
 import ArticleHeader from "@/components/ArticleHeader";
 import VisaOverview from "@/components/VisaOverview";
+import RelatedSearches from "@/components/RelatedSearches";
 import { buildScholarshipOverview } from "@/lib/destination-overview";
+import { scholarshipSeoTitle, scholarshipSeoDescription, scholarshipTargetKeywords } from "@/lib/keywords";
 import { scholarshipPageLd, buildScholarshipFaqs, breadcrumbLd } from "@/lib/seo";
 import { scholarshipIndexDecision, robotsFor } from "@/lib/page-policy";
 
@@ -29,12 +31,15 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const s = await getScholarship(scholarship);
   if (!s) return {};
   const ogImage = `/api/og?title=${encodeURIComponent(s.name)}&tag=${encodeURIComponent("Scholarship eligibility")}`;
+  const seoTitle = scholarshipSeoTitle(s);
+  const seoDescription = scholarshipSeoDescription(s);
   return {
-    title: `${s.name} — eligibility & requirements`,
-    description: s.summary,
+    title: { absolute: seoTitle },
+    description: seoDescription,
+    keywords: scholarshipTargetKeywords(s),
     alternates: { canonical: `/scholarships/${s.slug}` },
     robots: robotsFor(scholarshipIndexDecision(s)),
-    openGraph: { title: s.name, description: s.summary, images: [ogImage] },
+    openGraph: { title: seoTitle, description: seoDescription, images: [ogImage] },
     twitter: { card: "summary_large_image", images: [ogImage] },
   };
 }
@@ -100,6 +105,8 @@ export default async function ScholarshipPage({ params }: { params: Promise<Para
       </div>
 
       <FaqSection faqs={buildScholarshipFaqs(s)} />
+
+      <RelatedSearches keywords={scholarshipTargetKeywords(s)} />
 
       <p className="mt-8 text-xs text-slate-400">
         Last verified {formatDate(s.lastVerified)} by {s.verifiedBy}. Eligibility rules change —

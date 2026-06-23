@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function EditorialPolicyPage() {
   return (
     <article className="max-w-3xl">
-      <h1 className="text-3xl font-bold text-slate-900">Editorial &amp; corrections policy</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Editorial &amp; corrections policy</h1>
 
       <h2 className="mt-6 text-xl font-semibold text-slate-800">Publishing principles</h2>
       <p className="mt-2 text-slate-600" data-speakable>

@@ -1,5 +1,6 @@
 import { createSign } from "crypto";
 import { getJson, putJson } from "@/lib/r2";
+import { computeOpportunities, type KeywordOpportunity, type QueryRow } from "@/lib/keyword-opportunities";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Google Search Console integration (no extra dependencies).
@@ -28,6 +29,10 @@ export interface GscReport {
   totals?: { clicks: number; impressions: number; ctr: number; position: number };
   tier1?: { clicks: number; total: number; pct: number };
   topPages?: { page: string; clicks: number; impressions: number; position: number }[];
+  // Keyword ranking opportunities (striking-distance + CTR gaps), highest ROI first.
+  opportunities?: KeywordOpportunity[];
+  // Queries gaining impressions vs the prior period — trending on your own site.
+  rising?: { query: string; impressions: number; prevImpressions: number; delta: number; position: number }[];
 }
 
 type ServiceAccount = { client_email: string; private_key: string };
@@ -110,9 +115,10 @@ export async function runGsc(): Promise<GscReport> {
     const startDate = dateNDaysAgo(28);
     const endDate = dateNDaysAgo(1);
 
-    const [pages, countries] = await Promise.all([
+    const [pages, countries, queries] = await Promise.all([
       query(token, siteUrl, { startDate, endDate, dimensions: ["page"], rowLimit: 100 }),
       query(token, siteUrl, { startDate, endDate, dimensions: ["country"], rowLimit: 250 }),
+      query(token, siteUrl, { startDate, endDate, dimensions: ["query"], rowLimit: 500 }),
     ]);
 
     const pageRows = pages.rows ?? [];
@@ -132,6 +138,33 @@ export async function runGsc(): Promise<GscReport> {
     const countryTotalClicks = countryRows.reduce((s, r) => s + r.clicks, 0);
     const tier1Clicks = countryRows.filter((r) => TIER1.has(r.keys[0])).reduce((s, r) => s + r.clicks, 0);
 
+    // Keyword opportunity mining from the query dimension.
+    const queryRows: QueryRow[] = (queries.rows ?? []).map((r) => ({
+      query: r.keys[0],
+      clicks: r.clicks,
+      impressions: r.impressions,
+      ctr: r.ctr,
+      position: r.position,
+    }));
+    const opportunities = computeOpportunities(queryRows, 40);
+
+    // Rising queries: impressions vs the prior 28-day window.
+    const prevQueries = await query(token, siteUrl, {
+      startDate: dateNDaysAgo(56),
+      endDate: dateNDaysAgo(29),
+      dimensions: ["query"],
+      rowLimit: 500,
+    }).catch(() => ({ rows: [] as { keys: string[]; impressions: number }[] }));
+    const prevMap = new Map((prevQueries.rows ?? []).map((r) => [r.keys[0], r.impressions]));
+    const rising = queryRows
+      .map((r) => {
+        const prevImpressions = prevMap.get(r.query) ?? 0;
+        return { query: r.query, impressions: r.impressions, prevImpressions, delta: r.impressions - prevImpressions, position: r.position };
+      })
+      .filter((r) => r.impressions >= 30 && r.delta > 0 && r.impressions >= r.prevImpressions * 1.5)
+      .sort((a, b) => b.delta - a.delta)
+      .slice(0, 20);
+
     const report: GscReport = {
       ranAt,
       connected: true,
@@ -142,6 +175,8 @@ export async function runGsc(): Promise<GscReport> {
         .sort((a, b) => b.clicks - a.clicks)
         .slice(0, 25)
         .map((r) => ({ page: r.keys[0], clicks: r.clicks, impressions: r.impressions, position: r.position })),
+      opportunities,
+      rising,
     };
 
     await putJson("seo/gsc-report.json", report);

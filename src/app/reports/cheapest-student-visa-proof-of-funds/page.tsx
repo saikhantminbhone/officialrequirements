@@ -32,6 +32,13 @@ export default async function Report() {
       rows={tableRows}
       rankItems={ranked.map((r) => r.name)}
       fxUpdatedAt={fxUpdatedAt}
+      keywords={[
+        "cheapest student visa proof of funds",
+        "lowest proof of funds student visa 2026",
+        "cheapest country to study abroad",
+        "student visa bank balance requirement",
+        "affordable study abroad destinations",
+      ]}
       insight={
         cheapest && priciest ? (
           <>

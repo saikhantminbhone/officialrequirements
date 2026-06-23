@@ -31,6 +31,13 @@ export default async function Report() {
       rows={tableRows}
       rankItems={ranked.map((r) => r.name)}
       fxUpdatedAt={fxUpdatedAt}
+      keywords={[
+        "fastest student visa processing time",
+        "quickest student visa to get 2026",
+        "student visa processing time by country",
+        "how long does a student visa take",
+        "student visa appointment wait times",
+      ]}
       insight={
         fastest && slowest ? (
           <>

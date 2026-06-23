@@ -20,7 +20,7 @@ export default async function ChangelogPage() {
 
   return (
     <article className="max-w-3xl">
-      <h1 className="text-3xl font-bold text-slate-900">Data changelog</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Data changelog</h1>
       <p className="mt-3 text-slate-600" data-speakable>
         Every change to a requirement record is logged here with its date — a transparent freshness
         signal so you (and search and AI engines) can see exactly when each fact was last touched.

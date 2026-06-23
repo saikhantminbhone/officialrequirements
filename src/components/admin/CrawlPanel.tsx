@@ -47,10 +47,22 @@ export default function CrawlPanel({ initial }: { initial: CrawlReport | null })
       {msg && <p className="mt-2 text-sm text-slate-600">{msg}</p>}
 
       {report && (
-        <div className="mt-3 text-xs text-slate-400">
-          Last run {new Date(report.ranAt).toLocaleString()} · {report.totals.gaps} gaps detected ·
-          render service {report.renderServiceConfigured ? "configured" : "not set"}
-        </div>
+        <>
+          <div className="mt-3 text-xs text-slate-400">
+            Last run {new Date(report.ranAt).toLocaleString()} · {report.totals.gaps} gaps detected ·
+            render service {report.renderServiceConfigured ? "configured" : "not set"}
+          </div>
+          {/* Auto trust + quality roll-up (deterministic grading). */}
+          <div className="mt-2 flex flex-wrap gap-2 text-xs">
+            <Badge tone="green">{report.totals.readyToApprove ?? 0} ready to approve</Badge>
+            <Badge tone="amber">{report.totals.needsReview ?? 0} need review</Badge>
+            <Badge tone="red">{report.totals.rejected ?? 0} rejected</Badge>
+            <Badge tone="slate">{report.totals.fromOfficialSource ?? 0} official sources</Badge>
+            {(report.totals.fromUntrustedSource ?? 0) > 0 && (
+              <Badge tone="red">{report.totals.fromUntrustedSource} untrusted</Badge>
+            )}
+          </div>
+        </>
       )}
 
       {report?.items?.length ? (
@@ -71,7 +83,14 @@ function CrawlItem({ item }: { item: ReviewItem }) {
     <div className="rounded border border-slate-100 p-3">
       <div className="flex items-center justify-between gap-2">
         <div className="font-medium text-slate-800">{item.title}</div>
-        <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">{item.kind} · {item.method}</span>
+        <div className="flex items-center gap-2">
+          {item.sourceTrust && (
+            <Badge tone={item.sourceTrust.tier === "official" ? "green" : item.sourceTrust.tier === "low" ? "red" : "slate"}>
+              {item.sourceTrust.tier} source · {item.sourceTrust.score}
+            </Badge>
+          )}
+          <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">{item.kind} · {item.method}</span>
+        </div>
       </div>
       <div className="mt-1 text-xs text-slate-500">
         {item.sourceUrl && (
@@ -107,6 +126,9 @@ function Candidate({ item, c }: { item: ReviewItem; c: ReviewCandidate }) {
     setState(res.ok ? "done" : "error");
   }
 
+  const isReject = c.recommendation === "reject";
+  const isReady = c.recommendation === "ready-to-approve";
+
   return (
     <li className="rounded bg-slate-50 p-2 text-sm">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -120,12 +142,35 @@ function Candidate({ item, c }: { item: ReviewItem; c: ReviewCandidate }) {
         <button
           onClick={apply}
           disabled={state === "saving" || state === "done"}
-          className="rounded border border-brand-300 px-2 py-1 text-xs font-medium text-brand-700 hover:bg-brand-50 disabled:opacity-50"
+          className={`rounded border px-2 py-1 text-xs font-medium disabled:opacity-50 ${
+            isReject
+              ? "border-red-300 text-red-700 hover:bg-red-50"
+              : "border-brand-300 text-brand-700 hover:bg-brand-50"
+          }`}
         >
-          {state === "done" ? "Applied ✓" : state === "saving" ? "Saving…" : state === "error" ? "Retry" : "Approve & apply"}
+          {state === "done" ? "Applied ✓" : state === "saving" ? "Saving…" : state === "error" ? "Retry" : isReject ? "Approve anyway" : "Approve & apply"}
         </button>
+      </div>
+      {/* Auto grades (deterministic): quality + recommended action. */}
+      <div className="mt-1.5 flex flex-wrap gap-2">
+        <Badge tone={isReady ? "green" : c.recommendation === "needs-review" ? "amber" : "red"}>
+          {c.recommendation.replace(/-/g, " ")}
+        </Badge>
+        <Badge tone={c.quality === "pass" ? "green" : c.quality === "review" ? "amber" : "red"}>
+          quality: {c.quality}
+        </Badge>
       </div>
       <div className="mt-1 text-xs text-slate-400">…{c.context}…</div>
     </li>
   );
+}
+
+function Badge({ tone, children }: { tone: "green" | "amber" | "red" | "slate"; children: React.ReactNode }) {
+  const cls = {
+    green: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    amber: "bg-amber-50 text-amber-700 border-amber-200",
+    red: "bg-red-50 text-red-700 border-red-200",
+    slate: "bg-slate-100 text-slate-600 border-slate-200",
+  }[tone];
+  return <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${cls}`}>{children}</span>;
 }

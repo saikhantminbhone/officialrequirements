@@ -32,6 +32,13 @@ export default async function Report() {
       rows={tableRows}
       rankItems={ranked.map((r) => r.name)}
       fxUpdatedAt={fxUpdatedAt}
+      keywords={[
+        "cost of studying abroad by country 2026",
+        "cheapest country to study abroad total cost",
+        "student visa cost comparison",
+        "first year study abroad budget",
+        "study abroad cost calculator",
+      ]}
       insight={
         lowest && highest ? (
           <>

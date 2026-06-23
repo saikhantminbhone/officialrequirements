@@ -20,7 +20,7 @@ export default function CompareHub() {
   const pairs = destinationPairs();
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">Compare study destinations</h1>
+      <h1 className="text-3xl font-semibold tracking-tighter2 text-slate-900 sm:text-[2.4rem]">Compare study destinations</h1>
       <p className="mt-2 max-w-2xl text-slate-600" data-speakable>
         Multi-factor, side-by-side student-visa comparisons — the funds you must show, living costs,
         fees, processing time and document load — sourced and date-verified.
