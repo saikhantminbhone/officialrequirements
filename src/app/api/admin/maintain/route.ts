@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, ...(await runCrawl(15)) });
   }
   if (job === "indexnow") {
-    const scope = new URL(req.url).searchParams.get("scope") === "all" ? "all" : "all";
+    const scope = new URL(req.url).searchParams.get("scope") === "changed" ? "changed" : "all";
     return NextResponse.json(await runIndexNow(scope));
   }
   if (job === "factcheck") {

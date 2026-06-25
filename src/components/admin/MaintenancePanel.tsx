@@ -5,15 +5,17 @@ import { useState } from "react";
 // Manual triggers for the deterministic maintenance jobs. The same routines run
 // automatically on the Vercel Cron schedule — these just let the operator run
 // them on demand.
+type Job = "maintain" | "watch" | "factcheck" | "indexnow";
+
 export default function MaintenancePanel() {
-  const [busy, setBusy] = useState<"" | "maintain" | "watch" | "factcheck">("");
+  const [busy, setBusy] = useState<"" | Job>("");
   const [msg, setMsg] = useState<string>("");
 
-  async function run(job: "maintain" | "watch" | "factcheck") {
+  async function run(job: Job, qs = "") {
     setBusy(job);
     setMsg("");
     try {
-      const res = await fetch(`/api/admin/maintain?job=${job}`, { method: "POST" });
+      const res = await fetch(`/api/admin/maintain?job=${job}${qs}`, { method: "POST" });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "failed");
       setMsg(
@@ -21,6 +23,10 @@ export default function MaintenancePanel() {
           ? `Freshness pass done: ${json.totals.reVerifyQueue} to re-verify, ${json.totals.autoUnpublished} auto-unpublished.`
           : job === "watch"
           ? `Source watch done: ${json.totals.changed} changed, ${json.totals.unreachable} unreachable of ${json.totals.sources}.`
+          : job === "indexnow"
+          ? json.ok
+            ? `IndexNow: submitted ${json.submitted} URL(s) (${json.scope}). HTTP ${json.status}.`
+            : `IndexNow failed: ${json.error || "check INDEXNOW_KEY + site URL"}`
           : `Fact-check done: ${json.totals.corroborated} corroborated, ${json.totals.promoted} promoted, ${json.totals.conflicts} conflicts of ${json.totals.checked}.`
       );
     } catch (e) {
@@ -58,6 +64,13 @@ export default function MaintenancePanel() {
           className="rounded-md border border-brand-300 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 disabled:opacity-50"
         >
           {busy === "factcheck" ? "Cross-checking sources…" : "Run cross-source fact-check"}
+        </button>
+        <button
+          onClick={() => run("indexnow", "&scope=all")}
+          disabled={busy !== ""}
+          className="rounded-md border border-brand-300 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 disabled:opacity-50"
+        >
+          {busy === "indexnow" ? "Submitting…" : "Submit all to IndexNow (Bing)"}
         </button>
       </div>
       {msg && <p className="mt-3 text-sm text-slate-600">{msg}</p>}
