@@ -56,9 +56,14 @@ export async function getJson<T>(key: string): Promise<T | null> {
     const text = await streamToString(res.Body);
     return JSON.parse(text) as T;
   } catch (err: unknown) {
+    // Missing object/bucket or any read error → treat as "no data" and fall back
+    // to seed. Reads must never crash the static build (e.g. NoSuchBucket before
+    // the bucket is created). Writes still surface errors to the admin.
     const name = (err as { name?: string })?.name;
-    if (name === "NoSuchKey" || name === "NotFound") return null;
-    throw err;
+    if (name && name !== "NoSuchKey" && name !== "NotFound") {
+      console.warn(`[r2] getJson(${key}) failed (${name}); falling back to seed.`);
+    }
+    return null;
   }
 }
 
@@ -83,12 +88,19 @@ export async function listKeys(prefix: string): Promise<string[]> {
   if (!r2Configured) return [];
   const keys: string[] = [];
   let token: string | undefined;
-  do {
-    const res = await r2().send(
-      new ListObjectsV2Command({ Bucket: R2_BUCKET, Prefix: prefix, ContinuationToken: token })
-    );
-    (res.Contents || []).forEach((o) => o.Key && keys.push(o.Key));
-    token = res.IsTruncated ? res.NextContinuationToken : undefined;
-  } while (token);
+  try {
+    do {
+      const res = await r2().send(
+        new ListObjectsV2Command({ Bucket: R2_BUCKET, Prefix: prefix, ContinuationToken: token })
+      );
+      (res.Contents || []).forEach((o) => o.Key && keys.push(o.Key));
+      token = res.IsTruncated ? res.NextContinuationToken : undefined;
+    } while (token);
+  } catch (err: unknown) {
+    // Missing bucket / transient error → no R2 records, fall back to seed.
+    // Never let listing crash the static build.
+    console.warn(`[r2] listKeys(${prefix}) failed (${(err as { name?: string })?.name}); using seed only.`);
+    return [];
+  }
   return keys;
 }
