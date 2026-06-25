@@ -30,12 +30,16 @@ export default function robots(): MetadataRoute.Robots {
     "MistralAI-User",
   ];
 
+  // Major search engines — named explicitly so there's zero ambiguity.
+  const searchCrawlers = ["Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "YandexBot"];
+
   // Reputable SEO crawlers — allowed so we can monitor backlinks/authority.
   const seoCrawlers = ["AhrefsBot", "SemrushBot", "MJ12bot", "rogerbot", "dotbot"];
 
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: disallowPrivate },
+      ...searchCrawlers.map((ua) => ({ userAgent: ua, allow: "/", disallow: disallowPrivate })),
       ...aiCrawlers.map((ua) => ({ userAgent: ua, allow: "/", disallow: disallowPrivate })),
       ...seoCrawlers.map((ua) => ({ userAgent: ua, allow: "/", disallow: disallowPrivate })),
       // Bulk dataset scraper with no search/citation benefit — blocked.

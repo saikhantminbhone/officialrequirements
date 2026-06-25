@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getVisaRecords, getScholarships, getAllDestinations, getNationalities, getDestinationMeta } from "@/lib/req-data";
 import { destinationMetrics, eur } from "@/lib/reports";
+import { GUIDES } from "@/lib/guides";
+import { UNIVERSITIES } from "@/lib/universities";
 import FaqSection from "@/components/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import { faqPageLd } from "@/lib/seo";
@@ -234,6 +236,7 @@ export default async function HomePage() {
         <div className="mt-5 flex flex-wrap gap-3 text-sm">
           <Link href="/reports/cheapest-student-visa-proof-of-funds" className="btn-secondary">Full ranking →</Link>
           <Link href="/reports/student-visa-total-cost-by-country" className="btn-secondary">Total cost by country →</Link>
+          <Link href="/reports/study-abroad-index" className="btn-secondary">Study Abroad Index →</Link>
         </div>
       </section>
 
@@ -260,6 +263,44 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── In-depth guides ──────────────────────────────────────────────── */}
+      <section>
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="section-title">In-depth guides</h2>
+            <p className="mt-2 text-slate-600">Not just the requirements — how they actually work, explained.</p>
+          </div>
+          <Link href="/guides" className="hidden shrink-0 text-sm font-semibold text-brand-700 hover:underline sm:block">All guides →</Link>
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {GUIDES.slice(0, 6).map((g) => (
+            <Link key={g.slug} href={`/guides/${g.slug}`} className="card-link">
+              <div className="font-semibold text-slate-900">{g.h1}</div>
+              <div className="mt-1 text-sm leading-6 text-slate-600 line-clamp-2">{g.description}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Universities ─────────────────────────────────────────────────── */}
+      <section>
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="section-title">University requirements by institution</h2>
+            <p className="mt-2 text-slate-600">Entry bar, English requirement, programs and checklist for each named university.</p>
+          </div>
+          <Link href="/universities" className="hidden shrink-0 text-sm font-semibold text-brand-700 hover:underline sm:block">All universities →</Link>
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {UNIVERSITIES.map((u) => (
+            <Link key={u.slug} href={`/universities/${u.slug}`} className="card-link">
+              <div className="font-medium text-slate-900">{u.name}</div>
+              <div className="mt-1 text-sm text-slate-500">{u.city}</div>
+            </Link>
+          ))}
         </div>
       </section>
 

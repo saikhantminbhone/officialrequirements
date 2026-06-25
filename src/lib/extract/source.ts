@@ -1,5 +1,27 @@
 import { candidatesFromText, type FieldCandidate } from "./figures";
 import { htmlToText, extractEmbeddedJson, jsonToText, looksLikeSpa } from "./html";
+import { ruleForUrl, candidatesFromRule } from "./rules";
+
+// Merge generic + per-source-rule candidates, keeping the highest confidence per
+// field. Rule candidates (currency-aware on official domains) win ties.
+const RANK = { high: 3, medium: 2, low: 1 } as const;
+function mergeCandidates(generic: FieldCandidate[], ruleC: FieldCandidate[]): FieldCandidate[] {
+  const best = new Map<string, FieldCandidate>();
+  for (const c of generic) best.set(c.field, c);
+  for (const c of ruleC) {
+    const prev = best.get(c.field);
+    if (!prev || RANK[c.confidence] >= RANK[prev.confidence]) best.set(c.field, c);
+  }
+  return [...best.values()];
+}
+
+/** Run generic extraction plus any per-source rule for this URL. */
+function extractWithRules(text: string, url: string): FieldCandidate[] {
+  const generic = candidatesFromText(text);
+  const rule = ruleForUrl(url);
+  if (!rule) return generic;
+  return mergeCandidates(generic, candidatesFromRule(text, rule));
+}
 
 // Orchestrates extraction from a single source URL. Detects whether the page is
 // a JSON API, static HTML, or a JS/SPA-rendered page, and extracts accordingly:
@@ -66,7 +88,7 @@ export async function extractFromSource(url: string): Promise<ExtractionResult> 
     try {
       const json = JSON.parse(body);
       const text = jsonToText(json);
-      return { url, status, kind: "json", method: "json-api", candidates: candidatesFromText(text), textSample: text.slice(0, 400) };
+      return { url, status, kind: "json", method: "json-api", candidates: extractWithRules(text, url), textSample: text.slice(0, 400) };
     } catch {
       /* fall through to html handling */
     }
@@ -77,7 +99,7 @@ export async function extractFromSource(url: string): Promise<ExtractionResult> 
   const embedded = extractEmbeddedJson(body);
   const embeddedText = embedded.map((b) => jsonToText(b)).join(" ");
   const combined = `${visible} ${embeddedText}`;
-  let candidates = candidatesFromText(combined);
+  let candidates = extractWithRules(combined, url);
 
   const spa = looksLikeSpa(body, visible);
 
@@ -97,7 +119,7 @@ export async function extractFromSource(url: string): Promise<ExtractionResult> 
     const rendered = await renderViaService(url);
     if (rendered) {
       const rText = htmlToText(rendered);
-      candidates = candidatesFromText(rText);
+      candidates = extractWithRules(rText, url);
       return { url, status, kind: "rendered", method: "render-service", candidates, textSample: rText.slice(0, 400) };
     }
     return {

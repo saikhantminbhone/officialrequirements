@@ -8,6 +8,7 @@ const NAV = [
   { href: "/university", label: "Admissions" },
   { href: "/scholarships", label: "Scholarships" },
   { href: "/compare", label: "Compare" },
+  { href: "/guides", label: "Guides" },
   { href: "/reports", label: "Reports" },
   { href: "/methodology", label: "How we verify" },
 ];

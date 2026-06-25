@@ -1,9 +1,9 @@
 import { detectGaps, type Gap } from "@/lib/gap-detector";
 import { extractFromSource } from "@/lib/extract/source";
 import { getVisaRecords, getUniversityRecords } from "@/lib/req-data";
-import { putJson, r2Configured } from "@/lib/r2";
+import { getJson, putJson, r2Configured } from "@/lib/r2";
 import { classifySource, type TrustTier } from "@/lib/source-trust";
-import { checkQuality, recommend, type QualityGrade, type Recommendation } from "@/lib/quality";
+import { checkQuality, recommend, autoApplyDecision, type QualityGrade, type Recommendation } from "@/lib/quality";
 import type { RequirementRecord } from "@/lib/req-data/types";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -57,9 +57,32 @@ export interface CrawlReport {
     rejected: number;
     fromOfficialSource: number;
     fromUntrustedSource: number;
+    autoApplied: number; // safe changes written without a human (when enabled)
   };
   items: ReviewItem[];
+  autoApplied: { destination: string; field: string; value: number; currency: string | null; reason: string }[];
+  autoApplyEnabled: boolean;
   renderServiceConfigured: boolean;
+}
+
+// Merge an auto-applied figure into the destination override in R2 as
+// machine-compiled (honest provenance). Mirrors the factcheck override path.
+async function writeAutoOverride(
+  vertical: "visa" | "university",
+  destination: string,
+  field: string,
+  value: number
+): Promise<void> {
+  const key = `data/overrides/${vertical}/${destination}.json`;
+  const existing = (await getJson<Record<string, unknown>>(key)) ?? {};
+  const toolDefaults = { ...((existing.toolDefaults as Record<string, unknown>) ?? {}), [field]: value };
+  await putJson(key, {
+    ...existing,
+    toolDefaults,
+    lastVerified: new Date().toISOString().slice(0, 10),
+    verification: "machine-compiled",
+    note: `Auto-updated ${field} to ${value} from the official source (machine-compiled; pending corroboration).`,
+  });
 }
 
 function currentValue(rec: RequirementRecord | undefined, field: string): number | null {
@@ -76,6 +99,9 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
 
   const targets: Gap[] = gapReport.gaps.filter((g) => g.sourceUrl).slice(0, limit);
   const items: ReviewItem[] = [];
+  const autoAppliedLog: CrawlReport["autoApplied"] = [];
+  // Opt-in: only self-update the live data when the operator enables it.
+  const autoApplyEnabled = process.env.AUTO_APPLY_CRAWL === "1" && r2Configured;
   let unreachable = 0;
   let candidateCount = 0;
   let readyToApprove = 0;
@@ -83,6 +109,8 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
   let rejected = 0;
   let fromOfficialSource = 0;
   let fromUntrustedSource = 0;
+  let autoApplied = 0;
+  const autoApplyTasks: Promise<void>[] = [];
 
   for (const gap of targets) {
     const res = await extractFromSource(gap.sourceUrl!);
@@ -104,6 +132,20 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
       if (recommendation === "ready-to-approve") readyToApprove++;
       else if (recommendation === "reject") rejected++;
       else needsReview++;
+
+      // Self-update the safe subset (gap fills + small corrections from official
+      // sources), when enabled. Everything else stays in the human queue.
+      if (autoApplyEnabled && (gap.vertical === "visa" || gap.vertical === "university")) {
+        const decision = autoApplyDecision({ trustTier: trust.tier, quality, status, value: c.value, current });
+        if (decision.apply) {
+          autoApplyTasks.push(
+            writeAutoOverride(gap.vertical, gap.destination, c.field, c.value).then(() => {
+              autoApplied++;
+              autoAppliedLog.push({ destination: gap.destination, field: c.field, value: c.value, currency: c.currency, reason: decision.reason });
+            })
+          );
+        }
+      }
       return {
         field: c.field,
         value: c.value,
@@ -136,6 +178,9 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
     });
   }
 
+  // Flush any auto-apply writes before reporting.
+  if (autoApplyTasks.length) await Promise.allSettled(autoApplyTasks);
+
   const report: CrawlReport = {
     ranAt: new Date().toISOString(),
     totals: {
@@ -148,8 +193,11 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
       rejected,
       fromOfficialSource,
       fromUntrustedSource,
+      autoApplied,
     },
     items,
+    autoApplied: autoAppliedLog,
+    autoApplyEnabled,
     renderServiceConfigured: Boolean(process.env.RENDER_SERVICE_URL),
   };
 

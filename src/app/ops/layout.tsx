@@ -27,6 +27,7 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
           <Link href="/ops/ads" className="rounded px-2 py-1.5 hover:bg-slate-100">Ads &amp; affiliate</Link>
           <Link href="/ops/data" className="rounded px-2 py-1.5 hover:bg-slate-100">Data freshness</Link>
           <Link href="/ops/seo" className="rounded px-2 py-1.5 hover:bg-slate-100">SEO &amp; health</Link>
+          <Link href="/ops/outcomes" className="rounded px-2 py-1.5 hover:bg-slate-100">Outcomes</Link>
         </nav>
         <div className="mt-6 border-t border-slate-200 pt-3 text-xs text-slate-500">
           <div className="truncate" title={session?.user?.email ?? ""}>{session?.user?.email}</div>

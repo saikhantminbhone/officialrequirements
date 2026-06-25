@@ -22,6 +22,7 @@ so a missing variable never breaks the build — the related feature just stays 
 | `R2_PUBLIC_BASE_URL` | Public R2 asset URLs (if used). |
 | `VERCEL_DEPLOY_HOOK_URL` | Auto-rebuild after data changes / auto-unpublish. |
 | `RENDER_SERVICE_URL` | JS/SPA rendering during the crawl (else static + JSON extraction only). |
+| `AUTO_APPLY_CRAWL` | Set to `1` to let the crawler self-apply safe official-source changes (gap fills + ≤15% corrections). Off by default. |
 | `GSC_SERVICE_ACCOUNT_JSON` / `GSC_SITE_URL` | Search Console performance cron. |
 | `CRUX_API_KEY` | Core Web Vitals cron (Chrome UX Report). |
 | `INDEXNOW_KEY` | Instant index pings to search engines. |

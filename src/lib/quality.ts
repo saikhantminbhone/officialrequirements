@@ -77,6 +77,38 @@ export function checkQuality(c: Candidate): QualityResult {
   return { grade: "review", checks };
 }
 
+// ── Safe auto-apply decision (the self-updating gate) ──────────────────────
+// Only the safe subset may write itself to the live data without a human:
+//   • the source must be official, and the value must pass quality, AND
+//   • either it FILLS A GAP (we held nothing), or it's a SMALL correction
+//     (within tolerance) to an existing value. Large swings always need a human.
+// Auto-applied values are written as "machine-compiled" (never "human-verified"),
+// and the index policy keeps machine-compiled long-tail pages out of the index
+// until the cross-source fact-check corroborates them — defence in depth.
+const AUTO_APPLY_TOLERANCE = 0.15; // ≤15% change may self-apply; bigger → human
+
+export interface AutoApplyDecision {
+  apply: boolean;
+  reason: string;
+}
+
+export function autoApplyDecision(args: {
+  trustTier: "official" | "reputable" | "unknown" | "low";
+  quality: QualityGrade;
+  status?: "matches" | "differs" | "new";
+  value: number;
+  current: number | null;
+}): AutoApplyDecision {
+  const { trustTier, quality, status, value, current } = args;
+  if (trustTier !== "official") return { apply: false, reason: "source not official" };
+  if (quality !== "pass") return { apply: false, reason: `quality ${quality}` };
+  if (status === "matches") return { apply: false, reason: "already current" };
+  if (status === "new" || current == null) return { apply: true, reason: "fills a gap from an official source" };
+  const delta = Math.abs(value - current) / Math.max(1, current);
+  if (delta <= AUTO_APPLY_TOLERANCE) return { apply: true, reason: `small correction (${Math.round(delta * 100)}%)` };
+  return { apply: false, reason: `change too large (${Math.round(delta * 100)}%) — needs review` };
+}
+
 // ── Combined recommendation: trust × quality × comparison status ───────────
 export type Recommendation = "ready-to-approve" | "needs-review" | "reject";
 

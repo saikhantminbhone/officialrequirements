@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const REPORTS = [
+  { slug: "study-abroad-index", title: `Study Abroad Index ${new Date().getFullYear()}`, blurb: "A single accessibility score per country — cost, processing speed and funding, blended and ranked." },
   { slug: "cheapest-student-visa-proof-of-funds", title: "Cheapest countries by student-visa proof of funds", blurb: "Which destinations ask for the least money up front, ranked in euros." },
   { slug: "student-visa-total-cost-by-country", title: "Student-visa total first-year cost by country", blurb: "Proof of funds + insurance + visa fee, compared in euros." },
   { slug: "fastest-student-visa-processing", title: "Fastest student-visa processing by country", blurb: "Typical processing times, fastest to slowest." },

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { classifySource, isTrustedSource } from "../src/lib/source-trust.ts";
-import { checkQuality, recommend } from "../src/lib/quality.ts";
+import { checkQuality, recommend, autoApplyDecision } from "../src/lib/quality.ts";
 
 // ── Trusted-source auto-check ──────────────────────────────────────────────
 test("source-trust: government domains are official", () => {
@@ -74,4 +74,23 @@ test("recommend: low-trust source is always rejected", () => {
 
 test("recommend: a new value from an official source needs review", () => {
   assert.equal(recommend({ trustTier: "official", quality: "pass", status: "new" }), "needs-review");
+});
+
+// ── Safe auto-apply gate ───────────────────────────────────────────────────
+test("autoApply: fills a gap from an official source", () => {
+  assert.equal(autoApplyDecision({ trustTier: "official", quality: "pass", status: "new", value: 11904, current: null }).apply, true);
+});
+
+test("autoApply: small correction applies, large change needs a human", () => {
+  assert.equal(autoApplyDecision({ trustTier: "official", quality: "pass", status: "differs", value: 12500, current: 11904 }).apply, true);
+  assert.equal(autoApplyDecision({ trustTier: "official", quality: "pass", status: "differs", value: 30000, current: 11904 }).apply, false);
+});
+
+test("autoApply: never from non-official sources or failing quality", () => {
+  assert.equal(autoApplyDecision({ trustTier: "reputable", quality: "pass", status: "new", value: 100, current: null }).apply, false);
+  assert.equal(autoApplyDecision({ trustTier: "official", quality: "reject", status: "new", value: 100, current: null }).apply, false);
+});
+
+test("autoApply: a matching value is not re-applied", () => {
+  assert.equal(autoApplyDecision({ trustTier: "official", quality: "pass", status: "matches", value: 11904, current: 11904 }).apply, false);
 });

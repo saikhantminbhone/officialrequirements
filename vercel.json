@@ -12,6 +12,7 @@
     "src/app/api/cron/fx/route.ts": { "maxDuration": 15 },
     "src/app/api/cron/crawl/route.ts": { "maxDuration": 60 },
     "src/app/api/cron/indexnow/route.ts": { "maxDuration": 30 },
+    "src/app/api/cron/indexnow-all/route.ts": { "maxDuration": 30 },
     "src/app/api/cron/factcheck/route.ts": { "maxDuration": 60 },
     "src/app/api/cron/trends/route.ts": { "maxDuration": 60 }
   },
@@ -23,6 +24,7 @@
     { "path": "/api/cron/fx", "schedule": "0 2 * * *" },
     { "path": "/api/cron/crawl", "schedule": "0 1 * * 1" },
     { "path": "/api/cron/indexnow", "schedule": "30 6 * * *" },
+    { "path": "/api/cron/indexnow-all", "schedule": "0 8 * * 1" },
     { "path": "/api/cron/factcheck", "schedule": "0 0 * * 2" },
     { "path": "/api/cron/trends", "schedule": "0 7 * * 1" }
   ]

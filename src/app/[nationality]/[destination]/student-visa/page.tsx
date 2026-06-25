@@ -16,8 +16,10 @@ import KeyFacts from "@/components/KeyFacts";
 import HowToApply from "@/components/HowToApply";
 import ArticleHeader from "@/components/ArticleHeader";
 import VisaOverview from "@/components/VisaOverview";
+import DistinctiveNote from "@/components/DistinctiveNote";
 import RelatedSearches from "@/components/RelatedSearches";
 import { buildVisaOverview } from "@/lib/destination-overview";
+import { guidesForDestination } from "@/lib/guides";
 import { visaSeoTitle, visaSeoDescription, visaTargetKeywords } from "@/lib/keywords";
 import { rankInternalLinks } from "@/lib/seo-strategy";
 import { visaPageLd, buildVisaFaqs, breadcrumbLd } from "@/lib/seo";
@@ -119,6 +121,8 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
     { label: `University admission requirements in ${dest?.name ?? "this country"}`, href: `/university/${record.destination}/msc-computer-science` },
     { label: "Scholarships & eligibility", href: "/scholarships" },
     { label: "Cheapest countries by proof of funds", href: "/reports/cheapest-student-visa-proof-of-funds" },
+    // In-depth guides for this destination (topical-authority internal links).
+    ...guidesForDestination(record.destination).map((g) => ({ label: g.h1, href: `/guides/${g.slug}` })),
   ];
 
   const faqs = buildVisaFaqs(record);
@@ -213,6 +217,8 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
           fundsLabel: dest?.fundsLabel ?? "proof of funds",
         })}
       />
+
+      <DistinctiveNote code={record.destination} name={dest?.name ?? record.destination.toUpperCase()} />
 
       {/* Server-rendered requirement text — real content for Google (anti-thin-page). */}
       <section className="mt-8">

@@ -9,6 +9,9 @@ const COLS = [
       { href: "/university", label: "Admission requirements" },
       { href: "/scholarships", label: "Scholarships" },
       { href: "/compare", label: "Compare destinations" },
+      { href: "/guides", label: "Guides" },
+      { href: "/universities", label: "Universities" },
+      { href: "/outcomes", label: "Outcomes tracker" },
     ],
   },
   {

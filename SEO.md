@@ -53,8 +53,16 @@ Scheduled Vercel crons keep data fresh and trustworthy (`vercel.json`):
 6. **IndexNow** pings search engines about new/changed URLs.
 7. **FX** refreshes currency conversions daily.
 
-Nothing publishes a YMYL figure automatically — a human approves the graded queue in `/ops`,
+By default nothing publishes automatically — a human approves the graded queue in `/ops`,
 where clean official matches are one-glance approvals and garbage is pre-rejected.
+
+**Optional self-update.** Set `AUTO_APPLY_CRAWL=1` to let the crawler write the *safe subset*
+itself: figures from an **official** source that **pass quality** and either fill a gap or are a
+**small correction (≤15%)**. Bigger swings and non-official sources always stay in the human
+queue. Auto-applied values are saved as `machine-compiled`, and the index policy keeps
+machine-compiled long-tail pages out of search until the cross-source fact-check corroborates
+them — so a wrong scrape can't rank. This cuts the maintenance burden without risking YMYL
+accuracy.
 
 ## 4. Keyword opportunity engine (the weekly ranking workflow)
 
@@ -87,7 +95,35 @@ strongest YMYL signal. Until set, it honestly shows the editorial team.
   and `/search` disallowed.
 - Static/ISR pages (fast), OG images, `llms.txt`, hreflang scaffold.
 
-## 7. What only you can do (off-page)
+## 7. Getting indexed (Google + Bing)
+
+Submitting a sitemap only helps **discovery** — it never guarantees indexing, and
+new/low-authority domains are crawled slowly (expect days to weeks, especially on
+Bing, which often shows "Discovered – not yet indexed" at first).
+
+Checklist, in order of impact:
+
+1. **Set `NEXT_PUBLIC_SITE_URL` to your real production domain.** If it's wrong, the
+   sitemap, robots, and canonical URLs all point at the wrong host and both engines
+   ignore them. The most common silent cause.
+2. **Verify ownership.**
+   - Google: set `GOOGLE_SITE_VERIFICATION` (Search Console code) → emitted as a meta tag.
+   - Bing: set `BING_SITE_VERIFICATION` (Bing Webmaster Tools code). Two methods are
+     supported — the meta tag (layout) **or** the file at `/BingSiteAuth.xml`. Either works.
+     Or simply "Import from Google Search Console" inside Bing Webmaster Tools.
+3. **Turn on IndexNow** — set `INDEXNOW_KEY`. The key is served at `/api/indexnow-key`.
+   Bing consumes IndexNow heavily, so this is the fastest path to a Bing crawl. Then run
+   the IndexNow "all" job from `/ops` to push every indexable URL at once.
+4. **Submit `sitemap.xml`** in both Search Console and Bing Webmaster Tools, and use their
+   URL-inspection / submit tools to nudge top pages.
+5. **Watch the launch-batch gate.** By design, long-tail nationality×destination pages are
+   `noindex` until corroborated, human-verified, or promoted (see `page-policy.ts`). Engines
+   will only index the launch batch — intentional anti-thin-content behavior. Widen
+   `PRIORITY_NATIONALITIES` / `PRIORITY_DESTINATIONS` as real demand appears.
+6. **Check the engine's own reports** (BWT crawl info, GSC Coverage) for robots blocks,
+   noindex, or crawl errors — fix what they flag.
+
+## 8. What only you can do (off-page)
 
 The system maximizes on-page + technical. Rankings still need:
 

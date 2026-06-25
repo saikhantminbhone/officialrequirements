@@ -3,6 +3,7 @@ import {
   GetObjectCommand,
   PutObjectCommand,
   ListObjectsV2Command,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -71,6 +72,11 @@ export async function putJson(key: string, value: unknown): Promise<void> {
       CacheControl: "public, max-age=60",
     })
   );
+}
+
+export async function deleteKey(key: string): Promise<void> {
+  if (!r2Configured) return;
+  await r2().send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: key }));
 }
 
 export async function listKeys(prefix: string): Promise<string[]> {

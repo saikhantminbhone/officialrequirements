@@ -54,6 +54,9 @@ export default function CrawlPanel({ initial }: { initial: CrawlReport | null })
           </div>
           {/* Auto trust + quality roll-up (deterministic grading). */}
           <div className="mt-2 flex flex-wrap gap-2 text-xs">
+            {(report.totals.autoApplied ?? 0) > 0 && (
+              <Badge tone="green">{report.totals.autoApplied} auto-updated</Badge>
+            )}
             <Badge tone="green">{report.totals.readyToApprove ?? 0} ready to approve</Badge>
             <Badge tone="amber">{report.totals.needsReview ?? 0} need review</Badge>
             <Badge tone="red">{report.totals.rejected ?? 0} rejected</Badge>
@@ -62,6 +65,9 @@ export default function CrawlPanel({ initial }: { initial: CrawlReport | null })
               <Badge tone="red">{report.totals.fromUntrustedSource} untrusted</Badge>
             )}
           </div>
+          {report.autoApplyEnabled === false && (
+            <p className="mt-1 text-xs text-slate-400">Auto-update is off — set AUTO_APPLY_CRAWL=1 to let safe official-source changes apply themselves.</p>
+          )}
         </>
       )}
 

@@ -7,7 +7,9 @@ import JsonLd from "@/components/JsonLd";
 import KeyFacts from "@/components/KeyFacts";
 import FaqSection from "@/components/FaqSection";
 import VisaOverview from "@/components/VisaOverview";
+import DistinctiveNote from "@/components/DistinctiveNote";
 import RelatedSearches from "@/components/RelatedSearches";
+import { universitiesForDestination } from "@/lib/universities";
 import { buildVisaOverview } from "@/lib/destination-overview";
 import { hubSeoTitle, hubSeoDescription, hubTargetKeywords } from "@/lib/keywords";
 import { breadcrumbLd, buildVisaFaqs, faqPageLd } from "@/lib/seo";
@@ -98,6 +100,8 @@ export default async function DestinationHub({ params }: { params: Promise<Param
         />
       )}
 
+      <DistinctiveNote code={destination} name={dest.name} />
+
       <AdSlot id="in-content-1" pageType="hub" />
 
       <section className="mt-8">
@@ -142,6 +146,20 @@ export default async function DestinationHub({ params }: { params: Promise<Param
           <Link href="/tools/checklist" className="rounded-md border border-brand-200 px-4 py-2 text-brand-700 hover:bg-brand-50">Document checklist</Link>
         </div>
       </section>
+
+      {universitiesForDestination(destination).length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold text-slate-800">Universities in {capitalize(dest.name)}</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {universitiesForDestination(destination).map((u) => (
+              <Link key={u.slug} href={`/universities/${u.slug}`} className="card-link">
+                <div className="font-medium text-slate-900">{u.name}</div>
+                <div className="mt-1 text-sm text-slate-500">{u.city} · admission requirements</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <FaqSection faqs={faqs} />
 
