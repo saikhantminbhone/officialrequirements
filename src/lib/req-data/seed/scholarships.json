@@ -104,5 +104,153 @@
     "lastVerified": "2026-06-12",
     "status": "published",
     "changeLog": [{ "date": "2026-06-12", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "chevening",
+    "slug": "chevening-scholarship",
+    "name": "Chevening Scholarships",
+    "provider": "UK Government (FCDO)",
+    "destination": "gb",
+    "summary": "The UK government's flagship fully-funded award for one-year Master's degrees, for emerging leaders from Chevening-eligible countries who will return home afterwards.",
+    "benefits": [
+      "Full tuition fees for a one-year UK Master's",
+      "Monthly living stipend",
+      "Return economy airfare to the UK",
+      "Arrival and departure allowances; visa and some travel costs"
+    ],
+    "deadlines": [{ "intake": "Annual (apply ~Aug–Nov)", "date": "2026-11-05" }],
+    "eligibility": [
+      { "key": "citizenship", "question": "Are you a citizen of a Chevening-eligible country?", "field": "cheveningCountry", "op": "truthy", "failMessage": "Chevening is open only to citizens of eligible countries — check the list on the official site." },
+      { "key": "degree", "question": "Do you hold an undergraduate degree that qualifies for a UK Master's?", "field": "hasBachelor", "op": "truthy", "failMessage": "You need an undergraduate degree to enter a UK postgraduate course." },
+      { "key": "experience", "question": "Do you have at least 2 years (about 2,800 hours) of work experience?", "field": "workYears", "op": "gte", "value": 2, "failMessage": "Chevening normally requires roughly 2 years of work experience." },
+      { "key": "return", "question": "Will you return to your home country for at least 2 years after the award?", "field": "willReturnHome", "op": "truthy", "failMessage": "Chevening requires you to return home for a minimum of two years after your studies." }
+    ],
+    "source": { "name": "Chevening — official", "url": "https://www.chevening.org/scholarships/", "type": "government" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "commonwealth-masters",
+    "slug": "commonwealth-masters-scholarship",
+    "name": "Commonwealth Master's Scholarships",
+    "provider": "Commonwealth Scholarship Commission (UK)",
+    "destination": "gb",
+    "summary": "Fully-funded UK Master's scholarships for talented citizens of low- and middle-income Commonwealth countries who could not otherwise afford to study in the UK.",
+    "benefits": [
+      "Full tuition fees",
+      "Monthly living allowance (stipend)",
+      "Return airfare to the UK",
+      "Thesis, study travel and arrival allowances"
+    ],
+    "deadlines": [{ "intake": "Annual (via nominating bodies)", "date": "2026-10-16" }],
+    "eligibility": [
+      { "key": "citizenship", "question": "Are you a citizen of (or refugee in) an eligible Commonwealth country?", "field": "commonwealthCountry", "op": "truthy", "failMessage": "Open only to citizens of eligible Commonwealth countries." },
+      { "key": "degree", "question": "Do you hold at least an upper second-class (2:1) honours undergraduate degree?", "field": "hasUpperSecond", "op": "truthy", "failMessage": "You normally need at least a 2:1 honours degree (or a lower degree plus a relevant Master's)." },
+      { "key": "afford", "question": "Are you unable to afford to study in the UK without this scholarship?", "field": "needsFunding", "op": "truthy", "failMessage": "These awards target those who could not otherwise afford UK study." }
+    ],
+    "source": { "name": "Commonwealth Scholarship Commission", "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/", "type": "government" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "australia-awards",
+    "slug": "australia-awards-scholarship",
+    "name": "Australia Awards Scholarships",
+    "provider": "Australian Government (DFAT)",
+    "destination": "au",
+    "summary": "Long-term, fully-funded study awards for citizens of partner developing countries to undertake undergraduate or postgraduate study at Australian institutions.",
+    "benefits": [
+      "Full tuition fees",
+      "Return air travel and a one-off establishment allowance",
+      "Contribution to living expenses",
+      "Overseas Student Health Cover (OSHC)"
+    ],
+    "deadlines": [{ "intake": "Annual (varies by country)", "date": "2026-04-30" }],
+    "eligibility": [
+      { "key": "citizenship", "question": "Are you a citizen of a participating Australia Awards country?", "field": "ausAwardsCountry", "op": "truthy", "failMessage": "Open only to citizens of participating partner countries." },
+      { "key": "not-pr", "question": "Are you living outside Australia and not an Australian citizen/PR?", "field": "outsideAustralia", "op": "truthy", "failMessage": "You must not be a citizen or permanent resident of Australia and must apply from your home country." },
+      { "key": "return", "question": "Will you leave Australia for at least 2 years after your studies?", "field": "willReturnHome", "op": "truthy", "failMessage": "Recipients must return home for at least two years after completing the award." }
+    ],
+    "source": { "name": "Australia Awards — DFAT", "url": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships", "type": "government" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "swedish-institute-sisgp",
+    "slug": "swedish-institute-global-professionals",
+    "name": "Swedish Institute Scholarships for Global Professionals (SISGP)",
+    "provider": "Swedish Institute",
+    "destination": "se",
+    "summary": "Fully-funded Master's scholarships in Sweden for professionals from a defined list of countries with work and leadership experience who want to drive change at home.",
+    "benefits": [
+      "Tuition fees paid directly to the university",
+      "Monthly living grant (SEK 12,000)",
+      "Travel grant and insurance",
+      "Membership of the SI Network for Future Global Leaders"
+    ],
+    "deadlines": [{ "intake": "Autumn", "date": "2026-02-10" }],
+    "eligibility": [
+      { "key": "citizenship", "question": "Are you a citizen of an SISGP-eligible country?", "field": "sisgpCountry", "op": "truthy", "failMessage": "Open only to citizens of the countries on the SISGP list." },
+      { "key": "experience", "question": "Do you have at least 3,000 hours of work/volunteer/leadership experience?", "field": "workHours3000", "op": "truthy", "failMessage": "SISGP requires a minimum of 3,000 hours of relevant experience." },
+      { "key": "admission", "question": "Have you applied to (or been admitted to) an eligible Swedish Master's?", "field": "appliedSwedishMasters", "op": "truthy", "failMessage": "You must first apply to an eligible Master's through universityadmissions.se." }
+    ],
+    "source": { "name": "Swedish Institute — SISGP", "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/", "type": "official-body" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "holland-scholarship",
+    "slug": "holland-scholarship",
+    "name": "Holland Scholarship",
+    "provider": "Dutch Ministry of Education + research universities",
+    "destination": "nl",
+    "summary": "A partial scholarship for non-EEA international students starting a Bachelor's or Master's at a participating Dutch research university or university of applied sciences.",
+    "benefits": [
+      "€5,000 grant in the first year of study",
+      "Awarded by the participating institution",
+      "Combinable with some other funding (check the institution)"
+    ],
+    "deadlines": [{ "intake": "Annual (Feb/May by institution)", "date": "2026-05-01" }],
+    "eligibility": [
+      { "key": "non-eea", "question": "Are you a non-EEA national?", "field": "nonEEA", "op": "truthy", "failMessage": "The Holland Scholarship is for students from outside the EEA." },
+      { "key": "first-enrolment", "question": "Will this be your first enrolment at a participating Dutch institution?", "field": "firstDutchEnrolment", "op": "truthy", "failMessage": "It is for new students enrolling for a full Bachelor's or Master's, not exchange." }
+    ],
+    "source": { "name": "Study in NL — Holland Scholarship", "url": "https://www.studyinnl.org/finances/holland-scholarship", "type": "official-body" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+  },
+  {
+    "id": "mext-japan",
+    "slug": "mext-scholarship-japan",
+    "name": "MEXT Scholarship (Japanese Government)",
+    "provider": "Japanese Government (MEXT)",
+    "destination": "jp",
+    "summary": "The Japanese government's fully-funded scholarship for international students to study at Japanese universities, available via embassy recommendation or university recommendation.",
+    "benefits": [
+      "Full tuition coverage",
+      "Monthly stipend",
+      "Return airfare to Japan",
+      "No-cost Japanese language training where applicable"
+    ],
+    "deadlines": [{ "intake": "Annual (embassy track ~spring)", "date": "2026-05-31" }],
+    "eligibility": [
+      { "key": "age-degree", "question": "Do you meet the age and academic requirements for your track (research/undergraduate)?", "field": "meetsMextBasics", "op": "truthy", "failMessage": "MEXT sets age and prior-education requirements that vary by track — check the official guidelines." },
+      { "key": "nationality", "question": "Are you a national of a country that has diplomatic relations with Japan?", "field": "japanDiplomatic", "op": "truthy", "failMessage": "Applicants must hold the nationality of a country with diplomatic relations with Japan." }
+    ],
+    "source": { "name": "Study in Japan — MEXT", "url": "https://www.studyinjapan.go.jp/en/planning/scholarship/", "type": "government" },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-06-20",
+    "status": "published",
+    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
   }
 ]

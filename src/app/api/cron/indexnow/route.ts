@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isCronAuthed } from "@/lib/cron";
+import { withCronStatus } from "@/lib/cron-status";
 import { runIndexNow } from "@/lib/indexnow";
 
 export const runtime = "nodejs";
@@ -13,5 +14,5 @@ export async function GET(req: NextRequest) {
   }
   const scope = new URL(req.url).searchParams.get("scope") === "all" ? "all" : "changed";
   const report = await runIndexNow(scope);
-  return NextResponse.json(report);
+  return NextResponse.json(await withCronStatus("indexnow", async () => (report)));
 }

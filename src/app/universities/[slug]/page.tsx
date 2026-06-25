@@ -126,7 +126,11 @@ export default async function UniversityNamedPage({ params }: { params: Promise<
         </ul>
       </section>
 
-      <HowToApply steps={u.timeline.map((t) => ({ title: t.step, detail: t.when }))} destinationName={u.name} />
+      <HowToApply
+        steps={u.timeline.map((t) => ({ title: t.step, detail: t.when }))}
+        destinationName={u.name}
+        heading={`How to apply to ${u.name}, step by step`}
+      />
 
       <section className="mt-8">
         <h2 className="text-xl font-semibold text-slate-800">Programs &amp; requirements</h2>

@@ -9,8 +9,9 @@ import type { SourceChangeReport } from "@/lib/maintenance";
 // ─────────────────────────────────────────────────────────────────────────
 // IndexNow — instant indexing. Pings Bing, Yandex and the shared IndexNow API
 // so search engines re-crawl changed pages within minutes instead of waiting
-// for the next organic crawl. Same lever OfficialSalary uses. The verification
-// key is served at /api/indexnow-key (keyLocation), so no root-file conflict.
+// for the next organic crawl. The verification key is hosted at the ROOT
+// ({key}.txt in public/) and referenced as keyLocation, so it authorizes the
+// whole host (a sub-path key file would only authorize that sub-path).
 // ─────────────────────────────────────────────────────────────────────────
 
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://officialrequirements.com").replace(/\/+$/, "");

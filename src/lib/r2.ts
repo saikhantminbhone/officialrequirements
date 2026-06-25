@@ -79,6 +79,20 @@ export async function putJson(key: string, value: unknown): Promise<void> {
   );
 }
 
+/** Best-effort write for caches/reports — never throws (e.g. bucket missing).
+ *  Returns true on success. Use for non-critical writes so jobs still complete
+ *  read-only when R2 isn't fully set up yet. */
+export async function putJsonSafe(key: string, value: unknown): Promise<boolean> {
+  if (!r2Configured) return false;
+  try {
+    await putJson(key, value);
+    return true;
+  } catch (err: unknown) {
+    console.warn(`[r2] putJsonSafe(${key}) failed (${(err as { name?: string })?.name}); skipped.`);
+    return false;
+  }
+}
+
 export async function deleteKey(key: string): Promise<void> {
   if (!r2Configured) return;
   await r2().send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: key }));

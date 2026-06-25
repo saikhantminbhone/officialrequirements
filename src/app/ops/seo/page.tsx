@@ -4,6 +4,7 @@ import { visaIndexDecision } from "@/lib/page-policy";
 import { loadGscReport } from "@/lib/gsc";
 import { loadCwvReport, type CwvMetric } from "@/lib/cwv";
 import { loadTrendReport } from "@/lib/trends";
+import { sourceStats } from "@/lib/sources";
 import { formatDate } from "@/components/SourceCite";
 import GscRunButton from "@/components/admin/GscRunButton";
 import CwvRunButton from "@/components/admin/CwvRunButton";
@@ -15,11 +16,12 @@ export const dynamic = "force-dynamic";
 // (CrUX field data). Vercel Speed Insights also collects RUM in the dashboard.
 export default async function AdminSeoPage() {
   await requireAdmin();
-  const [{ visa, university, scholarships }, gsc, cwv, trends, uniNoindex] = await Promise.all([
+  const [{ visa, university, scholarships }, gsc, cwv, trends, sources, uniNoindex] = await Promise.all([
     getAllRecordsForAdmin(),
     loadGscReport(),
     loadCwvReport(),
     loadTrendReport(),
+    sourceStats(),
     getUniversityNoindexIds(),
   ]);
   const drafts = [...visa, ...university, ...scholarships].filter((r) => r.status !== "published").length;
@@ -50,6 +52,24 @@ export default async function AdminSeoPage() {
           </div>
         ))}
       </div>
+
+      {/* ── Source registry (quality gate) ────────────────────────────────── */}
+      <section className="mt-8">
+        <h2 className="text-lg font-semibold text-slate-800">Source registry (quality-gated)</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          Only official/reputable domains pass the trust check; blogs and forums are rejected. The crawler
+          and source-watch use the accepted set, kept fresh automatically.
+        </p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Stat label="Accepted sources" value={num(sources.accepted)} tone="good" />
+          <Stat label="Official (gov/edu)" value={num(sources.official)} />
+          <Stat label="Reputable" value={num(sources.reputable)} />
+          <Stat label="Rejected (low trust)" value={num(sources.rejected)} tone={sources.rejected > 0 ? "warn" : undefined} />
+        </div>
+        <div className="mt-2 text-xs text-slate-400">
+          By category — visa {sources.byCategory.visa} · admission {sources.byCategory.admission} · scholarship {sources.byCategory.scholarship} · general {sources.byCategory.general}
+        </div>
+      </section>
 
       {/* ── Google Search Console ─────────────────────────────────────────── */}
       <section className="mt-8">

@@ -45,7 +45,7 @@ export interface ExtractionResult {
 
 const UA = "OfficialRequirements-Extractor/1.0 (+gap-fill; respects robots; human-verified before publish)";
 
-async function fetchText(url: string, timeoutMs = 15000): Promise<{ status: number; contentType: string; body: string } | null> {
+async function fetchText(url: string, timeoutMs = 9000): Promise<{ status: number; contentType: string; body: string } | null> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {

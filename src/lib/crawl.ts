@@ -1,8 +1,9 @@
 import { detectGaps, type Gap } from "@/lib/gap-detector";
 import { extractFromSource } from "@/lib/extract/source";
 import { getVisaRecords, getUniversityRecords } from "@/lib/req-data";
-import { getJson, putJson, r2Configured } from "@/lib/r2";
+import { getJson, putJson, putJsonSafe, r2Configured } from "@/lib/r2";
 import { classifySource, type TrustTier } from "@/lib/source-trust";
+import { acceptedSources } from "@/lib/sources";
 import { checkQuality, recommend, autoApplyDecision, type QualityGrade, type Recommendation } from "@/lib/quality";
 import type { RequirementRecord } from "@/lib/req-data/types";
 
@@ -97,7 +98,24 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
   const byId = new Map<string, RequirementRecord>();
   [...visa, ...university].forEach((r) => byId.set(r.id, r));
 
-  const targets: Gap[] = gapReport.gaps.filter((g) => g.sourceUrl).slice(0, limit);
+  // Build the crawl target list: each gap's own source PLUS up to 2 quality-gated
+  // registry sources for that destination (this is how AUTO-DISCOVERED sources
+  // actually get crawled to fill gaps — closing the discovery→data loop).
+  const registryByDest = new Map<string, string[]>();
+  for (const s of await acceptedSources()) {
+    if (s.category === "scholarship") continue; // visa/admission gaps
+    const arr = registryByDest.get(s.country) ?? [];
+    arr.push(s.url);
+    registryByDest.set(s.country, arr);
+  }
+  const expanded: { gap: Gap; url: string }[] = [];
+  for (const gap of gapReport.gaps) {
+    const urls = new Set<string>();
+    if (gap.sourceUrl) urls.add(gap.sourceUrl);
+    (registryByDest.get(gap.destination) ?? []).slice(0, 2).forEach((u) => urls.add(u));
+    for (const url of urls) expanded.push({ gap, url });
+  }
+  const targets = expanded.slice(0, limit);
   const items: ReviewItem[] = [];
   const autoAppliedLog: CrawlReport["autoApplied"] = [];
   // Opt-in: only self-update the live data when the operator enables it.
@@ -112,13 +130,13 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
   let autoApplied = 0;
   const autoApplyTasks: Promise<void>[] = [];
 
-  for (const gap of targets) {
-    const res = await extractFromSource(gap.sourceUrl!);
+  for (const { gap, url } of targets) {
+    const res = await extractFromSource(url);
     if (res.kind === "unreachable") unreachable++;
     const rec = byId.get(gap.recordId);
 
     // Auto trust-check the source URL we pulled these candidates from.
-    const trust = classifySource(gap.sourceUrl!);
+    const trust = classifySource(url);
     if (trust.tier === "official") fromOfficialSource++;
     if (trust.tier === "low") fromUntrustedSource++;
 
@@ -166,7 +184,7 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
       vertical: gap.vertical,
       destination: gap.destination,
       title: gap.title,
-      sourceUrl: gap.sourceUrl,
+      sourceUrl: url,
       sourceTrust: { tier: trust.tier, score: trust.score, reasons: trust.reasons },
       missing: gap.missing,
       stale: gap.stale,
@@ -201,6 +219,6 @@ export async function runCrawl(limit = 15): Promise<CrawlReport> {
     renderServiceConfigured: Boolean(process.env.RENDER_SERVICE_URL),
   };
 
-  if (r2Configured) await putJson("seo/extraction-review.json", report);
+  await putJsonSafe("seo/extraction-review.json", report);
   return report;
 }

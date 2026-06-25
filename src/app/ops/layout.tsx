@@ -1,9 +1,8 @@
-import Link from "next/link";
 import { auth, signOut } from "@/auth";
+import OpsNav from "@/components/admin/OpsNav";
 
-// Admin shell at /ops. Individual protected pages call requireAdmin() themselves
-// so the /ops/login page can render without a redirect loop. Middleware gates
-// the whole /ops surface as defence-in-depth.
+// Operations console shell at /ops. Individual protected pages call
+// requireAdmin() themselves so /ops/login renders without a redirect loop.
 export const dynamic = "force-dynamic";
 
 export default async function OpsLayout({ children }: { children: React.ReactNode }) {
@@ -12,36 +11,36 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
   const email = session?.user?.email?.toLowerCase();
   const isAdmin = Boolean(email && admin && email === admin);
 
-  // Unauthenticated visitors (the /ops/login page) get a bare shell — no admin
-  // navigation, no internal structure, nothing that reveals the console exists.
-  if (!isAdmin) {
-    return <section>{children}</section>;
-  }
+  // Unauthenticated visitors (the /ops/login page) get a bare shell.
+  if (!isAdmin) return <section>{children}</section>;
 
   return (
-    <div className="grid gap-6 md:grid-cols-[200px_1fr]">
-      <aside className="md:border-r md:border-slate-200 md:pr-4">
-        <div className="text-sm font-semibold uppercase tracking-wide text-slate-400">Admin</div>
-        <nav className="mt-3 flex flex-col gap-1 text-sm">
-          <Link href="/ops" className="rounded px-2 py-1.5 hover:bg-slate-100">Dashboard</Link>
-          <Link href="/ops/ads" className="rounded px-2 py-1.5 hover:bg-slate-100">Ads &amp; affiliate</Link>
-          <Link href="/ops/data" className="rounded px-2 py-1.5 hover:bg-slate-100">Data freshness</Link>
-          <Link href="/ops/seo" className="rounded px-2 py-1.5 hover:bg-slate-100">SEO &amp; health</Link>
-          <Link href="/ops/outcomes" className="rounded px-2 py-1.5 hover:bg-slate-100">Outcomes</Link>
-        </nav>
-        <div className="mt-6 border-t border-slate-200 pt-3 text-xs text-slate-500">
-          <div className="truncate" title={session?.user?.email ?? ""}>{session?.user?.email}</div>
+    <div className="full-bleed -mt-10 min-h-screen bg-slate-50/60">
+      {/* Console topbar */}
+      <header className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 sm:px-6">
+        <div className="flex items-center gap-2.5">
+          <span className="text-base font-semibold tracking-tight text-slate-900">OfficialRequirements</span>
+          <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-600">Console</span>
+        </div>
+        <div className="flex items-center gap-4 text-sm">
+          <span className="hidden text-slate-500 sm:inline">{session?.user?.email}</span>
           <form
             action={async () => {
               "use server";
               await signOut({ redirectTo: "/ops/login" });
             }}
           >
-            <button type="submit" className="mt-1 text-brand-600 hover:underline">Sign out</button>
+            <button type="submit" className="text-slate-600 hover:text-slate-900">Sign out</button>
           </form>
         </div>
-      </aside>
-      <section>{children}</section>
+      </header>
+
+      <div className="mx-auto grid max-w-[1400px] md:grid-cols-[230px_1fr]">
+        <aside className="border-b border-slate-200 bg-white px-3 py-5 md:min-h-[calc(100vh-57px)] md:border-b-0 md:border-r">
+          <OpsNav />
+        </aside>
+        <main className="px-4 py-6 sm:px-8">{children}</main>
+      </div>
     </div>
   );
 }

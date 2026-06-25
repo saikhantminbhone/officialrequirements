@@ -1,62 +1,68 @@
 import { requireAdmin } from "@/lib/auth";
-import { getAllRecordsForAdmin, daysSinceVerified } from "@/lib/req-data";
-import { loadRuntimeConfig } from "@/lib/config-loader";
+import { knowledgeOverview } from "@/lib/knowledge";
+import { loadCronStatus, CRON_JOBS } from "@/lib/cron-status";
 import { r2Configured } from "@/lib/r2";
 import RebuildButton from "@/components/admin/RebuildButton";
+import KnowledgeGraph from "@/components/admin/KnowledgeGraph";
+import CronTasksTable from "@/components/admin/CronTasksTable";
 
 export const dynamic = "force-dynamic";
 
-const STALE_DAYS = 120;
-
 export default async function AdminDashboard() {
   await requireAdmin();
-  const [{ visa, university, scholarships }, config] = await Promise.all([
-    getAllRecordsForAdmin(),
-    loadRuntimeConfig(),
-  ]);
+  const [overview, cronStatus] = await Promise.all([knowledgeOverview(), loadCronStatus()]);
+  const ranCount = CRON_JOBS.filter((j) => cronStatus[j.id]).length;
+  const ga4 = Boolean(process.env.NEXT_PUBLIC_GA4_ID);
+  const env = process.env.VERCEL_ENV || process.env.NODE_ENV || "development";
+  const region = process.env.VERCEL_REGION || "—";
 
-  const totalRecords = visa.length + university.length + scholarships.length;
-  const stale =
-    visa.filter((r) => daysSinceVerified(r.lastVerified) > STALE_DAYS).length +
-    university.filter((r) => daysSinceVerified(r.lastVerified) > STALE_DAYS).length +
-    scholarships.filter((s) => daysSinceVerified(s.lastVerified) > STALE_DAYS).length;
-  const enabledOffers = config.affiliates.filter((o) => o.enabled).length;
-  const enabledSlots = config.adSlots.filter((s) => s.enabled).length;
-
-  const cards = [
-    { label: "Published records", value: totalRecords },
-    { label: "Stale (> 120 days)", value: stale, warn: stale > 0 },
-    { label: "Active affiliate offers", value: enabledOffers },
-    { label: "Active ad slots", value: enabledSlots },
+  const statusCards = [
+    { label: "Data store", value: r2Configured ? "Connected" : "Seed only", ok: r2Configured, sub: r2Configured ? "Cloudflare R2" : "Set R2 env vars" },
+    { label: "Analytics", value: ga4 ? "Enabled" : "Off", ok: ga4, sub: ga4 ? "Google Analytics 4" : "Set GA4 id" },
+    { label: "Environment", value: env, ok: env === "production", sub: `Region ${region}` },
+    { label: "Cron tasks", value: `${ranCount}/${CRON_JOBS.length}`, ok: ranCount > 0, sub: "with a recorded run" },
   ];
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-      {!r2Configured && (
-        <div className="mt-3 rounded border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
-          R2 is not configured — running on seed data only. Set R2 env vars to enable saving and
-          auto-expansion from the data store.
-        </div>
-      )}
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Overview</h1>
+        <p className="mt-1 text-sm text-slate-500">Autonomous knowledge pipeline — discovering, crawling, verifying and publishing.</p>
+      </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {cards.map((c) => (
-          <div key={c.label} className="rounded-xl border border-slate-200 p-4">
-            <div className={`text-2xl font-bold ${c.warn ? "text-trust-amber" : "text-slate-900"}`}>{c.value}</div>
-            <div className="mt-1 text-sm text-slate-500">{c.label}</div>
+      {/* Status cards */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {statusCards.map((c) => (
+          <div key={c.label} className="rounded-xl border border-slate-200 bg-white p-4">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{c.label}</div>
+            <div className="mt-2 flex items-center gap-2">
+              <span className={`h-2 w-2 rounded-full ${c.ok ? "bg-emerald-500" : "bg-amber-500"}`} />
+              <span className="text-lg font-semibold tracking-tight text-slate-900">{c.value}</span>
+            </div>
+            <div className="mt-1 text-xs text-slate-500">{c.sub}</div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold text-slate-800">Publish new pages / data changes</h2>
+      {/* Knowledge metrics + growth */}
+      <div>
+        <h2 className="text-lg font-semibold text-slate-800">Knowledge</h2>
+        <div className="mt-3">
+          <KnowledgeGraph overview={overview} />
+        </div>
+      </div>
+
+      {/* Scheduled tasks */}
+      <div>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-800">Scheduled tasks</h2>
+          <RebuildButton />
+        </div>
         <p className="mt-1 text-sm text-slate-500">
-          Adding a nationality row or editing a record changes the static build. Trigger a rebuild to
-          bake it. Ad/affiliate toggles take effect within ~60s without rebuilding.
+          These run automatically on Vercel Cron; telemetry fills in as each runs (or when you trigger jobs on the Data page).
         </p>
         <div className="mt-3">
-          <RebuildButton />
+          <CronTasksTable status={cronStatus} />
         </div>
       </div>
     </div>

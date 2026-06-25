@@ -120,9 +120,21 @@ export default async function HomePage() {
                     {sampleMeta?.name ?? sample.destination.toUpperCase()} · Student visa
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Verified
-                </span>
+                {(() => {
+                  // Honest badge — reflects the record's real verification tier (YMYL).
+                  const v = sample.verification;
+                  const m =
+                    v === "human-verified"
+                      ? { t: "Verified", c: "bg-emerald-500/10 text-emerald-400", d: "bg-emerald-400" }
+                      : v === "auto-corroborated"
+                      ? { t: "Corroborated", c: "bg-sky-500/10 text-sky-300", d: "bg-sky-400" }
+                      : { t: "Sourced", c: "bg-amber-500/10 text-amber-300", d: "bg-amber-400" };
+                  return (
+                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${m.c}`}>
+                      <span className={`h-1.5 w-1.5 rounded-full ${m.d}`} /> {m.t}
+                    </span>
+                  );
+                })()}
               </div>
               <dl className="mt-5 space-y-0">
                 {previewRows.map((r) => (

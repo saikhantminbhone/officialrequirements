@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isCronAuthed } from "@/lib/cron";
 import { withCronStatus } from "@/lib/cron-status";
-import { runGsc } from "@/lib/gsc";
+import { runDiscovery } from "@/lib/discovery";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 120;
+export const maxDuration = 300;
 
-// Scheduled GSC harvest — pulls Search Console performance + % tier-1 traffic
-// into R2 for the admin SEO dashboard.
+// Scheduled source auto-discovery — spiders trusted seeds, quality-gates the
+// outbound links, and adds new official sources to the registry without a human.
 export async function GET(req: NextRequest) {
   if (!isCronAuthed(req)) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
-  const report = await runGsc();
-  return NextResponse.json(await withCronStatus("gsc", async () => ({ ok: report.connected, ...report })));
+  return NextResponse.json(await withCronStatus("discover", async () => ({ ok: true, ...(await runDiscovery()) })));
 }

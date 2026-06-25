@@ -1,7 +1,8 @@
 import { createHash } from "crypto";
 import { FRESHNESS } from "@/lib/cron";
 import { getAllRecordsForAdmin, daysSinceVerified } from "@/lib/req-data";
-import { getJson, putJson, r2Configured } from "@/lib/r2";
+import { acceptedSources } from "@/lib/sources";
+import { getJson, putJsonSafe, r2Configured } from "@/lib/r2";
 
 // Shared, deterministic maintenance routines. Used by both the scheduled cron
 // routes and the admin "Run now" buttons. No AI anywhere — pure rules + hashing.
@@ -34,7 +35,7 @@ export async function runMaintain(): Promise<FreshnessReport> {
     if (age > FRESHNESS.STALE_DAYS && item.status === "published") {
       if (r2Configured) {
         const updated = { ...item.record, status: "unpublished-stale" as const };
-        await putJson(`${prefixFor(item.kind)}/${item.id}.json`, updated);
+        await putJsonSafe(`${prefixFor(item.kind)}/${item.id}.json`, updated);
       }
       autoUnpublished.push({ id: item.id, title: item.title, ageDays: age, kind: item.kind });
     } else if (age > FRESHNESS.WARN_DAYS) {
@@ -61,7 +62,7 @@ export async function runMaintain(): Promise<FreshnessReport> {
     autoUnpublished,
     rebuilt,
   };
-  if (r2Configured) await putJson("seo/freshness-report.json", report);
+  await putJsonSafe("seo/freshness-report.json", report);
   return report;
 }
 
@@ -77,7 +78,7 @@ export interface SourceChangeReport {
 
 async function fetchHash(url: string): Promise<{ hash: string; status: number } | null> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 12000);
+  const timer = setTimeout(() => controller.abort(), 8000);
   try {
     const res = await fetch(url, {
       signal: controller.signal,
@@ -105,6 +106,9 @@ export async function runWatchSources(): Promise<SourceChangeReport> {
   visa.forEach((r) => [r.source, ...(r.extraSources ?? [])].forEach((s) => add(s.url, r.id)));
   university.forEach((r) => [r.source, ...(r.extraSources ?? [])].forEach((s) => add(s.url, r.id)));
   scholarships.forEach((s) => add(s.source.url, s.id));
+  // Also monitor every quality-passed source in the registry, so the 1000+
+  // official sources are kept fresh — a change flags re-verification.
+  (await acceptedSources()).forEach((s) => add(s.url, `registry:${s.category}`));
 
   const prev = (await getJson<HashMap>("seo/source-hashes.json")) ?? {};
   const next: HashMap = { ...prev };
@@ -129,9 +133,7 @@ export async function runWatchSources(): Promise<SourceChangeReport> {
     unreachable,
     note: "Changed sources are flagged for human re-verification. Data is never auto-edited from a diff (YMYL).",
   };
-  if (r2Configured) {
-    await putJson("seo/source-hashes.json", next);
-    await putJson("seo/source-changes.json", report);
-  }
+  await putJsonSafe("seo/source-hashes.json", next);
+  await putJsonSafe("seo/source-changes.json", report);
   return report;
 }

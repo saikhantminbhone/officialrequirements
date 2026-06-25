@@ -1,4 +1,4 @@
-import { putJson, getJson, r2Configured } from "@/lib/r2";
+import { putJsonSafe, getJson } from "@/lib/r2";
 import { getAllDestinations } from "@/lib/req-data";
 import { rankTrends, type TrendKeyword } from "@/lib/trends-score";
 
@@ -64,7 +64,7 @@ export async function harvestTrends(limit = 60): Promise<TrendReport> {
     keywords,
     note: "Trending long-tail from Google autocomplete, filtered to on-topic and ranked. Pick which to turn into content — nothing is auto-published.",
   };
-  if (r2Configured) await putJson("seo/trending-keywords.json", report);
+  await putJsonSafe("seo/trending-keywords.json", report);
   return report;
 }
 

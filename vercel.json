@@ -5,16 +5,19 @@
   "functions": {
     "src/app/api/admin/save/route.ts": { "maxDuration": 30 },
     "src/app/api/admin/rebuild/route.ts": { "maxDuration": 15 },
-    "src/app/api/cron/maintain/route.ts": { "maxDuration": 60 },
-    "src/app/api/cron/watch-sources/route.ts": { "maxDuration": 60 },
-    "src/app/api/cron/gsc/route.ts": { "maxDuration": 60 },
-    "src/app/api/cron/cwv/route.ts": { "maxDuration": 30 },
-    "src/app/api/cron/fx/route.ts": { "maxDuration": 15 },
-    "src/app/api/cron/crawl/route.ts": { "maxDuration": 60 },
-    "src/app/api/cron/indexnow/route.ts": { "maxDuration": 30 },
-    "src/app/api/cron/indexnow-all/route.ts": { "maxDuration": 30 },
-    "src/app/api/cron/factcheck/route.ts": { "maxDuration": 60 },
-    "src/app/api/cron/trends/route.ts": { "maxDuration": 60 }
+    "src/app/api/admin/maintain/route.ts": { "maxDuration": 300 },
+    "src/app/api/cron/maintain/route.ts": { "maxDuration": 300 },
+    "src/app/api/cron/watch-sources/route.ts": { "maxDuration": 300 },
+    "src/app/api/cron/gsc/route.ts": { "maxDuration": 120 },
+    "src/app/api/cron/cwv/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/fx/route.ts": { "maxDuration": 30 },
+    "src/app/api/cron/crawl/route.ts": { "maxDuration": 300 },
+    "src/app/api/cron/indexnow/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/indexnow-all/route.ts": { "maxDuration": 120 },
+    "src/app/api/cron/factcheck/route.ts": { "maxDuration": 300 },
+    "src/app/api/cron/trends/route.ts": { "maxDuration": 120 },
+    "src/app/api/cron/snapshot/route.ts": { "maxDuration": 60 },
+    "src/app/api/cron/discover/route.ts": { "maxDuration": 300 }
   },
   "crons": [
     { "path": "/api/cron/maintain", "schedule": "0 6 * * *" },
@@ -26,6 +29,8 @@
     { "path": "/api/cron/indexnow", "schedule": "30 6 * * *" },
     { "path": "/api/cron/indexnow-all", "schedule": "0 8 * * 1" },
     { "path": "/api/cron/factcheck", "schedule": "0 0 * * 2" },
-    { "path": "/api/cron/trends", "schedule": "0 7 * * 1" }
+    { "path": "/api/cron/trends", "schedule": "0 7 * * 1" },
+    { "path": "/api/cron/snapshot", "schedule": "0 23 * * *" },
+    { "path": "/api/cron/discover", "schedule": "0 2 * * 3" }
   ]
 }

@@ -5,7 +5,7 @@ import { useState } from "react";
 // Manual triggers for the deterministic maintenance jobs. The same routines run
 // automatically on the Vercel Cron schedule — these just let the operator run
 // them on demand.
-type Job = "maintain" | "watch" | "factcheck" | "indexnow";
+type Job = "maintain" | "watch" | "factcheck" | "indexnow" | "discover";
 
 export default function MaintenancePanel() {
   const [busy, setBusy] = useState<"" | Job>("");
@@ -27,6 +27,8 @@ export default function MaintenancePanel() {
           ? json.ok
             ? `IndexNow: submitted ${json.submitted} URL(s) (${json.scope}). HTTP ${json.status}.`
             : `IndexNow failed: ${json.error || "check INDEXNOW_KEY + site URL"}`
+          : job === "discover"
+          ? `Discovery: crawled ${json.seedsCrawled} seeds, ${json.candidates} candidates, ${json.added} new official sources added.`
           : `Fact-check done: ${json.totals.corroborated} corroborated, ${json.totals.promoted} promoted, ${json.totals.conflicts} conflicts of ${json.totals.checked}.`
       );
     } catch (e) {
@@ -71,6 +73,13 @@ export default function MaintenancePanel() {
           className="rounded-md border border-brand-300 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 disabled:opacity-50"
         >
           {busy === "indexnow" ? "Submitting…" : "Submit all to IndexNow (Bing)"}
+        </button>
+        <button
+          onClick={() => run("discover")}
+          disabled={busy !== ""}
+          className="rounded-md border border-brand-300 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 disabled:opacity-50"
+        >
+          {busy === "discover" ? "Discovering…" : "Auto-discover sources"}
         </button>
       </div>
       {msg && <p className="mt-3 text-sm text-slate-600">{msg}</p>}

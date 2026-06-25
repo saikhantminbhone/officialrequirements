@@ -2,7 +2,7 @@ import type { RequirementRecord } from "@/lib/req-data/types";
 import { getVisaRecords } from "@/lib/req-data";
 import { extractFromSource } from "@/lib/extract/source";
 import { getFxRates, convert } from "@/lib/fx";
-import { getJson, putJson, r2Configured } from "@/lib/r2";
+import { getJson, putJsonSafe, r2Configured } from "@/lib/r2";
 import { isTrustedSource } from "@/lib/source-trust";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -101,7 +101,7 @@ export async function runFactCheck(limit = 20): Promise<FactCheckReport> {
     if (outcome === "corroborated" && rec.verification !== "human-verified" && r2Configured) {
       const key = `data/overrides/visa/${rec.destination}.json`;
       const existing = (await getJson<Record<string, unknown>>(key)) ?? {};
-      await putJson(key, {
+      await putJsonSafe(key, {
         ...existing,
         verification: "auto-corroborated",
         lastVerified: new Date().toISOString().slice(0, 10),
@@ -127,6 +127,6 @@ export async function runFactCheck(limit = 20): Promise<FactCheckReport> {
     totals: { checked: targets.length, corroborated, conflicts, promoted },
     items,
   };
-  if (r2Configured) await putJson("seo/factcheck-report.json", report);
+  await putJsonSafe("seo/factcheck-report.json", report);
   return report;
 }
