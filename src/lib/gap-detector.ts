@@ -12,7 +12,13 @@ import { getVisaRecords, getUniversityRecords, daysSinceVerified } from "@/lib/r
 const NO_FIXED_FUNDS = new Set(["us", "my", "ae"]);
 
 const STALE_DAYS = 120;
-const CORE_CATEGORIES = ["admission", "proof-of-funds", "insurance", "language", "passport"];
+// Core requirement categories expected per vertical. Visa and admission have
+// genuinely different cores — proof-of-funds/insurance are visa concerns, not
+// admission ones, so applying them to university records produced false gaps.
+const CORE_BY_VERTICAL: Record<"visa" | "university", string[]> = {
+  visa: ["admission", "proof-of-funds", "insurance", "language", "passport"],
+  university: ["prior-qualification", "language", "transcripts"],
+};
 
 export interface Gap {
   recordId: string;
@@ -44,7 +50,7 @@ function gapsForRecord(r: RequirementRecord, vertical: "visa" | "university"): G
   if (vertical === "visa" && !r.toolDefaults?.visaFee) missing.push("visaFee");
 
   const presentCats = new Set(r.requirements.map((req) => categoryOf(req.key)));
-  for (const cat of CORE_CATEGORIES) {
+  for (const cat of CORE_BY_VERTICAL[vertical]) {
     if (vertical === "visa" && cat === "proof-of-funds" && NO_FIXED_FUNDS.has(r.destination)) continue;
     if (!presentCats.has(cat)) missing.push(`requirement:${cat}`);
   }
