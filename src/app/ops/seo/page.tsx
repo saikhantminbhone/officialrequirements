@@ -6,7 +6,10 @@ import { loadCwvReport, type CwvMetric } from "@/lib/cwv";
 import { loadTrendReport } from "@/lib/trends";
 import { sourceStats } from "@/lib/sources";
 import { formatDate } from "@/components/SourceCite";
+import { loadIndexStatusReport, isIndexed } from "@/lib/index-status";
+import { loadPromotionList } from "@/lib/promotions";
 import GscRunButton from "@/components/admin/GscRunButton";
+import IndexStatusRunButton from "@/components/admin/IndexStatusRunButton";
 import CwvRunButton from "@/components/admin/CwvRunButton";
 import TrendsRunButton from "@/components/admin/TrendsRunButton";
 
@@ -16,13 +19,15 @@ export const dynamic = "force-dynamic";
 // (CrUX field data). Vercel Speed Insights also collects RUM in the dashboard.
 export default async function AdminSeoPage() {
   await requireAdmin();
-  const [{ visa, university, scholarships }, gsc, cwv, trends, sources, uniNoindex] = await Promise.all([
+  const [{ visa, university, scholarships }, gsc, cwv, trends, sources, uniNoindex, idx, promos] = await Promise.all([
     getAllRecordsForAdmin(),
     loadGscReport(),
     loadCwvReport(),
     loadTrendReport(),
     sourceStats(),
     getUniversityNoindexIds(),
+    loadIndexStatusReport(),
+    loadPromotionList(),
   ]);
   const drafts = [...visa, ...university, ...scholarships].filter((r) => r.status !== "published").length;
   const visaIndexed = visa.filter((r) => visaIndexDecision(r).index).length;
@@ -180,6 +185,78 @@ export default async function AdminSeoPage() {
                 </div>
               </div>
             )}
+          </div>
+        )}
+      </section>
+
+      {/* ── Google index coverage (URL Inspection API) ────────────────────── */}
+      <section className="mt-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-lg font-semibold text-slate-800">Google index coverage</h2>
+          <IndexStatusRunButton />
+        </div>
+        <p className="mt-1 text-sm text-slate-500">
+          Per-URL coverage straight from Google (URL Inspection API) for every sitemap URL. This is the
+          ground truth for &ldquo;is my site actually indexed&rdquo; — not impressions, not guesses.
+        </p>
+        {!idx || !idx.connected ? (
+          <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+            <div className="font-semibold">No coverage sweep yet.</div>
+            {idx?.error && <div className="mt-1">{idx.error}</div>}
+            <p className="mt-1">Uses the same GSC service account. Click &ldquo;Check index coverage now&rdquo; to run the first sweep.</p>
+          </div>
+        ) : (
+          <div className="mt-3">
+            <div className="text-xs text-slate-400">Last sweep {formatDate(idx.ranAt)} · {idx.totals.checkedThisRun} URLs inspected this run</div>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <Stat label="Sitemap URLs" value={num(idx.totals.known)} />
+              <Stat label="Indexed" value={num(idx.totals.indexed)} tone="good" />
+              <Stat label="Known, not indexed" value={num(idx.totals.notIndexed)} tone={idx.totals.notIndexed > 0 ? "warn" : undefined} />
+              <Stat label="Not yet inspected" value={num(idx.totals.neverChecked)} />
+            </div>
+            {Object.keys(idx.byState).length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {Object.entries(idx.byState)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([state, count]) => (
+                    <span key={state} className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700">
+                      {state} <span className="font-semibold">{num(count)}</span>
+                    </span>
+                  ))}
+              </div>
+            )}
+            {(() => {
+              const notIndexed = Object.entries(idx.urls)
+                .filter(([, s]) => !isIndexed(s))
+                .sort((a, b) => a[1].coverageState.localeCompare(b[1].coverageState))
+                .slice(0, 40);
+              return notIndexed.length > 0 ? (
+                <table className="mt-5 w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-left text-slate-500">
+                      <th className="py-2">Not-indexed URL</th>
+                      <th>Coverage state</th>
+                      <th>Last crawl</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {notIndexed.map(([url, s]) => (
+                      <tr key={url} className="border-b border-slate-100">
+                        <td className="py-2 max-w-md truncate text-slate-700">{url.replace(/^https?:\/\/[^/]+/, "")}</td>
+                        <td className="text-slate-600">{s.coverageState}</td>
+                        <td className="text-slate-400">{s.lastCrawlTime ? formatDate(s.lastCrawlTime) : "never"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : null;
+            })()}
+          </div>
+        )}
+        {promos.pairs.length > 0 && (
+          <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
+            <span className="font-semibold">Demand-promoted long-tail pages:</span>{" "}
+            {promos.pairs.join(", ")} — promoted automatically from GSC impressions.
           </div>
         )}
       </section>

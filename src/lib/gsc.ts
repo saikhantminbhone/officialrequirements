@@ -1,6 +1,7 @@
 import { createSign } from "crypto";
 import { getJson, putJson } from "@/lib/r2";
 import { computeOpportunities, type KeywordOpportunity, type QueryRow } from "@/lib/keyword-opportunities";
+import { applyPromotionsFromReport } from "@/lib/promotions";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Google Search Console integration (no extra dependencies).
@@ -35,9 +36,9 @@ export interface GscReport {
   rising?: { query: string; impressions: number; prevImpressions: number; delta: number; position: number }[];
 }
 
-type ServiceAccount = { client_email: string; private_key: string };
+export type ServiceAccount = { client_email: string; private_key: string };
 
-async function loadServiceAccount(): Promise<ServiceAccount | null> {
+export async function loadServiceAccount(): Promise<ServiceAccount | null> {
   const raw = process.env.GSC_SERVICE_ACCOUNT_JSON;
   if (raw) {
     try {
@@ -54,7 +55,7 @@ function base64url(input: Buffer | string): string {
   return Buffer.from(input).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
-async function getAccessToken(sa: ServiceAccount): Promise<string> {
+export async function getAccessToken(sa: ServiceAccount): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   const header = base64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
   const claim = base64url(
@@ -180,6 +181,15 @@ export async function runGsc(): Promise<GscReport> {
     };
 
     await putJson("seo/gsc-report.json", report);
+
+    // Demand-driven expansion: promote held-out long-tail pages that are already
+    // earning impressions (the "auto-expand" loop — deterministic, no AI).
+    try {
+      await applyPromotionsFromReport(report);
+    } catch {
+      /* non-fatal — promotion must never break the GSC sync */
+    }
+
     return report;
   } catch (e) {
     return { ranAt, connected: false, error: e instanceof Error ? e.message : "GSC query failed" };

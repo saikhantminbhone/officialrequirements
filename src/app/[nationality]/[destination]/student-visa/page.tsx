@@ -24,6 +24,7 @@ import { visaSeoTitle, visaSeoDescription, visaTargetKeywords } from "@/lib/keyw
 import { rankInternalLinks } from "@/lib/seo-strategy";
 import { visaPageLd, buildVisaFaqs, breadcrumbLd } from "@/lib/seo";
 import { visaIndexDecision, robotsFor } from "@/lib/page-policy";
+import { getPromotedPairs } from "@/lib/promotions";
 import { getFxRates, convert, formatMoney, NATIONALITY_CURRENCY } from "@/lib/fx";
 import { destinationMetrics, eur } from "@/lib/reports";
 
@@ -47,7 +48,7 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { nationality, destination } = await params;
-  const record = await getVisaRecord(nationality, destination);
+  const [record, promoted] = await Promise.all([getVisaRecord(nationality, destination), getPromotedPairs()]);
   if (!record) return {};
   const path = `/${nationality}/${destination}/student-visa`;
   const destMeta = getDestinationMeta(record.destination);
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     description: seoDescription,
     keywords: visaTargetKeywords(record, kwOpts),
     alternates: { canonical: path },
-    robots: robotsFor(visaIndexDecision(record)),
+    robots: robotsFor(visaIndexDecision(record, promoted)),
     openGraph: { title: seoTitle, description: seoDescription, url: path, images: [ogImage] },
     twitter: { card: "summary_large_image", images: [ogImage] },
   };

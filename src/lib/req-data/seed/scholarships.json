@@ -13,7 +13,10 @@
       "Possible rent subsidy and family allowances"
     ],
     "deadlines": [
-      { "intake": "Varies by course", "date": "2026-08-31" }
+      {
+        "intake": "Varies by course",
+        "date": "2026-08-31"
+      }
     ],
     "eligibility": [
       {
@@ -55,7 +58,12 @@
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-12",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-12", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-12",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "erasmus-mundus-emjm",
@@ -70,7 +78,12 @@
       "Travel and installation allowance",
       "Insurance coverage"
     ],
-    "deadlines": [{ "intake": "Autumn", "date": "2026-01-15" }],
+    "deadlines": [
+      {
+        "intake": "Autumn",
+        "date": "2026-01-15"
+      }
+    ],
     "eligibility": [
       {
         "key": "degree",
@@ -103,7 +116,12 @@
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-12",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-12", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-12",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "chevening",
@@ -118,18 +136,57 @@
       "Return economy airfare to the UK",
       "Arrival and departure allowances; visa and some travel costs"
     ],
-    "deadlines": [{ "intake": "Annual (apply ~Aug–Nov)", "date": "2026-11-05" }],
-    "eligibility": [
-      { "key": "citizenship", "question": "Are you a citizen of a Chevening-eligible country?", "field": "cheveningCountry", "op": "truthy", "failMessage": "Chevening is open only to citizens of eligible countries — check the list on the official site." },
-      { "key": "degree", "question": "Do you hold an undergraduate degree that qualifies for a UK Master's?", "field": "hasBachelor", "op": "truthy", "failMessage": "You need an undergraduate degree to enter a UK postgraduate course." },
-      { "key": "experience", "question": "Do you have at least 2 years (about 2,800 hours) of work experience?", "field": "workYears", "op": "gte", "value": 2, "failMessage": "Chevening normally requires roughly 2 years of work experience." },
-      { "key": "return", "question": "Will you return to your home country for at least 2 years after the award?", "field": "willReturnHome", "op": "truthy", "failMessage": "Chevening requires you to return home for a minimum of two years after your studies." }
+    "deadlines": [
+      {
+        "intake": "Annual (apply ~Aug–Nov)",
+        "date": "2026-11-05"
+      }
     ],
-    "source": { "name": "Chevening — official", "url": "https://www.chevening.org/scholarships/", "type": "government" },
+    "eligibility": [
+      {
+        "key": "citizenship",
+        "question": "Are you a citizen of a Chevening-eligible country?",
+        "field": "cheveningCountry",
+        "op": "truthy",
+        "failMessage": "Chevening is open only to citizens of eligible countries — check the list on the official site."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold an undergraduate degree that qualifies for a UK Master's?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "You need an undergraduate degree to enter a UK postgraduate course."
+      },
+      {
+        "key": "experience",
+        "question": "Do you have at least 2 years (about 2,800 hours) of work experience?",
+        "field": "workYears",
+        "op": "gte",
+        "value": 2,
+        "failMessage": "Chevening normally requires roughly 2 years of work experience."
+      },
+      {
+        "key": "return",
+        "question": "Will you return to your home country for at least 2 years after the award?",
+        "field": "willReturnHome",
+        "op": "truthy",
+        "failMessage": "Chevening requires you to return home for a minimum of two years after your studies."
+      }
+    ],
+    "source": {
+      "name": "Chevening — official",
+      "url": "https://www.chevening.org/scholarships/",
+      "type": "government"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "commonwealth-masters",
@@ -144,17 +201,49 @@
       "Return airfare to the UK",
       "Thesis, study travel and arrival allowances"
     ],
-    "deadlines": [{ "intake": "Annual (via nominating bodies)", "date": "2026-10-16" }],
-    "eligibility": [
-      { "key": "citizenship", "question": "Are you a citizen of (or refugee in) an eligible Commonwealth country?", "field": "commonwealthCountry", "op": "truthy", "failMessage": "Open only to citizens of eligible Commonwealth countries." },
-      { "key": "degree", "question": "Do you hold at least an upper second-class (2:1) honours undergraduate degree?", "field": "hasUpperSecond", "op": "truthy", "failMessage": "You normally need at least a 2:1 honours degree (or a lower degree plus a relevant Master's)." },
-      { "key": "afford", "question": "Are you unable to afford to study in the UK without this scholarship?", "field": "needsFunding", "op": "truthy", "failMessage": "These awards target those who could not otherwise afford UK study." }
+    "deadlines": [
+      {
+        "intake": "Annual (via nominating bodies)",
+        "date": "2026-10-16"
+      }
     ],
-    "source": { "name": "Commonwealth Scholarship Commission", "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/", "type": "government" },
+    "eligibility": [
+      {
+        "key": "citizenship",
+        "question": "Are you a citizen of (or refugee in) an eligible Commonwealth country?",
+        "field": "commonwealthCountry",
+        "op": "truthy",
+        "failMessage": "Open only to citizens of eligible Commonwealth countries."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold at least an upper second-class (2:1) honours undergraduate degree?",
+        "field": "hasUpperSecond",
+        "op": "truthy",
+        "failMessage": "You normally need at least a 2:1 honours degree (or a lower degree plus a relevant Master's)."
+      },
+      {
+        "key": "afford",
+        "question": "Are you unable to afford to study in the UK without this scholarship?",
+        "field": "needsFunding",
+        "op": "truthy",
+        "failMessage": "These awards target those who could not otherwise afford UK study."
+      }
+    ],
+    "source": {
+      "name": "Commonwealth Scholarship Commission",
+      "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "type": "government"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "australia-awards",
@@ -169,17 +258,49 @@
       "Contribution to living expenses",
       "Overseas Student Health Cover (OSHC)"
     ],
-    "deadlines": [{ "intake": "Annual (varies by country)", "date": "2026-04-30" }],
-    "eligibility": [
-      { "key": "citizenship", "question": "Are you a citizen of a participating Australia Awards country?", "field": "ausAwardsCountry", "op": "truthy", "failMessage": "Open only to citizens of participating partner countries." },
-      { "key": "not-pr", "question": "Are you living outside Australia and not an Australian citizen/PR?", "field": "outsideAustralia", "op": "truthy", "failMessage": "You must not be a citizen or permanent resident of Australia and must apply from your home country." },
-      { "key": "return", "question": "Will you leave Australia for at least 2 years after your studies?", "field": "willReturnHome", "op": "truthy", "failMessage": "Recipients must return home for at least two years after completing the award." }
+    "deadlines": [
+      {
+        "intake": "Annual (varies by country)",
+        "date": "2026-04-30"
+      }
     ],
-    "source": { "name": "Australia Awards — DFAT", "url": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships", "type": "government" },
+    "eligibility": [
+      {
+        "key": "citizenship",
+        "question": "Are you a citizen of a participating Australia Awards country?",
+        "field": "ausAwardsCountry",
+        "op": "truthy",
+        "failMessage": "Open only to citizens of participating partner countries."
+      },
+      {
+        "key": "not-pr",
+        "question": "Are you living outside Australia and not an Australian citizen/PR?",
+        "field": "outsideAustralia",
+        "op": "truthy",
+        "failMessage": "You must not be a citizen or permanent resident of Australia and must apply from your home country."
+      },
+      {
+        "key": "return",
+        "question": "Will you leave Australia for at least 2 years after your studies?",
+        "field": "willReturnHome",
+        "op": "truthy",
+        "failMessage": "Recipients must return home for at least two years after completing the award."
+      }
+    ],
+    "source": {
+      "name": "Australia Awards — DFAT",
+      "url": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",
+      "type": "government"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "swedish-institute-sisgp",
@@ -194,17 +315,49 @@
       "Travel grant and insurance",
       "Membership of the SI Network for Future Global Leaders"
     ],
-    "deadlines": [{ "intake": "Autumn", "date": "2026-02-10" }],
-    "eligibility": [
-      { "key": "citizenship", "question": "Are you a citizen of an SISGP-eligible country?", "field": "sisgpCountry", "op": "truthy", "failMessage": "Open only to citizens of the countries on the SISGP list." },
-      { "key": "experience", "question": "Do you have at least 3,000 hours of work/volunteer/leadership experience?", "field": "workHours3000", "op": "truthy", "failMessage": "SISGP requires a minimum of 3,000 hours of relevant experience." },
-      { "key": "admission", "question": "Have you applied to (or been admitted to) an eligible Swedish Master's?", "field": "appliedSwedishMasters", "op": "truthy", "failMessage": "You must first apply to an eligible Master's through universityadmissions.se." }
+    "deadlines": [
+      {
+        "intake": "Autumn",
+        "date": "2026-02-10"
+      }
     ],
-    "source": { "name": "Swedish Institute — SISGP", "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/", "type": "official-body" },
+    "eligibility": [
+      {
+        "key": "citizenship",
+        "question": "Are you a citizen of an SISGP-eligible country?",
+        "field": "sisgpCountry",
+        "op": "truthy",
+        "failMessage": "Open only to citizens of the countries on the SISGP list."
+      },
+      {
+        "key": "experience",
+        "question": "Do you have at least 3,000 hours of work/volunteer/leadership experience?",
+        "field": "workHours3000",
+        "op": "truthy",
+        "failMessage": "SISGP requires a minimum of 3,000 hours of relevant experience."
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied to (or been admitted to) an eligible Swedish Master's?",
+        "field": "appliedSwedishMasters",
+        "op": "truthy",
+        "failMessage": "You must first apply to an eligible Master's through universityadmissions.se."
+      }
+    ],
+    "source": {
+      "name": "Swedish Institute — SISGP",
+      "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
+      "type": "official-body"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "holland-scholarship",
@@ -218,16 +371,42 @@
       "Awarded by the participating institution",
       "Combinable with some other funding (check the institution)"
     ],
-    "deadlines": [{ "intake": "Annual (Feb/May by institution)", "date": "2026-05-01" }],
-    "eligibility": [
-      { "key": "non-eea", "question": "Are you a non-EEA national?", "field": "nonEEA", "op": "truthy", "failMessage": "The Holland Scholarship is for students from outside the EEA." },
-      { "key": "first-enrolment", "question": "Will this be your first enrolment at a participating Dutch institution?", "field": "firstDutchEnrolment", "op": "truthy", "failMessage": "It is for new students enrolling for a full Bachelor's or Master's, not exchange." }
+    "deadlines": [
+      {
+        "intake": "Annual (Feb/May by institution)",
+        "date": "2026-05-01"
+      }
     ],
-    "source": { "name": "Study in NL — Holland Scholarship", "url": "https://www.studyinnl.org/finances/holland-scholarship", "type": "official-body" },
+    "eligibility": [
+      {
+        "key": "non-eea",
+        "question": "Are you a non-EEA national?",
+        "field": "nonEEA",
+        "op": "truthy",
+        "failMessage": "The Holland Scholarship is for students from outside the EEA."
+      },
+      {
+        "key": "first-enrolment",
+        "question": "Will this be your first enrolment at a participating Dutch institution?",
+        "field": "firstDutchEnrolment",
+        "op": "truthy",
+        "failMessage": "It is for new students enrolling for a full Bachelor's or Master's, not exchange."
+      }
+    ],
+    "source": {
+      "name": "Study in NL — Holland Scholarship",
+      "url": "https://www.studyinnl.org/finances/holland-scholarship",
+      "type": "official-body"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
   },
   {
     "id": "mext-japan",
@@ -242,15 +421,1780 @@
       "Return airfare to Japan",
       "No-cost Japanese language training where applicable"
     ],
-    "deadlines": [{ "intake": "Annual (embassy track ~spring)", "date": "2026-05-31" }],
-    "eligibility": [
-      { "key": "age-degree", "question": "Do you meet the age and academic requirements for your track (research/undergraduate)?", "field": "meetsMextBasics", "op": "truthy", "failMessage": "MEXT sets age and prior-education requirements that vary by track — check the official guidelines." },
-      { "key": "nationality", "question": "Are you a national of a country that has diplomatic relations with Japan?", "field": "japanDiplomatic", "op": "truthy", "failMessage": "Applicants must hold the nationality of a country with diplomatic relations with Japan." }
+    "deadlines": [
+      {
+        "intake": "Annual (embassy track ~spring)",
+        "date": "2026-05-31"
+      }
     ],
-    "source": { "name": "Study in Japan — MEXT", "url": "https://www.studyinjapan.go.jp/en/planning/scholarship/", "type": "government" },
+    "eligibility": [
+      {
+        "key": "age-degree",
+        "question": "Do you meet the age and academic requirements for your track (research/undergraduate)?",
+        "field": "meetsMextBasics",
+        "op": "truthy",
+        "failMessage": "MEXT sets age and prior-education requirements that vary by track — check the official guidelines."
+      },
+      {
+        "key": "nationality",
+        "question": "Are you a national of a country that has diplomatic relations with Japan?",
+        "field": "japanDiplomatic",
+        "op": "truthy",
+        "failMessage": "Applicants must hold the nationality of a country with diplomatic relations with Japan."
+      }
+    ],
+    "source": {
+      "name": "Study in Japan — MEXT",
+      "url": "https://www.studyinjapan.go.jp/en/planning/scholarship/",
+      "type": "government"
+    },
     "verifiedBy": "OfficialRequirements System",
     "lastVerified": "2026-06-20",
     "status": "published",
-    "changeLog": [{ "date": "2026-06-20", "note": "Initial record seeded." }]
+    "changeLog": [
+      {
+        "date": "2026-06-20",
+        "note": "Initial record seeded."
+      }
+    ]
+  },
+  {
+    "id": "gks-graduate",
+    "slug": "gks-graduate",
+    "name": "Global Korea Scholarship (GKS) — Graduate",
+    "provider": "NIIED (Korean Government)",
+    "destination": "kr",
+    "summary": "The Korean government's flagship award: full tuition, a monthly stipend, airfare and a year of Korean language training for Master's and PhD study in Korea, via embassy or university track.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you under 40 years of age?",
+        "field": "ageUnder40",
+        "op": "truthy",
+        "failMessage": "GKS graduate applicants must generally be under 40."
+      },
+      {
+        "key": "gpa",
+        "question": "Is your cumulative GPA at least ~80% (2.64/4.0 or higher)?",
+        "field": "gpa80",
+        "op": "truthy",
+        "failMessage": "GKS normally expects grades of 80% or above from your previous degree.",
+        "soft": true
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the programme's language requirement (e.g. IELTS/TOEFL for English-taught)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "You must meet the language requirement of the specific programme."
+      }
+    ],
+    "benefits": [
+      "Full tuition and entrance fees",
+      "Monthly stipend (~KRW 1,000,000 for graduate awardees)",
+      "Round-trip airfare, settlement and research allowances",
+      "One year of Korean language training"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 graduate intake — deadlines vary by embassy/university (typically Feb–Mar)",
+        "date": "2027-03-31"
+      }
+    ],
+    "source": {
+      "name": "Study in Korea — GKS notices (NIIED)",
+      "url": "https://www.studyinkorea.go.kr/en/scholarships/KGSP.do",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "fulbright-foreign-student",
+    "slug": "fulbright-foreign-student",
+    "name": "Fulbright Foreign Student Program",
+    "provider": "U.S. Department of State",
+    "destination": "us",
+    "summary": "The U.S. government's flagship exchange: funds Master's or PhD study (and research) at U.S. universities for graduate students and young professionals from 160+ countries.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "country",
+        "question": "Does your country run a Fulbright Foreign Student competition?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Applications go through the Fulbright commission or U.S. embassy in your home country."
+      },
+      {
+        "key": "english",
+        "question": "Can you demonstrate strong English (TOEFL/IELTS)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "U.S. graduate admission and Fulbright both require proven English proficiency."
+      }
+    ],
+    "benefits": [
+      "Tuition and required fees (per country agreement)",
+      "Monthly living stipend",
+      "Round-trip airfare and health benefits",
+      "J-1 visa sponsorship"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 cycle — deadlines set per country (many fall Feb–Oct 2026)",
+        "date": "2026-10-15"
+      }
+    ],
+    "source": {
+      "name": "Fulbright Foreign Student Program",
+      "url": "https://foreign.fulbrightonline.org/",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "knight-hennessy",
+    "slug": "knight-hennessy",
+    "name": "Knight-Hennessy Scholars",
+    "provider": "Stanford University",
+    "destination": "us",
+    "summary": "Fully funds up to three years of any graduate degree at Stanford — MS, PhD, MBA, MD or JD — plus a leadership development programme, for scholars from any country.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "recency",
+        "question": "Did you earn your first degree within the last ~7 years?",
+        "field": "gradRecent",
+        "op": "truthy",
+        "failMessage": "Knight-Hennessy requires a first degree earned recently (rolling ~7-year window)."
+      },
+      {
+        "key": "admission",
+        "question": "Are you applying to (or enrolled in) a Stanford graduate programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "You must separately apply and be admitted to a Stanford graduate programme."
+      }
+    ],
+    "benefits": [
+      "Full tuition and fees for up to 3 years",
+      "Living and travel stipend",
+      "Leadership development programme (King Global Leadership)",
+      "Open to all nationalities and all Stanford graduate degrees"
+    ],
+    "deadlines": [
+      {
+        "intake": "Autumn 2027 entry — application typically due early October 2026",
+        "date": "2026-10-08"
+      }
+    ],
+    "source": {
+      "name": "Knight-Hennessy Scholars — Stanford",
+      "url": "https://knight-hennessy.stanford.edu/",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "gates-cambridge",
+    "slug": "gates-cambridge",
+    "name": "Gates Cambridge Scholarship",
+    "provider": "University of Cambridge",
+    "destination": "gb",
+    "summary": "Full-cost awards for outstanding international (non-UK) applicants to pursue a postgraduate degree at the University of Cambridge, with a strong commitment to improving the lives of others.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "nonuk",
+        "question": "Are you a citizen of a country other than the UK?",
+        "field": "nonUkCitizen",
+        "op": "truthy",
+        "failMessage": "Gates Cambridge is for applicants who are not UK citizens."
+      },
+      {
+        "key": "admission",
+        "question": "Are you applying for a full-time postgraduate degree at Cambridge?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "You apply via the University of Cambridge graduate application — there is no separate route."
+      }
+    ],
+    "benefits": [
+      "Full university and college fees",
+      "Maintenance allowance (~£21,000+/yr)",
+      "One economy return airfare and visa costs",
+      "Discretionary academic development funding"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 entry — US round Oct 2026; all other countries Dec 2026/Jan 2027",
+        "date": "2026-12-03"
+      }
+    ],
+    "source": {
+      "name": "Gates Cambridge Trust",
+      "url": "https://www.gatescambridge.org/",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "rhodes-scholarship",
+    "slug": "rhodes-scholarship",
+    "name": "Rhodes Scholarship (Oxford)",
+    "provider": "Rhodes Trust",
+    "destination": "gb",
+    "summary": "One of the oldest international awards: fully funds two or more years of postgraduate study at the University of Oxford for young leaders selected by country constituency.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Will you meet your constituency's age limit (generally 18–24, up to 27 in some)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Rhodes has strict age limits that vary by constituency."
+      },
+      {
+        "key": "country",
+        "question": "Is there a Rhodes constituency for your country/region?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "You must apply through an eligible Rhodes constituency."
+      }
+    ],
+    "benefits": [
+      "All University and college fees at Oxford",
+      "Annual stipend for living costs",
+      "Two economy flights (to and from the UK)",
+      "Visa and health surcharge costs covered"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 entry — most constituencies close July–October 2026",
+        "date": "2026-10-01"
+      }
+    ],
+    "source": {
+      "name": "Rhodes Trust — Rhodes Scholarships",
+      "url": "https://www.rhodeshouse.ox.ac.uk/scholarships/the-rhodes-scholarship/",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "clarendon-oxford",
+    "slug": "clarendon-oxford",
+    "name": "Clarendon Fund Scholarships (Oxford)",
+    "provider": "University of Oxford",
+    "destination": "gb",
+    "summary": "Oxford's largest graduate scholarship scheme: ~200 new awards a year covering full fees and a generous living stipend, open to all nationalities and all subjects — no separate application.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "admission",
+        "question": "Are you applying to an eligible Oxford graduate course by the December/January deadline?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "Clarendon considers everyone who applies to Oxford by the relevant early deadline — there is no separate form."
+      },
+      {
+        "key": "academics",
+        "question": "Is your academic record in the top tier (typically first-class / GPA 3.7+)?",
+        "field": "topAcademics",
+        "op": "truthy",
+        "failMessage": "Selection is purely academic — outstanding grades and research potential are expected.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "All course fees",
+      "Annual living stipend (at least the UKRI rate)",
+      "Open to every nationality and subject",
+      "No separate application — automatic consideration"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 entry — apply to Oxford by the Dec 2026 / Jan 2027 course deadline",
+        "date": "2027-01-06"
+      }
+    ],
+    "source": {
+      "name": "University of Oxford — Clarendon Fund",
+      "url": "https://www.ox.ac.uk/clarendon",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "great-scholarships",
+    "slug": "great-scholarships",
+    "name": "GREAT Scholarships",
+    "provider": "British Council & UK universities",
+    "destination": "gb",
+    "summary": "£10,000 towards one-year taught Master's tuition at participating UK universities, for students from selected countries — jointly funded by the UK government's GREAT campaign.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "country",
+        "question": "Are you from a country in this year's GREAT Scholarships list?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Each year's list covers ~15 countries (e.g. China, India, Nigeria, Pakistan, Vietnam and others)."
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "£10,000 towards tuition of a one-year taught Master's",
+      "Offered across dozens of UK universities",
+      "Country-specific eligibility refreshed annually"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 courses — university deadlines mostly spring 2027",
+        "date": "2027-05-01"
+      }
+    ],
+    "source": {
+      "name": "Study UK (British Council) — GREAT Scholarships",
+      "url": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "vanier-cgs",
+    "slug": "vanier-cgs",
+    "name": "Vanier Canada Graduate Scholarships",
+    "provider": "Government of Canada",
+    "destination": "ca",
+    "summary": "Canada's premier doctoral award: CAD 50,000 per year for three years for high-calibre PhD students (Canadian and international) nominated by their Canadian university.",
+    "eligibility": [
+      {
+        "key": "phd",
+        "question": "Are you pursuing (or applying to) a PhD at a Canadian university?",
+        "field": "isPhd",
+        "op": "truthy",
+        "failMessage": "Vanier funds doctoral study only."
+      },
+      {
+        "key": "nomination",
+        "question": "Can you be nominated by the Canadian university where you'll study?",
+        "field": "hasNomination",
+        "op": "truthy",
+        "failMessage": "You cannot apply directly — the Canadian institution must nominate you."
+      },
+      {
+        "key": "progress",
+        "question": "Are you within the first ~20 months of your doctoral programme?",
+        "field": "earlyStage",
+        "op": "truthy",
+        "failMessage": "Vanier limits how far into the PhD you can be at nomination.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "CAD 50,000 per year for 3 years",
+      "Open to international and domestic doctoral students",
+      "Assessed on academic excellence, research potential and leadership"
+    ],
+    "deadlines": [
+      {
+        "intake": "2026 competition — internal university deadlines Sep–Oct; nomination Nov 2026",
+        "date": "2026-11-03"
+      }
+    ],
+    "source": {
+      "name": "Vanier Canada Graduate Scholarships",
+      "url": "https://vanier.gc.ca/en/home-accueil.html",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "lester-b-pearson",
+    "slug": "lester-b-pearson",
+    "name": "Lester B. Pearson International Scholarships",
+    "provider": "University of Toronto",
+    "destination": "ca",
+    "summary": "Full four-year funding — tuition, books, incidental fees and full residence — for exceptional international secondary-school students beginning undergraduate study at the University of Toronto.",
+    "eligibility": [
+      {
+        "key": "intl",
+        "question": "Are you an international student (not a Canadian citizen/PR)?",
+        "field": "isInternational",
+        "op": "truthy",
+        "failMessage": "The Pearson is for international students on a study permit."
+      },
+      {
+        "key": "school",
+        "question": "Are you in your final year of secondary school (or graduated no earlier than mid-2026)?",
+        "field": "finalYearSchool",
+        "op": "truthy",
+        "failMessage": "You must be applying directly from secondary school to first-year undergraduate study."
+      },
+      {
+        "key": "nomination",
+        "question": "Can your school nominate you?",
+        "field": "hasNomination",
+        "op": "truthy",
+        "failMessage": "A school nomination is required before you complete the scholarship application."
+      }
+    ],
+    "benefits": [
+      "Full tuition for four years",
+      "Books, incidental fees and full residence support",
+      "~37 awards per year across all U of T programmes"
+    ],
+    "deadlines": [
+      {
+        "intake": "Autumn 2027 entry — school nomination by Nov 2026, application by Jan 2027",
+        "date": "2027-01-15"
+      }
+    ],
+    "source": {
+      "name": "University of Toronto — Pearson Scholarships",
+      "url": "https://future.utoronto.ca/pearson/",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "eiffel-excellence",
+    "slug": "eiffel-excellence",
+    "name": "Eiffel Excellence Scholarship",
+    "provider": "Campus France (French Government)",
+    "destination": "fr",
+    "summary": "France's flagship award for international Master's and PhD students in science, engineering, economics, law and political science — a monthly allowance plus travel, insurance and cultural benefits (tuition not included).",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you 25 or under (Master's) / 30 or under (PhD)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Eiffel has strict age caps: 25 for the Master's track, 30 for the PhD track."
+      },
+      {
+        "key": "nomination",
+        "question": "Will a French institution submit your application?",
+        "field": "hasNomination",
+        "op": "truthy",
+        "failMessage": "Only French higher-education institutions can submit Eiffel applications — you cannot apply directly."
+      },
+      {
+        "key": "nonfrench",
+        "question": "Are you a non-French national?",
+        "field": "isInternational",
+        "op": "truthy",
+        "failMessage": "Eiffel is reserved for non-French nationals."
+      }
+    ],
+    "benefits": [
+      "Monthly allowance (~€1,181 Master's / ~€1,700 PhD)",
+      "International travel, local transport and insurance",
+      "Cultural activities support",
+      "Does not cover tuition (many programmes waive it for laureates)"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 intake — institutions submit applications by early January 2027",
+        "date": "2027-01-08"
+      }
+    ],
+    "source": {
+      "name": "Campus France — Eiffel Programme",
+      "url": "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "swiss-government-excellence",
+    "slug": "swiss-government-excellence",
+    "name": "Swiss Government Excellence Scholarships",
+    "provider": "FCS (Swiss Confederation)",
+    "destination": "ch",
+    "summary": "Research, PhD and postdoc scholarships (plus fine-arts Master's) at Swiss universities for young researchers from 180+ countries, awarded by the Federal Commission for Scholarships.",
+    "eligibility": [
+      {
+        "key": "master",
+        "question": "Do you hold a Master's degree (or will before the start date)?",
+        "field": "hasMaster",
+        "op": "truthy",
+        "failMessage": "The research/PhD track requires a completed Master's or equivalent."
+      },
+      {
+        "key": "age",
+        "question": "Were you born after the cut-off year stated in this year's call (roughly 35 or younger)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "FCS applies a birth-year cut-off that changes each call.",
+        "soft": true
+      },
+      {
+        "key": "supervisor",
+        "question": "Do you have a confirmed academic host/supervisor at a Swiss university?",
+        "field": "hasSupervisor",
+        "op": "truthy",
+        "failMessage": "A letter from a Swiss professor willing to supervise you is mandatory."
+      }
+    ],
+    "benefits": [
+      "Monthly stipend (~CHF 1,920 research/PhD)",
+      "Tuition-fee exemption at most institutions",
+      "Health insurance and housing allowance",
+      "Airfare support for some countries"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 call — country deadlines Sep–Dec 2026 via Swiss embassies",
+        "date": "2026-12-01"
+      }
+    ],
+    "source": {
+      "name": "SBFI/SERI — Swiss Government Excellence Scholarships",
+      "url": "https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "manaaki-new-zealand",
+    "slug": "manaaki-new-zealand",
+    "name": "Manaaki New Zealand Scholarships",
+    "provider": "New Zealand Ministry of Foreign Affairs",
+    "destination": "nz",
+    "summary": "Full scholarships (tuition, living allowance, airfare, insurance) for students from eligible developing countries — mainly the Pacific, Asia, Africa and Latin America — to study at New Zealand institutions.",
+    "eligibility": [
+      {
+        "key": "country",
+        "question": "Are you a citizen of an eligible developing country?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Eligibility is limited to the published country list (Pacific and selected Asian, African and Latin American countries)."
+      },
+      {
+        "key": "residence",
+        "question": "Have you been living in your home country recently (typically the last 2 years)?",
+        "field": "residentAtHome",
+        "op": "truthy",
+        "failMessage": "Applicants normally must reside in their country of citizenship when applying."
+      },
+      {
+        "key": "work",
+        "question": "Do you have work experience relevant to your country's development?",
+        "field": "hasRelevantWork",
+        "op": "truthy",
+        "failMessage": "Preference goes to applicants whose study supports their country's development priorities.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Full tuition fees",
+      "Living allowance (~NZD 531/week) and establishment allowance",
+      "Return airfare and medical insurance",
+      "Support to return home after study"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 intake — applications typically open Feb 2027",
+        "date": "2027-02-28"
+      }
+    ],
+    "source": {
+      "name": "Manaaki New Zealand Scholarships (MFAT)",
+      "url": "https://www.nzscholarships.govt.nz/",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "australia-rtp",
+    "slug": "australia-rtp",
+    "name": "Research Training Program (RTP)",
+    "provider": "Australian Government",
+    "destination": "au",
+    "summary": "The Australian government's main funding scheme for research degrees: fee offsets and stipends (~AUD 33,000+/yr, university-set) for domestic and international Master's-by-research and PhD candidates, administered by each university.",
+    "eligibility": [
+      {
+        "key": "research",
+        "question": "Are you applying for a research degree (MPhil/PhD), not coursework?",
+        "field": "isResearchDegree",
+        "op": "truthy",
+        "failMessage": "RTP supports research degrees only — coursework Master's are not eligible."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "admission",
+        "question": "Have you identified a supervisor and applied through an Australian university?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "RTP is applied for via the university, usually alongside your admission application."
+      }
+    ],
+    "benefits": [
+      "Tuition-fee offset for up to 4 years (PhD)",
+      "Living stipend set by each university (indexed, ~AUD 33,000+/yr)",
+      "Some allowances for relocation and thesis costs",
+      "Available at every Australian university"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 rounds — most universities close international rounds Aug–Oct 2026",
+        "date": "2026-09-30"
+      }
+    ],
+    "source": {
+      "name": "Australian Government — Research Training Program",
+      "url": "https://www.education.gov.au/research-block-grants/research-training-program",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "ernst-mach-grant",
+    "slug": "ernst-mach-grant",
+    "name": "Ernst Mach Grant",
+    "provider": "OeAD (Austria)",
+    "destination": "at",
+    "summary": "Austrian government grants for international students and researchers — including a dedicated track for applicants from developing countries — funding study and research stays at Austrian universities.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you 35 or younger?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Ernst Mach grants generally have a 35-year age limit."
+      },
+      {
+        "key": "host",
+        "question": "Do you have a host institution/supervisor in Austria (for research tracks)?",
+        "field": "hasSupervisor",
+        "op": "truthy",
+        "failMessage": "Research stays require confirmation from an Austrian academic host.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Monthly grant (~€1,250)",
+      "Accident and health insurance contribution",
+      "Housing support via OeAD",
+      "Travel-cost subsidy for some countries"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 — main deadline typically 1 March 2027",
+        "date": "2027-03-01"
+      }
+    ],
+    "source": {
+      "name": "OeAD — Ernst Mach Grant",
+      "url": "https://grants.at/en/",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "danish-government-scholarship",
+    "slug": "danish-government-scholarship",
+    "name": "Danish Government Scholarships (non-EU/EEA)",
+    "provider": "Danish Ministry of Higher Education",
+    "destination": "dk",
+    "summary": "Tuition waivers and/or living grants for highly qualified non-EU/EEA students admitted to full-degree programmes at Danish universities — allocated and awarded by each university.",
+    "eligibility": [
+      {
+        "key": "noneu",
+        "question": "Are you a non-EU/EEA (and non-Swiss) citizen paying tuition?",
+        "field": "isNonEu",
+        "op": "truthy",
+        "failMessage": "The scheme exists only for students who would otherwise pay non-EU tuition."
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      },
+      {
+        "key": "academics",
+        "question": "Is your academic record clearly above average for the programme?",
+        "field": "topAcademics",
+        "op": "truthy",
+        "failMessage": "Universities award these to their strongest admitted applicants — there is no separate application at most institutions.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Full or partial tuition waiver",
+      "Some universities add a monthly living grant",
+      "Awarded automatically with admission at most universities"
+    ],
+    "deadlines": [
+      {
+        "intake": "Autumn 2027 intake — apply with your programme application by 15 Jan 2027",
+        "date": "2027-01-15"
+      }
+    ],
+    "source": {
+      "name": "Study in Denmark — scholarships",
+      "url": "https://studyindenmark.dk/study-options/tuition-fees-scholarships",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "finland-scholarship",
+    "slug": "finland-scholarship",
+    "name": "Finland Scholarship",
+    "provider": "Finnish universities / EDUFI",
+    "destination": "fi",
+    "summary": "A joint scheme of Finnish universities for non-EU/EEA Master's students: a €5,000 relocation grant plus a 50–100% tuition-fee waiver for the first year, with continuation based on progress.",
+    "eligibility": [
+      {
+        "key": "noneu",
+        "question": "Are you a non-EU/EEA citizen required to pay tuition in Finland?",
+        "field": "isNonEu",
+        "op": "truthy",
+        "failMessage": "The Finland Scholarship targets fee-paying non-EU/EEA students."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "€5,000 relocation grant",
+      "50–100% tuition waiver in year one",
+      "Continuation support tied to study progress",
+      "Offered by all Finnish universities via the same admission application"
+    ],
+    "deadlines": [
+      {
+        "intake": "Autumn 2027 intake — joint application January 2027",
+        "date": "2027-01-20"
+      }
+    ],
+    "source": {
+      "name": "Study in Finland — Finland Scholarship",
+      "url": "https://www.studyinfinland.fi/scholarships",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "maeci-italy",
+    "slug": "maeci-italy",
+    "name": "Italian Government Scholarships (MAECI)",
+    "provider": "Italian Ministry of Foreign Affairs",
+    "destination": "it",
+    "summary": "Italian government grants (typically €900/month plus fee exemptions and insurance) for international students in Master's, PhD, AFAM arts programmes and research projects at Italian institutions.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you under 28 (Master's) or under 30 (PhD) at the deadline?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "MAECI applies age caps: 28 for Master's-level study, 30 for PhD."
+      },
+      {
+        "key": "country",
+        "question": "Is your country on the current MAECI list?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "The annual call lists the eligible countries — check the Study in Italy portal."
+      }
+    ],
+    "benefits": [
+      "€900 monthly allowance (paid quarterly)",
+      "Tuition/enrolment fee exemption at most institutions",
+      "Health and accident insurance",
+      "6- or 9-month awards, renewable for multi-year courses"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 call — applications typically due May–June 2027",
+        "date": "2027-06-01"
+      }
+    ],
+    "source": {
+      "name": "Study in Italy (MAECI) — scholarships",
+      "url": "https://studyinitaly.esteri.it/en/call-for-procedure",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "nawa-poland",
+    "slug": "nawa-poland",
+    "name": "NAWA Scholarship Programmes (Poland)",
+    "provider": "Polish National Agency NAWA",
+    "destination": "pl",
+    "summary": "Poland's national agency runs several funded tracks for international students — including the Banach programme (developing countries, STEM) — covering tuition-free study plus a monthly stipend at Polish universities.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "country",
+        "question": "Are you a citizen of a country covered by a current NAWA call (e.g. Banach partner countries)?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Each NAWA programme has its own country list — check the current calls."
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the programme's language requirement (e.g. IELTS/TOEFL for English-taught)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "You must meet the language requirement of the specific programme."
+      }
+    ],
+    "benefits": [
+      "Tuition-free study at public universities",
+      "Monthly NAWA stipend",
+      "Preparatory Polish language year where needed"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 calls — Banach-type deadlines typically spring 2027",
+        "date": "2027-04-30"
+      }
+    ],
+    "source": {
+      "name": "NAWA — programmes for students",
+      "url": "https://nawa.gov.pl/en/students",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "czech-government-scholarship",
+    "slug": "czech-government-scholarship",
+    "name": "Czech Government Scholarships",
+    "provider": "Czech Ministry of Education (MŠMT)",
+    "destination": "cz",
+    "summary": "Development-cooperation scholarships for students from eligible countries to take full degree programmes in Czechia — tuition-free study plus a monthly living allowance, in Czech or English.",
+    "eligibility": [
+      {
+        "key": "country",
+        "question": "Are you a citizen of one of the eligible developing countries?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "The scheme is part of Czech development cooperation — only listed countries qualify."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the programme's language requirement (e.g. IELTS/TOEFL for English-taught)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "You must meet the language requirement of the specific programme."
+      }
+    ],
+    "benefits": [
+      "Tuition-free study",
+      "Monthly allowance covering living costs",
+      "Czech language preparation for Czech-taught tracks"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 — applications typically due September 2026",
+        "date": "2026-09-30"
+      }
+    ],
+    "source": {
+      "name": "MŠMT — Czech Government Scholarships",
+      "url": "https://msmt.gov.cz/eu-and-international-affairs/government-scholarships-developing-countries",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "malaysia-international-scholarship",
+    "slug": "malaysia-international-scholarship",
+    "name": "Malaysia International Scholarship (MIS)",
+    "provider": "Malaysian Ministry of Higher Education",
+    "destination": "my",
+    "summary": "The Malaysian government's award for high-achieving international postgraduate students: tuition plus a monthly stipend at selected Malaysian universities.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you within the age limit (typically 40 for Master's, 45 for PhD)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "MIS applies age caps by level."
+      },
+      {
+        "key": "gpa",
+        "question": "Is your CGPA at least ~3.5/4.0 (or equivalent)?",
+        "field": "gpa80",
+        "op": "truthy",
+        "failMessage": "MIS expects a strong academic record — around CGPA 3.5 and above."
+      },
+      {
+        "key": "english",
+        "question": "Do you meet the English requirement (e.g. IELTS ~6.5)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "Proof of English proficiency is required."
+      }
+    ],
+    "benefits": [
+      "Tuition fees at participating universities",
+      "Monthly living allowance (~RM 1,500)",
+      "Covers Master's and PhD study"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 intake — applications typically open Q2 2027",
+        "date": "2027-05-31"
+      }
+    ],
+    "source": {
+      "name": "Ministry of Higher Education Malaysia — MIS",
+      "url": "https://biasiswa.mohe.gov.my/INTER/",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "khalifa-university-scholarship",
+    "slug": "khalifa-university-scholarship",
+    "name": "Khalifa University Graduate Scholarships",
+    "provider": "Khalifa University (UAE)",
+    "destination": "ae",
+    "summary": "Full graduate funding in Abu Dhabi: tuition, health insurance and a monthly stipend for MSc and PhD students in engineering and science at Khalifa University.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "field",
+        "question": "Is your intended field engineering, science or a related STEM area?",
+        "field": "isStem",
+        "op": "truthy",
+        "failMessage": "Khalifa University's funded programmes are STEM-focused."
+      },
+      {
+        "key": "english",
+        "question": "Do you meet the English requirement (IELTS 6.5 / TOEFL 91)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "An English test at the required level is mandatory."
+      },
+      {
+        "key": "gpa",
+        "question": "Is your GPA at least 3.0/4.0?",
+        "field": "gpa80",
+        "op": "truthy",
+        "failMessage": "A minimum GPA of about 3.0 is expected for funded admission.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Full tuition",
+      "Monthly stipend (higher for PhD)",
+      "Medical insurance",
+      "Support for conference travel (PhD)"
+    ],
+    "deadlines": [
+      {
+        "intake": "Autumn 2027 intake — priority deadlines around March 2027",
+        "date": "2027-03-31"
+      }
+    ],
+    "source": {
+      "name": "Khalifa University — graduate scholarships",
+      "url": "https://www.ku.ac.ae/scholarships",
+      "type": "university"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "deutschlandstipendium",
+    "slug": "deutschlandstipendium",
+    "name": "Deutschlandstipendium",
+    "provider": "German Federal Government & universities",
+    "destination": "de",
+    "summary": "A merit scholarship of €300/month, half funded by the federal government and half by private sponsors, open to enrolled students of any nationality at participating German universities.",
+    "eligibility": [
+      {
+        "key": "enrolled",
+        "question": "Are you enrolled (or about to enrol) at a participating German university?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "You apply through your own university once enrolled or admitted."
+      },
+      {
+        "key": "merit",
+        "question": "Is your academic record strong (the core selection criterion)?",
+        "field": "topAcademics",
+        "op": "truthy",
+        "failMessage": "Selection weighs grades plus engagement and personal circumstances.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "€300 per month for at least two semesters",
+      "Independent of nationality and of BAföG",
+      "Often includes sponsor networking and mentoring"
+    ],
+    "deadlines": [
+      {
+        "intake": "Winter semester 2026/27 — university deadlines vary (many in summer)",
+        "date": "2026-08-31"
+      }
+    ],
+    "source": {
+      "name": "BMBF — Deutschlandstipendium",
+      "url": "https://www.deutschlandstipendium.de/",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "heinrich-boell-scholarship",
+    "slug": "heinrich-boell-scholarship",
+    "name": "Heinrich Böll Foundation Scholarships",
+    "provider": "Heinrich-Böll-Stiftung",
+    "destination": "de",
+    "summary": "The Green-affiliated German foundation funds Bachelor's, Master's and PhD study in Germany for students — including internationals — who combine strong academics with social and political engagement.",
+    "eligibility": [
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      },
+      {
+        "key": "engagement",
+        "question": "Can you show meaningful social/political engagement (values-based selection)?",
+        "field": "hasEngagement",
+        "op": "truthy",
+        "failMessage": "Böll explicitly selects for engagement with ecology, democracy, human rights or social justice."
+      },
+      {
+        "key": "language",
+        "question": "Do you have at least B2 German (required even for English-taught programmes)?",
+        "field": "germanB2",
+        "op": "truthy",
+        "failMessage": "Good German (B2+) is required for the selection process."
+      }
+    ],
+    "benefits": [
+      "Monthly stipend (BAföG-level for internationals, ~€992 + allowances)",
+      "Ideational support: seminars, networks, mentoring",
+      "PhD funding track available"
+    ],
+    "deadlines": [
+      {
+        "intake": "Applications close 1 March and 1 September each year",
+        "date": "2026-09-01"
+      }
+    ],
+    "source": {
+      "name": "Heinrich-Böll-Stiftung — scholarships",
+      "url": "https://www.boell.de/en/foundation/scholarships",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "fes-scholarship",
+    "slug": "fes-scholarship",
+    "name": "Friedrich Ebert Foundation Scholarships",
+    "provider": "Friedrich-Ebert-Stiftung",
+    "destination": "de",
+    "summary": "Germany's social-democratic foundation funds degree study in Germany for German and international students with strong academics and demonstrated commitment to social democratic values.",
+    "eligibility": [
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      },
+      {
+        "key": "engagement",
+        "question": "Can you show social/political engagement in line with the foundation's values?",
+        "field": "hasEngagement",
+        "op": "truthy",
+        "failMessage": "FES selects for commitment to freedom, justice and solidarity."
+      },
+      {
+        "key": "language",
+        "question": "Do you have good German skills (generally required)?",
+        "field": "germanB2",
+        "op": "truthy",
+        "failMessage": "FES requires German proficiency for its selection and seminar programme."
+      }
+    ],
+    "benefits": [
+      "Monthly stipend (~€992 for internationals) plus health-insurance allowance",
+      "Seminar and network programme",
+      "No repayment obligation"
+    ],
+    "deadlines": [
+      {
+        "intake": "Rolling — applications reviewed in cycles; apply at least 3–4 months before semester start",
+        "date": "2026-10-01"
+      }
+    ],
+    "source": {
+      "name": "Friedrich-Ebert-Stiftung — scholarships",
+      "url": "https://www.fes.de/en/studienfoerderung",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "vlir-uos",
+    "slug": "vlir-uos",
+    "name": "VLIR-UOS Scholarships (Flanders)",
+    "provider": "VLIR-UOS (Belgium)",
+    "destination": "be",
+    "summary": "Belgian development-cooperation scholarships covering everything — tuition, allowance, travel — for students from partner countries in Africa, Asia and Latin America to take selected English-taught Master's programmes at Flemish universities.",
+    "eligibility": [
+      {
+        "key": "country",
+        "question": "Are you a national and resident of one of the VLIR-UOS partner countries?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Only nationals of the published partner-country list qualify."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "age",
+        "question": "Are you within the age limit (typically max 35 for one-year Master's, 40 for two-year)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Age caps apply and vary by programme type.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Full tuition",
+      "Monthly allowance and accommodation support",
+      "International travel and insurance",
+      "Limited to selected development-relevant programmes"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 intake — programme applications close Feb–Mar 2027",
+        "date": "2027-02-01"
+      }
+    ],
+    "source": {
+      "name": "VLIR-UOS — scholarships",
+      "url": "https://www.vliruos.be/en/scholarships",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "master-mind-flanders",
+    "slug": "master-mind-flanders",
+    "name": "Master Mind Scholarships (Flanders)",
+    "provider": "Government of Flanders",
+    "destination": "be",
+    "summary": "Merit scholarships of up to €9,600 per year plus a tuition waiver for outstanding international students taking a Master's at a Flemish or Brussels higher-education institution.",
+    "eligibility": [
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "gpa",
+        "question": "Is your academic record excellent (roughly GPA 3.5/4.0 or better)?",
+        "field": "topAcademics",
+        "op": "truthy",
+        "failMessage": "Master Mind is explicitly merit-based; a very strong record is required."
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      },
+      {
+        "key": "language",
+        "question": "Can you meet the programme's language requirement (e.g. IELTS/TOEFL for English-taught)?",
+        "field": "languageReady",
+        "op": "truthy",
+        "failMessage": "You must meet the language requirement of the specific programme."
+      }
+    ],
+    "benefits": [
+      "Up to €9,600 per academic year",
+      "Tuition fee waived (small administrative fee may remain)",
+      "Available across Flemish universities and colleges"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027–28 — institutional deadlines typically March–April 2027",
+        "date": "2027-04-01"
+      }
+    ],
+    "source": {
+      "name": "Study in Flanders — Master Mind",
+      "url": "https://www.studyinflanders.be/scholarships/master-mind-scholarships",
+      "type": "government"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "aga-khan-foundation",
+    "slug": "aga-khan-foundation",
+    "name": "Aga Khan Foundation International Scholarship",
+    "provider": "Aga Khan Foundation",
+    "destination": "multiple",
+    "summary": "50% grant / 50% loan awards for outstanding postgraduate students from selected developing countries who have no other means of financing their studies, usable at top universities worldwide.",
+    "eligibility": [
+      {
+        "key": "country",
+        "question": "Are you from one of the eligible countries (mainly South/Central Asia, East Africa, Middle East)?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Eligibility is limited to nationals of the foundation's listed countries."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "need",
+        "question": "Can you document genuine financial need?",
+        "field": "hasFinancialNeed",
+        "op": "truthy",
+        "failMessage": "AKF funds students who cannot otherwise finance their study."
+      },
+      {
+        "key": "age",
+        "question": "Are you under 30?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Preference is given to applicants under 30.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "50% grant + 50% interest-free loan",
+      "Covers tuition and living costs (travel excluded)",
+      "Master's priority; PhD only in exceptional cases"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 cycle — country applications due around March 2027",
+        "date": "2027-03-31"
+      }
+    ],
+    "source": {
+      "name": "Aga Khan Foundation — International Scholarship Programme",
+      "url": "https://the.akdn/en/how-we-work/our-agencies/aga-khan-foundation/international-scholarship-programme",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "jj-wbgsp",
+    "slug": "jj-wbgsp",
+    "name": "Joint Japan/World Bank Graduate Scholarship (JJ/WBGSP)",
+    "provider": "World Bank",
+    "destination": "multiple",
+    "summary": "Funds development-related Master's programmes at preferred universities worldwide for mid-career professionals from World Bank borrowing countries — tuition, stipend, travel and insurance.",
+    "eligibility": [
+      {
+        "key": "country",
+        "question": "Are you a national of a World Bank member developing country?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "Only nationals of eligible borrowing countries can apply."
+      },
+      {
+        "key": "degree",
+        "question": "Do you hold (or will you soon complete) a Bachelor's degree?",
+        "field": "hasBachelor",
+        "op": "truthy",
+        "failMessage": "A completed first degree (Bachelor's or equivalent) is required."
+      },
+      {
+        "key": "experience",
+        "question": "Do you have 3+ years of paid development-related work experience?",
+        "field": "workYears",
+        "op": "gte",
+        "failMessage": "At least three years of relevant professional experience is required.",
+        "value": 3
+      },
+      {
+        "key": "admission",
+        "question": "Do you have an unconditional admission to a participating Master's programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "An admission letter from a preferred/participating programme is required before applying."
+      }
+    ],
+    "benefits": [
+      "Full tuition",
+      "Monthly living stipend",
+      "Round-trip economy airfare",
+      "Health insurance and travel allowance"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 windows — typically Jan–Feb and Mar–May 2027",
+        "date": "2027-02-28"
+      }
+    ],
+    "source": {
+      "name": "World Bank — JJ/WBGSP",
+      "url": "https://www.worldbank.org/en/programs/scholarships",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
+  },
+  {
+    "id": "mastercard-foundation-scholars",
+    "slug": "mastercard-foundation-scholars",
+    "name": "Mastercard Foundation Scholars Program",
+    "provider": "Mastercard Foundation",
+    "destination": "multiple",
+    "summary": "Comprehensive scholarships — tuition, accommodation, travel, and leadership development — for academically talented young Africans facing financial barriers, at partner universities in Africa, North America and Europe.",
+    "eligibility": [
+      {
+        "key": "region",
+        "question": "Are you a citizen of an African country?",
+        "field": "eligibleCountry",
+        "op": "truthy",
+        "failMessage": "The program primarily serves young people from Sub-Saharan Africa."
+      },
+      {
+        "key": "need",
+        "question": "Do you face significant financial barriers to education?",
+        "field": "hasFinancialNeed",
+        "op": "truthy",
+        "failMessage": "Demonstrated economic disadvantage is a core criterion."
+      },
+      {
+        "key": "age",
+        "question": "Are you a young person (most partners cap around 29 for Master's)?",
+        "field": "meetsAgeLimit",
+        "op": "truthy",
+        "failMessage": "Partner universities apply youth age limits.",
+        "soft": true
+      },
+      {
+        "key": "admission",
+        "question": "Have you applied for (or secured) admission to an eligible programme?",
+        "field": "hasAdmission",
+        "op": "truthy",
+        "failMessage": "This award requires an application or offer at an eligible institution/programme.",
+        "soft": true
+      }
+    ],
+    "benefits": [
+      "Full tuition and fees",
+      "Accommodation, books and travel",
+      "Mentoring, leadership development and transition support",
+      "Apply via each partner university's own process"
+    ],
+    "deadlines": [
+      {
+        "intake": "2027 intakes — deadlines vary by partner university",
+        "date": "2027-01-31"
+      }
+    ],
+    "source": {
+      "name": "Mastercard Foundation Scholars Program",
+      "url": "https://mastercardfdn.org/all/scholars/",
+      "type": "official-body"
+    },
+    "verifiedBy": "OfficialRequirements System",
+    "lastVerified": "2026-07-02",
+    "verification": "machine-compiled",
+    "status": "published",
+    "changeLog": [
+      {
+        "date": "2026-07-02",
+        "note": "Initial record seeded from the official source (machine-compiled; deadlines vary by year and country — confirm on the official page)."
+      }
+    ]
   }
 ]

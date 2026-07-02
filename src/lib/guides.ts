@@ -5,6 +5,8 @@
 // evergreen, and grounded; specifics that vary are deferred to official sources.
 // ─────────────────────────────────────────────────────────────────────────
 
+import { LONGTAIL_GUIDES } from "./guides-longtail";
+
 export interface GuideSection {
   heading: string;
   body: string[]; // paragraphs
@@ -29,7 +31,7 @@ export interface Guide {
 
 const UPDATED = "2026-06-20";
 
-export const GUIDES: Guide[] = [
+const CORE_GUIDES: Guide[] = [
   {
     slug: "germany-student-visa-rejection-reasons",
     title: "Germany Student Visa Rejection Reasons (2026) — and How to Avoid Them",
@@ -294,6 +296,10 @@ export const GUIDES: Guide[] = [
     ],
   },
 ];
+
+// Long-tail batch (kept in its own module so authored content scales without
+// bloating this file). New-domain strategy: guides earn rankings first.
+export const GUIDES: Guide[] = [...CORE_GUIDES, ...LONGTAIL_GUIDES];
 
 export function getGuide(slug: string): Guide | undefined {
   return GUIDES.find((g) => g.slug === slug);

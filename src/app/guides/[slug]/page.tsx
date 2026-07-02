@@ -9,7 +9,7 @@ import FaqSection from "@/components/FaqSection";
 import ArticleHeader from "@/components/ArticleHeader";
 import RelatedSearches from "@/components/RelatedSearches";
 import AffiliateBlock from "@/components/AffiliateBlock";
-import { breadcrumbLd, faqPageLd, speakableLd } from "@/lib/seo";
+import { breadcrumbLd, faqPageLd, speakableLd, authorLd } from "@/lib/seo";
 import { robotsFor } from "@/lib/page-policy";
 
 export const dynamic = "force-static";
@@ -61,6 +61,9 @@ export default async function GuidePage({ params }: { params: Promise<Params> })
             datePublished: g.updated,
             mainEntityOfPage: `${SITE}${path}`,
             isAccessibleForFree: true,
+            // E-E-A-T: named human author (Person) when configured, else the editorial org.
+            author: authorLd(),
+            publisher: { "@id": `${SITE}/#organization` },
           },
           faqPageLd(g.faqs),
           breadcrumbLd([

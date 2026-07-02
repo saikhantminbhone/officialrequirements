@@ -132,3 +132,17 @@ The system maximizes on-page + technical. Rankings still need:
 - **A real named reviewer** — set the `AUTHOR_*` env vars to a real person with credentials.
 - **Demand-led expansion** — promote long-tail pages where Search Console shows real
   impressions, rather than chasing every keyword.
+
+## 9. Index-coverage monitor & demand-driven auto-promotion (added 2026-07-02)
+
+- **Index coverage (ground truth):** `/api/cron/index-status` (daily 05:30 UTC) inspects
+  every sitemap URL via Google's URL Inspection API (same GSC service account) and stores
+  per-URL coverage in R2 (`seo/index-status.json`). View it in `/ops/seo` → "Google index
+  coverage": indexed vs "Discovered/Crawled – currently not indexed", per-URL states, last
+  crawl. Quota-aware: inspects `INDEX_INSPECT_BATCH` (default 150) URLs per run, never-checked
+  first, so full coverage converges over a few daily runs.
+- **Auto-promotion (the self-expanding loop):** every GSC sync scans `topPages` for held-out
+  long-tail visa pages (`noindex`) that earned ≥ `PROMOTE_MIN_IMPRESSIONS` (default 30)
+  impressions in 28 days. Those pairs are persisted to R2 (`seo/promoted-pairs.json`), become
+  `index,follow`, enter the sitemap, and a rebuild is triggered via `VERCEL_DEPLOY_HOOK_URL`.
+  Deterministic, no AI, no DB — demand itself widens the indexed footprint safely.

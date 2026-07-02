@@ -52,7 +52,8 @@ export function pageQualityScore(record: RequirementRecord): number {
 
 const MIN_QUALITY = 45; // below this a page is too thin/low-authority to rank
 
-export function visaIndexDecision(record: RequirementRecord): IndexDecision {
+/** `promoted` — pair ids ("nat-dest") earned via demand (see lib/promotions.ts). */
+export function visaIndexDecision(record: RequirementRecord, promoted?: Set<string>): IndexDecision {
   if (record.status !== "published") return { index: false, reason: "not published" };
   if (daysSinceVerified(record.lastVerified) > STALE_DAYS) {
     return { index: false, reason: "stale: re-verify before indexing" };
@@ -80,7 +81,9 @@ export function visaIndexDecision(record: RequirementRecord): IndexDecision {
   if (isVisa && !trusted) {
     const inBatch =
       PRIORITY_NATIONALITIES.has(record.nationality!) && PRIORITY_DESTINATIONS.has(record.destination);
-    if (!inBatch) return { index: false, reason: "long-tail: held out of launch batch until corroborated/verified" };
+    const demandPromoted = promoted?.has(`${record.nationality}-${record.destination}`) ?? false;
+    if (!inBatch && !demandPromoted)
+      return { index: false, reason: "long-tail: held out of launch batch until corroborated/verified/promoted" };
   }
   return { index: true, reason: "ok" };
 }

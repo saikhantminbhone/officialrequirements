@@ -27,6 +27,11 @@ const AUTHOR = hasNamedAuthor
   ? { "@type": "Person", name: AUTHOR_NAME, url: AUTHOR_URL, description: AUTHOR_BIO }
   : { "@type": "Organization", name: "OfficialRequirements Editorial Team", url: SITE, description: AUTHOR_BIO };
 
+/** The Person/Organization author node, for pages that build their own Article LD (e.g. guides). */
+export function authorLd() {
+  return AUTHOR;
+}
+
 // ── Global, site-wide structured data (rendered once in the root layout) ──
 // Organization + WebSite + DataCatalog, with publishingPrinciples and a
 // correctionsPolicy — the E-E-A-T + GEO signals OfficialSalary ships globally.

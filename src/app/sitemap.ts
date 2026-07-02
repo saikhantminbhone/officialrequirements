@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getVisaRecords, getUniversityRecords, getUniversityNoindexIds, getScholarships, getAllDestinations } from "@/lib/req-data";
 import { visaIndexDecision, scholarshipIndexDecision } from "@/lib/page-policy";
+import { getPromotedPairs } from "@/lib/promotions";
 import { destinationPairs } from "@/lib/compare";
 import { GUIDES } from "@/lib/guides";
 import { UNIVERSITIES } from "@/lib/universities";
@@ -8,16 +9,17 @@ import { UNIVERSITIES } from "@/lib/universities";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://officialrequirements.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [visaAll, universityAll, scholarshipsAll, uniNoindex] = await Promise.all([
+  const [visaAll, universityAll, scholarshipsAll, uniNoindex, promoted] = await Promise.all([
     getVisaRecords(),
     getUniversityRecords(),
     getScholarships(),
     getUniversityNoindexIds(),
+    getPromotedPairs(),
   ]);
 
   // Anti-bloat: only indexable, non-duplicate pages belong in the sitemap.
-  const visa = visaAll.filter((r) => visaIndexDecision(r).index);
-  const university = universityAll.filter((r) => visaIndexDecision(r).index && !uniNoindex.has(r.id));
+  const visa = visaAll.filter((r) => visaIndexDecision(r, promoted).index);
+  const university = universityAll.filter((r) => visaIndexDecision(r, promoted).index && !uniNoindex.has(r.id));
   const scholarships = scholarshipsAll.filter((s) => scholarshipIndexDecision(s).index);
 
   const now = new Date();
