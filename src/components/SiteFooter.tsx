@@ -28,6 +28,8 @@ const COLS = [
     links: [
       { href: "/methodology", label: "How we verify" },
       { href: "/data-sources", label: "Data sources" },
+      { href: "/data", label: "Open data" },
+      { href: "/widgets", label: "Free widgets" },
       { href: "/editorial-policy", label: "Editorial policy" },
       { href: "/changelog", label: "Changelog" },
       { href: "/about", label: "About us" },

@@ -3,6 +3,7 @@ import { isAdminAuthed } from "@/lib/auth";
 import { runMaintain, runWatchSources } from "@/lib/maintenance";
 import { runGsc } from "@/lib/gsc";
 import { runIndexStatus } from "@/lib/index-status";
+import { runDigest } from "@/lib/digest";
 import { runCwv } from "@/lib/cwv";
 import { runFx } from "@/lib/fx";
 import { runCrawl } from "@/lib/crawl";
@@ -32,6 +33,7 @@ export async function POST(req: NextRequest) {
     if (job === "watch") return NextResponse.json({ ok: true, ...(await runWatchSources()) });
     if (job === "gsc") return NextResponse.json({ ok: true, ...(await runGsc()) });
     if (job === "index-status") return NextResponse.json({ ok: true, ...(await runIndexStatus()) });
+    if (job === "digest") return NextResponse.json({ ok: true, ...(await runDigest()) });
     if (job === "cwv") return NextResponse.json({ ok: true, ...(await runCwv()) });
     if (job === "fx") return NextResponse.json(await runFx());
     if (job === "crawl") return NextResponse.json({ ok: true, ...(await runCrawl(10)) });

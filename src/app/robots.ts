@@ -45,7 +45,13 @@ export default function robots(): MetadataRoute.Robots {
       // Bulk dataset scraper with no search/citation benefit — blocked.
       { userAgent: "CCBot", disallow: "/" },
     ],
-    sitemap: `${SITE}/sitemap.xml`,
+    // Sitemap index + section sitemaps (per-section indexing visibility in GSC).
+    sitemap: [
+      `${SITE}/sitemap.xml`,
+      ...["core", "hubs", "visa", "university", "compare", "scholarships", "guides", "universities"].map(
+        (s) => `${SITE}/sitemap/${s}.xml`
+      ),
+    ],
     host: SITE,
   };
 }

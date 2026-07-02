@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     keywords: scholarshipTargetKeywords(s),
     alternates: { canonical: `/scholarships/${s.slug}` },
     robots: robotsFor(scholarshipIndexDecision(s)),
-    openGraph: { title: seoTitle, description: seoDescription, images: [ogImage] },
+    openGraph: { title: seoTitle, description: seoDescription, url: `/scholarships/${s.slug}`, images: [ogImage] },
     twitter: { card: "summary_large_image", images: [ogImage] },
   };
 }

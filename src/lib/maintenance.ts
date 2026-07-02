@@ -1,6 +1,7 @@
 import { createHash } from "crypto";
 import { FRESHNESS } from "@/lib/cron";
-import { getAllRecordsForAdmin, daysSinceVerified } from "@/lib/req-data";
+import { getAllRecordsForAdmin, daysSinceVerified, getDestinationMeta } from "@/lib/req-data";
+import { notifySourceChanges } from "@/lib/subscriptions";
 import { acceptedSources } from "@/lib/sources";
 import { getJson, putJsonSafe, r2Configured } from "@/lib/r2";
 
@@ -135,5 +136,12 @@ export async function runWatchSources(): Promise<SourceChangeReport> {
   };
   await putJsonSafe("seo/source-hashes.json", next);
   await putJsonSafe("seo/source-changes.json", report);
+
+  // Change alerts: tell subscribers their destination's official source moved.
+  // Best-effort — never blocks or breaks the freshness pass.
+  if (changed.length > 0) {
+    await notifySourceChanges(changed, (code) => getDestinationMeta(code)?.name ?? code.toUpperCase());
+  }
+
   return report;
 }

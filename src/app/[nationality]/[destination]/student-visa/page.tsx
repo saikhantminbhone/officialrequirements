@@ -18,6 +18,7 @@ import ArticleHeader from "@/components/ArticleHeader";
 import VisaOverview from "@/components/VisaOverview";
 import DistinctiveNote from "@/components/DistinctiveNote";
 import RelatedSearches from "@/components/RelatedSearches";
+import SubscribeAlert from "@/components/SubscribeAlert";
 import { buildVisaOverview } from "@/lib/destination-overview";
 import { guidesForDestination } from "@/lib/guides";
 import { visaSeoTitle, visaSeoDescription, visaTargetKeywords } from "@/lib/keywords";
@@ -265,6 +266,10 @@ export default async function VisaPage({ params }: { params: Promise<Params> }) 
       )}
 
       <FaqSection faqs={faqs} />
+
+      <div className="mt-10">
+        <SubscribeAlert destination={destination} destinationName={dest?.name ?? destination.toUpperCase()} />
+      </div>
 
       <RelatedLinks title={`Other student-visa guides for ${dest?.name ?? "this destination"}`} links={related} />
       <RelatedLinks title="Explore more" links={crossLinks} />

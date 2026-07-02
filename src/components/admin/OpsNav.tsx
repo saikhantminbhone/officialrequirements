@@ -9,6 +9,7 @@ const GROUPS: { label: string; items: { href: string; name: string }[] }[] = [
     label: "Knowledge",
     items: [
       { href: "/ops/data", name: "Data freshness" },
+      { href: "/ops/verify", name: "Verification queue" },
       { href: "/ops/sources", name: "Gaps & sources" },
       { href: "/ops/outcomes", name: "Outcomes" },
     ],

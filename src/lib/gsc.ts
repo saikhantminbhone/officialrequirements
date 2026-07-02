@@ -2,6 +2,7 @@ import { createSign } from "crypto";
 import { getJson, putJson } from "@/lib/r2";
 import { computeOpportunities, type KeywordOpportunity, type QueryRow } from "@/lib/keyword-opportunities";
 import { applyPromotionsFromReport } from "@/lib/promotions";
+import { computeLinkPlan, saveLinkPlan } from "@/lib/link-plan";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Google Search Console integration (no extra dependencies).
@@ -116,10 +117,12 @@ export async function runGsc(): Promise<GscReport> {
     const startDate = dateNDaysAgo(28);
     const endDate = dateNDaysAgo(1);
 
-    const [pages, countries, queries] = await Promise.all([
+    const [pages, countries, queries, queryPages] = await Promise.all([
       query(token, siteUrl, { startDate, endDate, dimensions: ["page"], rowLimit: 100 }),
       query(token, siteUrl, { startDate, endDate, dimensions: ["country"], rowLimit: 250 }),
       query(token, siteUrl, { startDate, endDate, dimensions: ["query"], rowLimit: 500 }),
+      // query+page pairs — lets the link booster know WHICH page ranks for a query.
+      query(token, siteUrl, { startDate, endDate, dimensions: ["query", "page"], rowLimit: 1000 }),
     ]);
 
     const pageRows = pages.rows ?? [];
@@ -184,10 +187,33 @@ export async function runGsc(): Promise<GscReport> {
 
     // Demand-driven expansion: promote held-out long-tail pages that are already
     // earning impressions (the "auto-expand" loop — deterministic, no AI).
+    let promotedCount = 0;
     try {
-      await applyPromotionsFromReport(report);
+      const { promoted } = await applyPromotionsFromReport(report);
+      promotedCount = promoted.length;
     } catch {
       /* non-fatal — promotion must never break the GSC sync */
+    }
+
+    // Striking-distance link booster: point internal links from high-authority
+    // pages at pages one push from page 1, using the query as anchor text.
+    try {
+      const pageForQuery = new Map<string, string>();
+      for (const r of queryPages.rows ?? []) {
+        const [q, page] = r.keys;
+        // Rows come sorted by clicks desc — first page seen per query is its top page.
+        if (!pageForQuery.has(q)) pageForQuery.set(q, page);
+      }
+      const siteOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://officialrequirements.com").origin;
+      const entries = computeLinkPlan(opportunities, pageForQuery, siteOrigin);
+      const changed = await saveLinkPlan(entries);
+      // Rebuild so static pages pick the new links up — unless the promotion
+      // step above already triggered one.
+      if (changed && promotedCount === 0 && process.env.VERCEL_DEPLOY_HOOK_URL) {
+        await fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" }).catch(() => {});
+      }
+    } catch {
+      /* non-fatal */
     }
 
     return report;

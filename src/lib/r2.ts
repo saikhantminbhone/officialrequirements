@@ -17,7 +17,9 @@ const accountId = process.env.R2_ACCOUNT_ID;
 const accessKeyId = process.env.R2_ACCESS_KEY_ID;
 const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
 
-export const R2_BUCKET = process.env.R2_BUCKET || "officialreq";
+// Accept both env spellings (R2_BUCKET and R2_BUCKET_NAME) — a silent mismatch
+// here makes every R2 read fall back to seed data and every write fail.
+export const R2_BUCKET = process.env.R2_BUCKET || process.env.R2_BUCKET_NAME || "officialreq";
 export const R2_PUBLIC_BASE_URL = process.env.R2_PUBLIC_BASE_URL || "";
 
 /** True when R2 credentials are present. Lets the app run on seed-only data locally. */

@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     images: [{ url: "/api/og", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", images: ["/api/og"] },
+  alternates: {
+    types: { "application/rss+xml": [{ url: "/changes.xml", title: "Requirement changes — OfficialRequirements" }] },
+  },
   // Search-engine ownership verification (meta-tag method). Set the env vars to
   // the codes from Bing Webmaster Tools / Google Search Console.
   verification: {

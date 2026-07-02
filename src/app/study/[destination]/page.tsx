@@ -9,6 +9,8 @@ import FaqSection from "@/components/FaqSection";
 import VisaOverview from "@/components/VisaOverview";
 import DistinctiveNote from "@/components/DistinctiveNote";
 import RelatedSearches from "@/components/RelatedSearches";
+import SubscribeAlert from "@/components/SubscribeAlert";
+import SmartLinks from "@/components/SmartLinks";
 import { universitiesForDestination } from "@/lib/universities";
 import { buildVisaOverview } from "@/lib/destination-overview";
 import { hubSeoTitle, hubSeoDescription, hubTargetKeywords } from "@/lib/keywords";
@@ -36,6 +38,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     keywords: hubTargetKeywords(dest.name),
     alternates: { canonical: `/study/${destination}` },
     robots: robotsFor({ index: true, reason: "ok" }),
+    openGraph: {
+      title: hubSeoTitle(dest.name),
+      description: hubSeoDescription(dest.name, dest.fundsLabel),
+      // Without an explicit url, og:url falls back to metadataBase (the homepage).
+      url: `/study/${destination}`,
+      images: [`/api/og?title=${encodeURIComponent(`Study in ${dest.name}`)}&tag=${encodeURIComponent("Destination guide")}`],
+    },
   };
 }
 
@@ -162,6 +171,12 @@ export default async function DestinationHub({ params }: { params: Promise<Param
       )}
 
       <FaqSection faqs={faqs} />
+
+      <SmartLinks pathFilter={`/${destination}/`} title={`Trending ${dest.name} searches`} max={6} />
+
+      <div className="mt-10">
+        <SubscribeAlert destination={destination} destinationName={dest.name} />
+      </div>
 
       <RelatedSearches keywords={hubTargetKeywords(dest.name)} />
     </div>

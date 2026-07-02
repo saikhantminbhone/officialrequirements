@@ -5,6 +5,7 @@ import { destinationMetrics, eur } from "@/lib/reports";
 import { GUIDES } from "@/lib/guides";
 import { UNIVERSITIES } from "@/lib/universities";
 import FaqSection from "@/components/FaqSection";
+import SmartLinks from "@/components/SmartLinks";
 import JsonLd from "@/components/JsonLd";
 import { faqPageLd } from "@/lib/seo";
 
@@ -315,6 +316,9 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ── Striking-distance link boost (GSC-driven, renders when data exists) ── */}
+      <SmartLinks />
 
       {/* ── Trust ────────────────────────────────────────────────────────── */}
       <section className="surface-ink overflow-hidden rounded-3xl bg-ink-radial p-8 sm:p-12">

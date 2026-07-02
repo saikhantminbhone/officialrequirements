@@ -37,16 +37,24 @@ export interface IndexStatusReport {
   urls: Record<string, UrlIndexStatus>;
 }
 
-/** Canonical URL inventory = whatever the live sitemap declares indexable. */
+/** Canonical URL inventory = whatever the live sitemaps declare indexable.
+ *  Handles both a flat sitemap and a sitemap index of section sitemaps. */
 async function collectSiteUrls(): Promise<string[]> {
-  try {
-    const res = await fetch(`${SITE}/sitemap.xml`, { cache: "no-store" });
-    if (!res.ok) return [];
-    const xml = await res.text();
-    return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
-  } catch {
-    return [];
-  }
+  const locsOf = async (url: string): Promise<string[]> => {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return [];
+      const xml = await res.text();
+      return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+    } catch {
+      return [];
+    }
+  };
+  const top = await locsOf(`${SITE}/sitemap.xml`);
+  const childSitemaps = top.filter((u) => u.endsWith(".xml"));
+  if (childSitemaps.length === 0) return top;
+  const nested = await Promise.all(childSitemaps.map((u) => locsOf(u)));
+  return [...new Set(nested.flat())];
 }
 
 type InspectResult = {
