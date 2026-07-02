@@ -46,8 +46,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "CCBot", disallow: "/" },
     ],
     // Sitemap index + section sitemaps (per-section indexing visibility in GSC).
+    // /sitemap.xml 301s to the index, so previously-submitted URLs keep working.
     sitemap: [
-      `${SITE}/sitemap.xml`,
+      `${SITE}/sitemap-index.xml`,
       ...["core", "hubs", "visa", "university", "compare", "scholarships", "guides", "universities"].map(
         (s) => `${SITE}/sitemap/${s}.xml`
       ),

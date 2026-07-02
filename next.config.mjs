@@ -8,6 +8,17 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@aws-sdk/client-s3"],
   },
+  async redirects() {
+    return [
+      {
+        // Next 16 reserves /sitemap.xml for generateSitemaps but doesn't serve an
+        // index there — keep the canonical URL working for GSC/BWT/robots.txt.
+        source: "/sitemap.xml",
+        destination: "/sitemap-index.xml",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
